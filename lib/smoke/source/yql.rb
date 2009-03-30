@@ -1,13 +1,13 @@
 module Smoke
-  module Sources
+  module Source
     module YQL
-      Smoke::Source.register(Smoke::Sources::YQL)
+      Smoke.register(Smoke::Source::YQL)
       
-      def yql(url, opts = {}, &block)
-        YQL.new(url, opts, &block)
+      def yql(name, opts = {}, &block)
+        YQL.new(name, opts, &block)
       end
       
-      class YQL < Smoke::Source
+      class YQL
         attr_reader :url
       
         def initialize(url, opts, &block)
