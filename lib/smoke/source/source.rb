@@ -20,6 +20,10 @@ module Smoke
       # Re-sort items
       def sort
       end
+      
+      # Transform each item
+      def each(&block)
+      end
     end
   end
 end

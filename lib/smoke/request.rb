@@ -3,9 +3,9 @@ module Smoke
     class Failure < Exception
       attr_reader :uri
       
-      def initialize(uri)
-        @uri = URI.parse(uri).host
-        super("Failed to get from #{@uri.host} via #{@uri.scheme}")
+      def initialize(uri, msg)
+        @uri = URI.parse(uri)
+        super("Failed to get from #{@uri.host} via #{@uri.scheme}\n#{msg}")
       end
     end
     
@@ -18,21 +18,21 @@ module Smoke
     
     private
     def dispatch
-
+      puts @uri
       open(@uri) do |request|
         @content_type = request.content_type
         @body = request.read
       end
       
-      return parse
+      parse!
+    rescue OpenURI::HTTPError => e
+      Failure.new(@uri, e)
     end
     
-    def parse
+    def parse!
       case @content_type
-      when 'application/json'
-        JSON.parse(@body)
-      else
-        return @body
+      when 'text/json'
+        @body = ::JSON.parse(@body).symbolize_keys!
       end
     end
   end

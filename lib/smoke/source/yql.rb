@@ -7,23 +7,42 @@ module Smoke
         YQL.new(name, opts, &block)
       end
       
-      class YQL
-        attr_reader :url
+      class YQL < Source
+        attr_reader :name, :request
       
-        def initialize(url, opts, &block)
-          @url = url
-          @request = Smoke::Request.new(build_uri)
+        def initialize(name, opts, &block)
           self.instance_eval(&block)
+          dispatch
         end
         
-        def xpath(path)
-          @xpath = path
+        def select(what)
+          @select = what.join(",") and return if what.is_a? Array
+          @select = "*" and return if what == :all
+          @select = what.to_s
+        end
+        
+        def from(source)
+          @from = source.join(',') and return if source.is_a? Array
+          @from = source.to_s
+        end
+        
+        def where(column, value)
+          @where = @where || []
+          @where << "#{column.to_s} = '#{value}'"
         end
         
         private
+        def dispatch
+          @request = Smoke::Request.new(build_uri)
+          @items = @request.body[:query][:results][:result]
+        end
+        
         def build_uri
-          uri = [@url]
-          uri << @xpath unless @xpath.nil?
+          "http://query.yahooapis.com/v1/public/yql?q=#{build_query}&format=json"
+        end
+        
+        def build_query
+          URI.encode("SELECT #{@select} FROM #{@from} WHERE #{@where.join(" AND ")}")
         end
       end
     end

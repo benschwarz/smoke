@@ -2,11 +2,16 @@
 
 ## Usage
 
-### YQL (You have a yql url from yahoo and want to weed it down to something usable)
+### Making your own little search engine
 
-    yql "http://path/to/yahoo-yql" do
-      
+    Smoke.yql(:ruby) do
+      select  :all
+      from    "search.web"
+      where   :query, "ruby"
     end
+
+Now you have items that are matching ruby!
+
 ### API
 
 #### Rename methods

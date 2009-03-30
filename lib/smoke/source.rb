@@ -1,1 +1,1 @@
-Dir["source/*.rb"].each &method(:require)
+Dir["#{File.dirname(__FILE__)}/source/*.rb"].each &method(:require)

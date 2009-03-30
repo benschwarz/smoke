@@ -1,11 +1,11 @@
 require 'rubygems'
 require 'open-uri'
-gem 'json'
+require 'json'
+
+$:<< File.join(File.dirname(__FILE__))
 
 # Core ext
 require 'core_ext/hash.rb'
-
-$:<< File.join(File.dirname(__FILE__), 'smoke')
 
 module Smoke
   class << self
@@ -15,8 +15,8 @@ module Smoke
   end
 end
 
-require 'request'
-require 'source'
+require 'smoke/request'
+require 'smoke/source'
 
 class Object
   include Smoke
