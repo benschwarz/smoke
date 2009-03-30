@@ -7,6 +7,15 @@
     yql "http://path/to/yahoo-yql" do
       
     end
+### API
+
+#### Rename methods
+
+##### Single
+    rename(:content).to(:title)
+
+##### Multiple
+    rename(:content, :href).to(:title, :link)
 
 ### Copyright
 

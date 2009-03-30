@@ -9,7 +9,7 @@ module Smoke
       end
     end
     
-    attr_reader :uri, :response
+    attr_reader :uri, :content_type, :body
        
     def initialize(uri)
       @uri = uri
@@ -18,22 +18,21 @@ module Smoke
     
     private
     def dispatch
-      response = {}
-      
+
       open(@uri) do |request|
-        response[:content_type] = request['Content-Type']
-        response[:body] = request.read
+        @content_type = request.content_type
+        @body = request.read
       end
       
-      return parse(response)
+      return parse
     end
     
-    def parse(response)
-      case response[:content_type]
+    def parse
+      case @content_type
       when 'application/json'
-        JSON.parse(response[:body])
+        JSON.parse(@body)
       else
-        return response[:body]
+        return @body
       end
     end
   end
