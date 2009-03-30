@@ -5,8 +5,8 @@ gem 'json'
 $:<< File.join(File.dirname(__FILE__), 'smoke')
 
 require 'request'
-require 'sources'
+require 'source'
 
 class Object
-  include Smoke::Sources
+  include Smoke::Source
 end

@@ -1,7 +1,0 @@
-= smoke
-
-Description goes here.
-
-== Copyright
-
-Copyright (c) 2009 Ben Schwarz. See LICENSE for details.

@@ -1,5 +1,6 @@
 require 'rubygems'
 require 'rake'
+require 'spec'
 
 begin
   require 'jeweler'
@@ -24,11 +25,10 @@ Rake::RDocTask.new do |rdoc|
   rdoc.rdoc_files.include('lib/**/*.rb')
 end
 
-require 'rake/testtask'
-Rake::TestTask.new(:test) do |test|
-  test.libs << 'lib' << 'test'
-  test.pattern = 'test/**/*_test.rb'
-  test.verbose = false
+require 'spec/rake/spectask'
+Spec::Rake::SpecTask.new(:test) do |t|
+  t.spec_opts = ['--options', "spec/spec.opts"]
+  t.spec_files = FileList['spec/**/*_spec.rb']
 end
 
 begin
