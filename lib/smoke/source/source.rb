@@ -1,28 +1,28 @@
 module Smoke
-  module Source
+  module Source # :nodoc: 
     class Source
     
       attr_reader :items
-    
-      # Transform items in some way
-      # Not sure how to do this
-      def transform(collection, &block)
-      end
-    
-      # Rename properties in each item
-      def rename
-      end
-    
-      # Permit or restrict items based on filter results
-      def filter
-      end
-    
-      # Re-sort items
-      def sort
-      end
       
       # Transform each item
       def each(&block)
+        @items.each do |item|
+          item.instance_eval(&block)
+        end
+      end
+      
+      # Permit or restrict
+      # def filter
+      # end
+  
+      # Re-sort items
+      def sort(key)
+        @items = @items.sort_by{|i| i[key] }
+      end
+      
+      private
+      def define_items(items)
+        @items = items
       end
     end
   end

@@ -1,6 +1,6 @@
 module Smoke
-  class Request     
-    class Failure < Exception
+  class Request # :nodoc:
+    class Failure < Exception # :nodoc:
       attr_reader :uri
       
       def initialize(uri, msg)
