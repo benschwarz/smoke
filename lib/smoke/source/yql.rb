@@ -3,8 +3,8 @@ module Smoke
     module YQL
       Smoke.register(Smoke::Source::YQL)
       
-      def yql(name, opts = {}, &block)
-        YQL.new(name, opts, &block)
+      def yql(name, &block)
+        YQL.new(name, &block)
       end
       
       class YQL < Source
@@ -16,9 +16,8 @@ module Smoke
         #     from    "search.web"
         #     where   :query, "ruby"
         #   end
-        def initialize(name, opts, &block)
-          self.instance_eval(&block)
-          dispatch
+        def initialize(name, &block)
+          super
         end
         
         # Select indicates what YQL will be selecting
