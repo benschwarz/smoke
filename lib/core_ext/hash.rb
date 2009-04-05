@@ -10,19 +10,11 @@ class Hash # :nodoc:
     self
   end
   
-  class Transform # :nodoc:
-    def initialize(hash, key)
-      @hash = hash
-      @key = key
+  def rename(candidates)
+    candidates.each do |old_key, new_key|
+      self[new_key] = self.delete(old_key) if self.has_key?(old_key)
     end
     
-    def to(new_name)
-      @hash[new_name] = @hash.delete(@key)
-      return @hash
-    end
-  end
-  
-  def rename(key)
-    Transform.new(self, key)
+    return self
   end
 end
