@@ -1,3 +1,6 @@
+gem "crack", "= 0.1.1"
+require 'crack'
+
 module Smoke
   class Request # :nodoc:
     class Failure < Exception # :nodoc:
@@ -18,10 +21,12 @@ module Smoke
     
     private
     def dispatch
-      open(@uri) do |request|
-        @content_type = request.content_type
-        @body = request.read
-      end
+      Thread.new {
+        open(@uri, "User-Agent" => "Ruby/#{RUBY_VERSION}/Smoke") do |request|
+          @content_type = request.content_type
+          @body = request.read
+        end
+      }.join
       
       parse!
     rescue OpenURI::HTTPError => e
@@ -31,7 +36,9 @@ module Smoke
     def parse!
       case @content_type
       when 'text/json'
-        @body = ::JSON.parse(@body).symbolize_keys!
+        @body = ::Crack::JSON.parse(@body).symbolize_keys!
+      when 'text/xml'
+        @body = ::Crack::XML.parse(@body).symbolize_keys!
       end
     end
   end
