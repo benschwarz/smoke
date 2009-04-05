@@ -48,6 +48,8 @@ module Smoke
         # are currently supported
         # Usage:
         #   where :xpath, "//div/div/a"
+        # or
+        #   where :query, "python"
         def where(column, value)
           @where = @where || []
           @where << "#{column.to_s} = '#{value}'"

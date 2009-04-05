@@ -25,6 +25,7 @@ or even
         rename :shit_name => :title
       end
     end
+
 ### Copyright
 
 Copyright (c) 2009 Ben Schwarz. See LICENSE for details.

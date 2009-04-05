@@ -18,4 +18,9 @@ describe Smoke::Request do
   it "should have a content type" do
     @request.content_type.should == 'application/octet-stream'
   end
+  
+  it "should be a raw string response" do
+    @request = Smoke::Request.new(@url, :raw_response)
+    @request.body.should be_an_instance_of(String)
+  end
 end

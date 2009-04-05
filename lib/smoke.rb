@@ -1,6 +1,6 @@
 require 'rubygems'
 require 'open-uri'
-require 'json'
+require 'logger'
 
 $:<< File.join(File.dirname(__FILE__))
 
@@ -31,6 +31,10 @@ module Smoke
     
     def active_sources
       @@active_sources
+    end
+    
+    def log
+      @logger ||= Logger.new($stdout)
     end
     
     private

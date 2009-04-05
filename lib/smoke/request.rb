@@ -8,15 +8,15 @@ module Smoke
       
       def initialize(uri, msg)
         @uri = URI.parse(uri)
-        super("Failed to get from #{@uri.host} via #{@uri.scheme}\n#{msg}")
+        Smoke.log.error "Failed to get from #{@uri.host} via #{@uri.scheme}\n#{msg}"
       end
     end
     
     attr_reader :uri, :content_type, :body
        
-    def initialize(uri, options = {})
+    def initialize(uri, *options)
       @uri = uri
-      @options = options
+      @options = [options]
       dispatch
     end
     
@@ -28,7 +28,11 @@ module Smoke
           @body = request.read
         end
       }.join
-      parse! unless @options.has_key? :raw_response
+      
+      unless @options.include?(:raw_response)
+        parse!
+      end
+        
     rescue OpenURI::HTTPError => e
       Failure.new(@uri, e)
     end

@@ -2,6 +2,8 @@ require File.join(File.dirname(__FILE__), "..", "..", "spec_helper.rb")
 
 describe "YQL" do
   before do
+    FakeWeb.register_uri("query.yahooapis.com/*", :file => File.join(SPEC_DIR, 'supports', 'search-web.yql'))
+    
     @ruby = Smoke.yql(:ruby) do
       select  :all
       from    "search.web"

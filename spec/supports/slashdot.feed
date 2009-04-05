@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns="http://my.netscape.com/rdf/simple/0.9/" xmlns:feedburner="http://rssnamespace.org/feedburner/ext/1.0">
+
+<channel>
+<title>Slashdot</title>
+<link>http://slashdot.org/</link>
+<description>News for nerds, stuff that matters</description>
+</channel>
+
+<image>
+<title>Slashdot</title>
+<url>http://s.fsdn.com/sd/topics/topicslashdot.gif</url>
+<link>http://slashdot.org/</link>
+</image>
+
+<item>
+<title>North Korea Launches "Communication Satellite" Rocket</title>
+<link>http://rss.slashdot.org/~r/Slashdot/slashdot/to/~3/Z3_sEVEWN44/article.pl</link>
+<description>&lt;p&gt;&lt;a href="http://feedads.googleadservices.com/~at/ugeT-w-dcRANVSAFjeOyE1xWxLI/a"&gt;&lt;img src="http://feedads.googleadservices.com/~at/ugeT-w-dcRANVSAFjeOyE1xWxLI/i" border="0" ismap="true"&gt;&lt;/img&gt;&lt;/a&gt;&lt;/p&gt;&lt;img src="http://feeds2.feedburner.com/~r/Slashdot/slashdot/to/~4/Z3_sEVEWN44" height="1" width="1"/&gt;</description><feedburner:origLink>http://news.slashdot.org/article.pl?sid=09/04/05/0412228&amp;from=rss</feedburner:origLink></item>
+
+<item>
+<title>ARM &amp;mdash; Heretic In the Church of Intel, Moore's Law</title>
+<link>http://rss.slashdot.org/~r/Slashdot/slashdot/to/~3/42oa4dK6FBQ/article.pl</link>
+<description>&lt;p&gt;&lt;a href="http://feedads.googleadservices.com/~at/-1rxhXXhRQs2R45k9UK8rJWMt9Q/a"&gt;&lt;img src="http://feedads.googleadservices.com/~at/-1rxhXXhRQs2R45k9UK8rJWMt9Q/i" border="0" ismap="true"&gt;&lt;/img&gt;&lt;/a&gt;&lt;/p&gt;&lt;img src="http://feeds2.feedburner.com/~r/Slashdot/slashdot/to/~4/42oa4dK6FBQ" height="1" width="1"/&gt;</description><feedburner:origLink>http://hardware.slashdot.org/article.pl?sid=09/04/05/0029211&amp;from=rss</feedburner:origLink></item>
+
+<item>
+<title>Chrome EULA Reserves the Right To Filter Your Web</title>
+<link>http://rss.slashdot.org/~r/Slashdot/slashdot/to/~3/t2Uoe2155P4/article.pl</link>
+<description>&lt;p&gt;&lt;a href="http://feedads.googleadservices.com/~at/gaBNiJYktga6sDLVL-L_B8QcQSQ/a"&gt;&lt;img src="http://feedads.googleadservices.com/~at/gaBNiJYktga6sDLVL-L_B8QcQSQ/i" border="0" ismap="true"&gt;&lt;/img&gt;&lt;/a&gt;&lt;/p&gt;&lt;img src="http://feeds2.feedburner.com/~r/Slashdot/slashdot/to/~4/t2Uoe2155P4" height="1" width="1"/&gt;</description><feedburner:origLink>http://yro.slashdot.org/article.pl?sid=09/04/04/234208&amp;from=rss</feedburner:origLink></item>
+
+<item>
+<title>No More OpenMoko Phone</title>
+<link>http://rss.slashdot.org/~r/Slashdot/slashdot/to/~3/S8Zom-mjrXI/article.pl</link>
+<description>&lt;p&gt;&lt;a href="http://feedads.googleadservices.com/~at/XmLlMqiqRgwLFenKrFBWy9FX3dM/a"&gt;&lt;img src="http://feedads.googleadservices.com/~at/XmLlMqiqRgwLFenKrFBWy9FX3dM/i" border="0" ismap="true"&gt;&lt;/img&gt;&lt;/a&gt;&lt;/p&gt;&lt;img src="http://feeds2.feedburner.com/~r/Slashdot/slashdot/to/~4/S8Zom-mjrXI" height="1" width="1"/&gt;</description><feedburner:origLink>http://mobile.slashdot.org/article.pl?sid=09/04/04/228240&amp;from=rss</feedburner:origLink></item>
+
+<item>
+<title>Appeals Court Rules Against Google On Keyword Ads</title>
+<link>http://rss.slashdot.org/~r/Slashdot/slashdot/to/~3/F5DuPJgp4mQ/article.pl</link>
+<description>&lt;p&gt;&lt;a href="http://feedads.googleadservices.com/~at/rb4-68iQKt_C2O8gqGhtzeQi_zg/a"&gt;&lt;img src="http://feedads.googleadservices.com/~at/rb4-68iQKt_C2O8gqGhtzeQi_zg/i" border="0" ismap="true"&gt;&lt;/img&gt;&lt;/a&gt;&lt;/p&gt;&lt;img src="http://feeds2.feedburner.com/~r/Slashdot/slashdot/to/~4/F5DuPJgp4mQ" height="1" width="1"/&gt;</description><feedburner:origLink>http://news.slashdot.org/article.pl?sid=09/04/04/1921236&amp;from=rss</feedburner:origLink></item>
+
+<item>
+<title>Data Center Raid About Unpaid Telco Fees</title>
+<link>http://rss.slashdot.org/~r/Slashdot/slashdot/to/~3/x2UyC_yoJfI/article.pl</link>
+<description>&lt;p&gt;&lt;a href="http://feedads.googleadservices.com/~at/LBMosQrByLSE1GaPWCTQFMMj89U/a"&gt;&lt;img src="http://feedads.googleadservices.com/~at/LBMosQrByLSE1GaPWCTQFMMj89U/i" border="0" ismap="true"&gt;&lt;/img&gt;&lt;/a&gt;&lt;/p&gt;&lt;img src="http://feeds2.feedburner.com/~r/Slashdot/slashdot/to/~4/x2UyC_yoJfI" height="1" width="1"/&gt;</description><feedburner:origLink>http://tech.slashdot.org/article.pl?sid=09/04/04/2013200&amp;from=rss</feedburner:origLink></item>
+
+<item>
+<title>Coders, Your Days Are Numbered</title>
+<link>http://rss.slashdot.org/~r/Slashdot/slashdot/to/~3/-GRV3zWRuiw/article.pl</link>
+<description>&lt;p&gt;&lt;a href="http://feedads.googleadservices.com/~at/5UqLl0mY9ffxMo0vcTYa0IMOtkc/a"&gt;&lt;img src="http://feedads.googleadservices.com/~at/5UqLl0mY9ffxMo0vcTYa0IMOtkc/i" border="0" ismap="true"&gt;&lt;/img&gt;&lt;/a&gt;&lt;/p&gt;&lt;img src="http://feeds2.feedburner.com/~r/Slashdot/slashdot/to/~4/-GRV3zWRuiw" height="1" width="1"/&gt;</description><feedburner:origLink>http://developers.slashdot.org/article.pl?sid=09/04/04/1829239&amp;from=rss</feedburner:origLink></item>
+
+<item>
+<title>Windows 95 Almost Autodetected Floppy Disks</title>
+<link>http://rss.slashdot.org/~r/Slashdot/slashdot/to/~3/jJCf0ijBdMk/article.pl</link>
+<description>&lt;p&gt;&lt;a href="http://feedads.googleadservices.com/~at/02X9J3MmiaEwC1jWu-QnPzUCbb4/a"&gt;&lt;img src="http://feedads.googleadservices.com/~at/02X9J3MmiaEwC1jWu-QnPzUCbb4/i" border="0" ismap="true"&gt;&lt;/img&gt;&lt;/a&gt;&lt;/p&gt;&lt;img src="http://feeds2.feedburner.com/~r/Slashdot/slashdot/to/~4/jJCf0ijBdMk" height="1" width="1"/&gt;</description><feedburner:origLink>http://tech.slashdot.org/article.pl?sid=09/04/04/1717242&amp;from=rss</feedburner:origLink></item>
+
+<item>
+<title>Three Mile Island Memories</title>
+<link>http://rss.slashdot.org/~r/Slashdot/slashdot/to/~3/xgHoPPdzAYY/article.pl</link>
+<description>&lt;p&gt;&lt;a href="http://feedads.googleadservices.com/~at/Nwh7dkc8KT3AMVpZ-iavrb__tYY/a"&gt;&lt;img src="http://feedads.googleadservices.com/~at/Nwh7dkc8KT3AMVpZ-iavrb__tYY/i" border="0" ismap="true"&gt;&lt;/img&gt;&lt;/a&gt;&lt;/p&gt;&lt;img src="http://feeds2.feedburner.com/~r/Slashdot/slashdot/to/~4/xgHoPPdzAYY" height="1" width="1"/&gt;</description><feedburner:origLink>http://hardware.slashdot.org/article.pl?sid=09/04/04/1638249&amp;from=rss</feedburner:origLink></item>
+
+<item>
+<title>Phoenix Police Seize PCs of a Blogger Critical of the Department</title>
+<link>http://rss.slashdot.org/~r/Slashdot/slashdot/to/~3/d2SEMDC96bI/article.pl</link>
+<description>&lt;p&gt;&lt;a href="http://feedads.googleadservices.com/~at/TF64ggWHYGbTBgOmofPtcLVvDak/a"&gt;&lt;img src="http://feedads.googleadservices.com/~at/TF64ggWHYGbTBgOmofPtcLVvDak/i" border="0" ismap="true"&gt;&lt;/img&gt;&lt;/a&gt;&lt;/p&gt;&lt;img src="http://feeds2.feedburner.com/~r/Slashdot/slashdot/to/~4/d2SEMDC96bI" height="1" width="1"/&gt;</description><feedburner:origLink>http://yro.slashdot.org/article.pl?sid=09/04/04/1515239&amp;from=rss</feedburner:origLink></item>
+
+<item>
+<title>How Do I Put an Invention Into the Public Domain?</title>
+<link>http://rss.slashdot.org/~r/Slashdot/slashdot/to/~3/Oq13ubPpSTs/article.pl</link>
+<description>&lt;p&gt;&lt;a href="http://feedads.googleadservices.com/~at/DNJ7S7mvI0w3P6BVeVSkGNeGoQs/a"&gt;&lt;img src="http://feedads.googleadservices.com/~at/DNJ7S7mvI0w3P6BVeVSkGNeGoQs/i" border="0" ismap="true"&gt;&lt;/img&gt;&lt;/a&gt;&lt;/p&gt;&lt;img src="http://feeds2.feedburner.com/~r/Slashdot/slashdot/to/~4/Oq13ubPpSTs" height="1" width="1"/&gt;</description><feedburner:origLink>http://ask.slashdot.org/article.pl?sid=09/04/04/1338228&amp;from=rss</feedburner:origLink></item>
+
+<item>
+<title>Engineering Students Build Robotic Foosball Players</title>
+<link>http://rss.slashdot.org/~r/Slashdot/slashdot/to/~3/a4G1EaJNg2s/article.pl</link>
+<description>&lt;p&gt;&lt;a href="http://feedads.googleadservices.com/~at/Mz26LXLorHJ5MpbbhRA6lCCMwfU/a"&gt;&lt;img src="http://feedads.googleadservices.com/~at/Mz26LXLorHJ5MpbbhRA6lCCMwfU/i" border="0" ismap="true"&gt;&lt;/img&gt;&lt;/a&gt;&lt;/p&gt;&lt;img src="http://feeds2.feedburner.com/~r/Slashdot/slashdot/to/~4/a4G1EaJNg2s" height="1" width="1"/&gt;</description><feedburner:origLink>http://hardware.slashdot.org/article.pl?sid=09/04/04/1218214&amp;from=rss</feedburner:origLink></item>
+
+<item>
+<title>Believing In Medical Treatments That Don't Work</title>
+<link>http://rss.slashdot.org/~r/Slashdot/slashdot/to/~3/gRePAK3sAgg/article.pl</link>
+<description>&lt;p&gt;&lt;a href="http://feedads.googleadservices.com/~at/3hNpVvBfXOSJginuGNBpL8zy7ds/a"&gt;&lt;img src="http://feedads.googleadservices.com/~at/3hNpVvBfXOSJginuGNBpL8zy7ds/i" border="0" ismap="true"&gt;&lt;/img&gt;&lt;/a&gt;&lt;/p&gt;&lt;img src="http://feeds2.feedburner.com/~r/Slashdot/slashdot/to/~4/gRePAK3sAgg" height="1" width="1"/&gt;</description><feedburner:origLink>http://science.slashdot.org/article.pl?sid=09/04/04/042214&amp;from=rss</feedburner:origLink></item>
+
+<item>
+<title>Larrabee ISA Revealed</title>
+<link>http://rss.slashdot.org/~r/Slashdot/slashdot/to/~3/v8S7f-QWjNM/article.pl</link>
+<description>&lt;p&gt;&lt;a href="http://feedads.googleadservices.com/~at/3sEwn7Bdo_bLx-U2E5ukBxv7FLE/a"&gt;&lt;img src="http://feedads.googleadservices.com/~at/3sEwn7Bdo_bLx-U2E5ukBxv7FLE/i" border="0" ismap="true"&gt;&lt;/img&gt;&lt;/a&gt;&lt;/p&gt;&lt;img src="http://feeds2.feedburner.com/~r/Slashdot/slashdot/to/~4/v8S7f-QWjNM" height="1" width="1"/&gt;</description><feedburner:origLink>http://tech.slashdot.org/article.pl?sid=09/04/04/035224&amp;from=rss</feedburner:origLink></item>
+
+<item>
+<title>Large Ice Shelf Expected To Break From Antarctica</title>
+<link>http://rss.slashdot.org/~r/Slashdot/slashdot/to/~3/zMkhhpLF0BM/article.pl</link>
+<description>&lt;p&gt;&lt;a href="http://feedads.googleadservices.com/~at/3MFDbhb2EPCc5gsAPrcN3Afp8jM/a"&gt;&lt;img src="http://feedads.googleadservices.com/~at/3MFDbhb2EPCc5gsAPrcN3Afp8jM/i" border="0" ismap="true"&gt;&lt;/img&gt;&lt;/a&gt;&lt;/p&gt;&lt;img src="http://feeds2.feedburner.com/~r/Slashdot/slashdot/to/~4/zMkhhpLF0BM" height="1" width="1"/&gt;</description><feedburner:origLink>http://news.slashdot.org/article.pl?sid=09/04/04/028249&amp;from=rss</feedburner:origLink></item>
+
+<textinput>
+<title>Search Slashdot</title>
+<description>Search Slashdot stories</description>
+<name>query</name>
+<link>http://slashdot.org/search.pl</link>
+</textinput>
+
+</rdf:RDF>

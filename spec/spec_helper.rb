@@ -4,9 +4,11 @@ gem 'rspec'
 require 'spec'
 require 'fake_web'
 
+$:<< File.join(File.dirname(__FILE__), '..', 'lib')
 
-$LOAD_PATH.unshift(File.join(File.dirname(__FILE__), '..', 'lib'))
-$LOAD_PATH.unshift(File.dirname(__FILE__))
+SPEC_DIR = File.dirname(__FILE__)
+$:<< SPEC_DIR
+
 require 'smoke'
 
 require 'supports/mayo.rb'
