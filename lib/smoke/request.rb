@@ -14,8 +14,9 @@ module Smoke
     
     attr_reader :uri, :content_type, :body
        
-    def initialize(uri)
+    def initialize(uri, options = {})
       @uri = uri
+      @options = options
       dispatch
     end
     
@@ -27,8 +28,7 @@ module Smoke
           @body = request.read
         end
       }.join
-      
-      parse!
+      parse! unless @options.has_key? :raw_response
     rescue OpenURI::HTTPError => e
       Failure.new(@uri, e)
     end
