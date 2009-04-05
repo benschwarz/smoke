@@ -13,8 +13,12 @@ module Smoke
       class Feed < Source
         attr_reader :name, :requests
         
-        # Usage: # TODO
+        # Feed can take multiple rss or atom feeds and munge them up together.
+        # 
+        # Usage:
         #   Smoke.feed(:ruby) do
+        #     url "domain.tld/rss"
+        #     url "site.tld/atom"
         #   end
         def initialize(name, &block)
           super
