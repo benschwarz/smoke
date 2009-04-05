@@ -18,7 +18,6 @@ module Smoke
     
     private
     def dispatch
-      puts @uri
       open(@uri) do |request|
         @content_type = request.content_type
         @body = request.read
