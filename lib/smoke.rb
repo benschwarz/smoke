@@ -15,7 +15,10 @@ module Smoke
     
     # Smoke sources can register themselves
     # via the register method:
+    #
     #   Smoke.register(Smoke::Source::YQL)
+    #
+    # Check the supplied sources for usage
     def register(mod)
       class_eval { include mod }
     end
@@ -23,6 +26,7 @@ module Smoke
     def join(sources = [])
       @items = get_sources.map {|source| source[1] }
       
+      Smoke::Source::Source.new()
     end
     
     def activate(name, source)

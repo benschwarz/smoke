@@ -1,13 +1,13 @@
 module Smoke
   module Source
-    module YQL
+    module YQL # :nodoc:
       Smoke.register(Smoke::Source::YQL)
       
       def yql(name, &block)
         YQL.new(name, &block)
       end
       
-      class YQL < Source
+      class YQL < Origin
         attr_reader :name, :request
         
         # Usage:

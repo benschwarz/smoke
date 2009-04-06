@@ -3,14 +3,14 @@ require 'simple-rss'
 
 module Smoke
   module Source
-    module Feed
+    module Feed # :nodoc:
       Smoke.register(Smoke::Source::Feed)
       
       def feed(name, &block)
         Feed.new(name, &block)
       end
       
-      class Feed < Source
+      class Feed < Origin
         attr_reader :name, :requests
         
         # Feed can take multiple rss or atom feeds and munge them up together.

@@ -26,6 +26,11 @@ or even
       end
     end
 
+### TODO
+
+* Write a joiner source into the Smoke namespace
+* Consider invokation methods (registering of sources, namespacing et al)
+
 ### Copyright
 
 Copyright (c) 2009 Ben Schwarz. See LICENSE for details.
