@@ -8,7 +8,7 @@ module Smoke
       end
       
       class YQL < Origin
-        attr_reader :name, :request
+        attr_reader :request
         
         # Usage:
         #   Smoke.yql(:ruby) do

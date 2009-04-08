@@ -1,6 +1,3 @@
-gem 'simple-rss', '= 1.2'
-require 'simple-rss'
-
 module Smoke
   module Source
     module Feed # :nodoc:
@@ -11,7 +8,7 @@ module Smoke
       end
       
       class Feed < Origin
-        attr_reader :name, :requests
+        attr_reader :requests
         
         # Feed can take multiple rss or atom feeds and munge them up together.
         # 

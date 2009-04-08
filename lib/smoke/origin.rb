@@ -1,7 +1,8 @@
 module Smoke
   class Origin
+    class NotImplemented < Exception; end
     
-    attr_reader :items
+    attr_reader :items, :name
     
     def initialize(name, &block)
       @name = name
@@ -11,10 +12,6 @@ module Smoke
         dispatch
         activate!
       end
-    end
-    
-    def inspect # :nodoc:
-      "A Smoke Source - :#{name.to_sym}"
     end
     
     # Transform each item
@@ -30,6 +27,7 @@ module Smoke
     # Re-sort items
     def sort(key)
       @items = @items.sort_by{|i| i[key] }
+      return self
     end
     
     # Rename one or many keys at a time
@@ -43,10 +41,31 @@ module Smoke
     #   rename(:href => :link, :description => :excerpt)
     def rename(*args)
       @items.each {|item| item.rename(*args)  }
+      puts @items.first.inspect
+      return self
+    end
+    
+    # Output your items in a range of formats (ruby and json currently)
+    # Ruby is the default format and will automagically yielded from your source
+    #
+    # Usage
+    # 
+    #   output(:json)
+    #   => [{:title => "Ray"}, {:title => "Peace"}]
+    def output(type = :ruby)
+      case type
+      when :ruby
+        return @items
+      when :json
+        return ::JSON.generate(@items)
+      end
     end
     
     private
-
+    def dispatch
+      raise NotImplemented
+    end
+    
     def define_items(items)
       @items = items.map{|i| i.symbolize_keys! }
       invoke_transformations

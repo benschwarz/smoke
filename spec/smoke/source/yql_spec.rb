@@ -27,4 +27,8 @@ describe "YQL" do
     @ruby.items.first.should have_key(:link)
     @ruby.items.first.should_not have_key(:href)
   end
+  
+  it "should output a ruby object" do
+    @ruby.output.should be_an_instance_of(Array)
+  end
 end

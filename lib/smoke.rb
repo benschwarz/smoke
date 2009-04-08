@@ -1,6 +1,10 @@
 require 'rubygems'
 require 'open-uri'
 require 'logger'
+require 'json'
+
+gem 'simple-rss', '= 1.2'
+require 'simple-rss'
 
 $:<< File.join(File.dirname(__FILE__))
 
@@ -13,7 +17,7 @@ module Smoke
     @@active_sources = []
     attr_reader :active_sources
     
-    # Smoke sources can register themselves
+    # Smoke sources can invoke access to themselves
     # via the register method:
     #
     #   Smoke.register(Smoke::Source::YQL)
@@ -49,7 +53,7 @@ module Smoke
 end
 
 require 'smoke/request'
-require 'smoke/source'
+require 'smoke/origin'
 require 'smoke/delayed_block'
 
 class Object # :nodoc: 
