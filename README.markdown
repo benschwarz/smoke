@@ -3,6 +3,10 @@
 smoke is what comes from pipes. now I really sound like a crack head. 
 more later.
 
+### Not ready for consumption
+
+
+
 ## API
     Smoke.yql(:ruby) do
       select  :all
@@ -16,6 +20,7 @@ more later.
       where   :query, "python"
     end
 
+### Soon, not yet
     Smoke.join(:ruby, :python)
 or even
 
@@ -26,7 +31,7 @@ or even
       end
     end
 
-### TODO
+### TODO (working on, just mental notes)
 
 * Write a joiner source into the Smoke namespace
 * Consider invokation methods (registering of sources, namespacing et al)
