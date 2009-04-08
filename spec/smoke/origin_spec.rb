@@ -41,4 +41,13 @@ describe Smoke::Origin do
   it "should output" do
     @origin.output.should be_an_instance_of(Array)
   end
+  
+  it "method chaining" do
+    @source = TestSource.source(:chain)
+    @source.rename(:title => :header).sort(:header).output.should == [{:header => "Kangaroo"}, {:header => "Platypus"}]
+  end
+  
+  it "should softly error when attempting to sort on a key that doesn't exist" do
+    TestSource.source(:chain).sort(:header).should_not raise_error("NoMethodError")
+  end
 end

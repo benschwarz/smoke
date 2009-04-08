@@ -27,6 +27,9 @@ module Smoke
     # Re-sort items
     def sort(key)
       @items = @items.sort_by{|i| i[key] }
+    rescue NoMethodError => e
+      Smoke.log.info "You're trying to sort by #{key} but it does not exist in your item set"
+    ensure
       return self
     end
     
@@ -40,7 +43,7 @@ module Smoke
     # or
     #   rename(:href => :link, :description => :excerpt)
     def rename(*args)
-      @items.each {|item| item.rename(*args)  }
+      @items.each {|item| item.rename(*args) }
       return self
     end
     

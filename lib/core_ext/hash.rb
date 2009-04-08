@@ -7,10 +7,10 @@ class Hash # :nodoc:
       self[sym] = Hash === v ? v.symbolize_keys! : v 
       delete(k) unless k == sym
     end
-    return self
+    self
   end
   
-  def rename!(candidates)
+  def rename(candidates)
     candidates.each do |old_key, new_key|
       self[new_key] = self.delete(old_key) if self.has_key?(old_key)
     end
