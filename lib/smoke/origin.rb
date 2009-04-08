@@ -41,7 +41,6 @@ module Smoke
     #   rename(:href => :link, :description => :excerpt)
     def rename(*args)
       @items.each {|item| item.rename(*args)  }
-      puts @items.first.inspect
       return self
     end
     
