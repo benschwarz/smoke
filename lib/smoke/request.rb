@@ -16,7 +16,7 @@ module Smoke
        
     def initialize(uri, *options)
       @uri = uri
-      @options = [options]
+      @options = options
       dispatch
     end
     
@@ -29,9 +29,7 @@ module Smoke
         end
       }.join
       
-      unless @options.include?(:raw_response)
-        parse!
-      end
+      parse! unless @options.include?(:raw_response)
         
     rescue OpenURI::HTTPError => e
       Failure.new(@uri, e)

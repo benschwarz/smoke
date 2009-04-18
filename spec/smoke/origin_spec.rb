@@ -33,6 +33,7 @@ describe Smoke::Origin do
     end
   
     it "should be ordered by title" do
+      # puts @origin.inspect
       @origin.output.first.title.should == "Kangaroo"
     end
   end
