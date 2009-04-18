@@ -1,6 +1,3 @@
-gem "crack", "= 0.1.1"
-require 'crack'
-
 module Smoke
   class Request # :nodoc:
     class Failure < Exception # :nodoc:

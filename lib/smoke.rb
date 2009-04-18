@@ -2,9 +2,9 @@ require 'rubygems'
 require 'open-uri'
 require 'logger'
 require 'json'
-
-gem 'simple-rss', '= 1.2'
+require 'crack'
 require 'simple-rss'
+
 
 $:<< File.join(File.dirname(__FILE__))
 
