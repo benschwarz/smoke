@@ -28,10 +28,9 @@ module Smoke
     end
     
     def join(*sources)
-      @items = get_sources.map {|source| source[1] }
-      puts @items.inspect
+      @items = get_sources(sources).map {|source| source[1] }
       joined_name = (sources << "joined").join("_").to_sym
-      Smoke::Source::Source.new(joined_name)
+      Smoke::Origin.new(joined_name)
     end
     
     def activate(name, source)

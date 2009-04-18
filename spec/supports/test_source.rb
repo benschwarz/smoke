@@ -11,7 +11,7 @@ module TestSource
       }
     ])
         
-    source.send(:initialize, name, &block || Proc.new)
+    source.send(:initialize, name, &block || Proc.new {})
     return source
   end
 end
