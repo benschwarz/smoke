@@ -27,10 +27,11 @@ module Smoke
       class_eval { include mod }
     end
     
-    def join(sources = [])
+    def join(*sources)
       @items = get_sources.map {|source| source[1] }
-      
-      Smoke::Source::Source.new()
+      puts @items.inspect
+      joined_name = (sources << "joined").join("_").to_sym
+      Smoke::Source::Source.new(joined_name)
     end
     
     def activate(name, source)

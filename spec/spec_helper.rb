@@ -13,3 +13,4 @@ $:<< SPEC_DIR
 require 'smoke'
 
 require 'supports/mayo.rb'
+require 'supports/test_source.rb'

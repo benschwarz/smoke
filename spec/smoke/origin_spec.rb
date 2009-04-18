@@ -1,22 +1,5 @@
 require File.join(File.dirname(__FILE__), "..", "spec_helper.rb")
 
-module TestSource
-  def self.source(name, &block)
-    source = Smoke::Origin.allocate
-    source.stub!(:dispatch)
-    source.send(:define_items, [
-      {
-        :head => "Platypus"
-      },
-      {
-        :head => "Kangaroo"
-      }
-    ])
-    source.send(:initialize, name, &block)
-    return source
-  end
-end
-
 describe Smoke::Origin do
   before :each do
     @origin = TestSource.source(:test) do
