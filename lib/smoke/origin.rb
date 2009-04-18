@@ -5,6 +5,7 @@ module Smoke
     attr_reader :items, :name
     
     def initialize(name, &block)
+      raise StandardError, "Sources must have a name" unless name
       @name = name
       
       if block_given?

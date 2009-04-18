@@ -9,7 +9,7 @@ describe "Feed" do
       url "http://slashdot.org/index.rdf"
       
       emit do
-        rename(:url => :link)
+        rename(:link => :url)
       end
     end
   end
@@ -27,7 +27,7 @@ describe "Feed" do
   end
   
   it "should have renamed url to link" do
-    @rss.items.first.should have_key(:link)
-    @rss.items.first.should_not have_key(:href)
+    @rss.items.first.should have_key(:url)
+    @rss.items.first.should_not have_key(:link)
   end
 end
