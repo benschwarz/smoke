@@ -6,7 +6,7 @@ begin
   require 'jeweler'
   Jeweler::Tasks.new do |gem|
     gem.name = "smoke"
-    gem.summary = %Q{TODO}
+    gem.summary = %Q{smoke is a DSL that allows you to take data from YQL, RSS / Atom}
     gem.email = "ben.schwarz@gmail.com"
     gem.homepage = "http://github.com/benschwarz/smoke"
     gem.authors = ["Ben Schwarz"]
