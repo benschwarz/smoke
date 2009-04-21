@@ -5,11 +5,12 @@ module Smoke
       
       def initialize(uri, msg)
         @uri = URI.parse(uri)
-        Smoke.log.error "Failed to get from #{@uri.host} via #{@uri.scheme}\n#{msg}"
+        Smoke.log.error "Smoke Request: Failed to get from #{@uri.host} via #{@uri.scheme}\n#{msg}"
       end
     end
     
-    attr_reader :uri, :content_type, :body
+    SUPPORTED_TYPES = %w(json xml)
+    attr_reader :uri, :content_type, :body, :type
        
     def initialize(uri, *options)
       @uri = uri
@@ -26,18 +27,31 @@ module Smoke
         end
       }.join
       
-      parse! unless @options.include?(:raw_response)
+      unless @options.include?(:raw_response)
+        present!
+      end
     rescue OpenURI::HTTPError => e
       Failure.new(@uri, e)
     end
     
+    def present!
+      set_type
+      parse!
+    end
+    
+    def set_type
+      @type = (SUPPORTED_TYPES.detect{|t| @content_type =~ /#{t}/ } || "unknown").to_sym
+    end
+    
     def parse!
-      case @content_type
-      when 'text/json'
-        @body = ::Crack::JSON.parse(@body).symbolize_keys!
-      when 'text/xml'
-        @body = ::Crack::XML.parse(@body).symbolize_keys!
-      end
+      case @type
+        when :json
+          @body = ::Crack::JSON.parse(@body).symbolize_keys!
+        when :xml
+          @body = ::Crack::XML.parse(@body).symbolize_keys!
+        when :unknown
+          Smoke.log.warn "Smoke Request: Format unknown for #{@uri} (#{@content_type})"
+      end      
     end
   end
 end

@@ -2,7 +2,7 @@ require File.join(File.dirname(__FILE__), "..", "..", "spec_helper.rb")
 
 describe "Feed" do
   before do
-    FakeWeb.register_uri("http://slashdot.org/index.rdf", :file => File.join(SPEC_DIR, 'supports', 'slashdot.feed'))
+    FakeWeb.register_uri("http://slashdot.org/index.rdf", :file => File.join(SPEC_DIR, 'supports', 'slashdot.xml'))
     
     @rss = Smoke.feed(:ruby) do
       url "http://slashdot.org/index.rdf"

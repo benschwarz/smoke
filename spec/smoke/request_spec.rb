@@ -3,7 +3,7 @@ require File.join(File.dirname(__FILE__), "..", "spec_helper.rb")
 describe Smoke::Request do
   before do
     @url = "http://fake.tld/canned/"
-    @web_search = File.join(SPEC_DIR, 'supports', 'slashdot.feed')
+    @web_search = File.join(SPEC_DIR, 'supports', 'slashdot.xml')
     FakeWeb.register_uri(@url, :file => @web_search)
     @request = Smoke::Request.new(@url)
   end
@@ -21,8 +21,9 @@ describe Smoke::Request do
   end
   
   it "should be a pure ruby array response" do
-    @request = Smoke::Request.new(@url)
-    @request.body.should be_an_instance_of(Array)
+    # Temporary real request, fakeweb isn't allowing content_type setting as of writing
+    @request = Smoke::Request.new("http://query.yahooapis.com/v1/public/yql?q=SELECT%20*%20FROM%20search.web%20WHERE%20query%20=%20'ruby'&format=xml")
+    @request.body.should be_an_instance_of(Hash)
   end
   
   it "should be a raw string response" do

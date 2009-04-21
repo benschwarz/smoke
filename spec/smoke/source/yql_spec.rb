@@ -2,10 +2,12 @@ require File.join(File.dirname(__FILE__), "..", "..", "spec_helper.rb")
 
 describe "YQL" do
   before do
-    FakeWeb.register_uri("query.yahooapis.com/*") do |response|
-      response.body = File.read(File.join(SPEC_DIR, 'supports', 'search-web.yql'))
-      response.content_type "text/json"
-    end
+    # Fake web does not yet support regex matched uris
+    
+    #FakeWeb.register_uri("query.yahooapis.com/*") do |response|
+    #  response.body = File.read(File.join(SPEC_DIR, 'supports', 'search-web.yql'))
+    #  response.content_type "text/json"
+    #end
     
     @ruby = Smoke.yql(:ruby) do
       select  :all
