@@ -46,7 +46,11 @@ or even
 
 ### TODO (working on, just mental notes)
 
+* Filters (accept, deny)
 * Consider invokation methods (registering of sources, namespacing et al)
+* YQL Definitions
+* YQL w/oAuth
+* YQL Subqueries?
 
 ### Copyright
 
