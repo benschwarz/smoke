@@ -18,6 +18,7 @@ The concept comes from using [Yahoo Pipes](http://pipes.yahoo.com) to make littl
 * Examples of queries you'd like to be able to do
 
 ## API Examples
+### YQL
     # This will use yahoo search to get an array of search results about Ruby
     Smoke.yql(:ruby) do
       select  :all
@@ -31,8 +32,9 @@ The concept comes from using [Yahoo Pipes](http://pipes.yahoo.com) to make littl
       where   :query, "python"
     end
 
-### Soon, not yet
+### Join sources and use them together
     Smoke.join(:ruby, :python)
+
 or even
 
     Smoke.join(:python, :ruby) do
@@ -44,7 +46,6 @@ or even
 
 ### TODO (working on, just mental notes)
 
-* Write a joiner source into the Smoke namespace
 * Consider invokation methods (registering of sources, namespacing et al)
 
 ### Copyright
