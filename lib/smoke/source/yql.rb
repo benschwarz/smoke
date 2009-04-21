@@ -58,7 +58,7 @@ module Smoke
         private
         def dispatch
           @request = Smoke::Request.new(build_uri)
-          define_items @request.body[:query][:results][:result]
+          self.items = @request.body[:query][:results][:result]
         end
         
         def build_uri

@@ -27,7 +27,6 @@ module Smoke
       }.join
       
       parse! unless @options.include?(:raw_response)
-        
     rescue OpenURI::HTTPError => e
       Failure.new(@uri, e)
     end

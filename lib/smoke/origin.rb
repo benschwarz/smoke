@@ -7,6 +7,7 @@ module Smoke
     def initialize(name, &block)
       raise StandardError, "Sources must have a name" unless name
       @name = name
+      @items = []
       
       if block_given?
         self.instance_eval(&block)
@@ -64,14 +65,14 @@ module Smoke
       end
     end
     
+    def items=(items)
+      @items = items.map{|i| i.symbolize_keys! }
+      invoke_transformations
+    end
+    
     private
     def dispatch
       raise NotImplemented
-    end
-    
-    def define_items(items)
-      @items = items.map{|i| i.symbolize_keys! }
-      invoke_transformations
     end
     
     def invoke_transformations

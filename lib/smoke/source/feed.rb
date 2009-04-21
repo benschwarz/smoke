@@ -28,7 +28,7 @@ module Smoke
         private
         def dispatch
           @requests = @feeds.map{|f| Smoke::Request.new(f, :raw_response) }
-          define_items @requests.map{|r| ::SimpleRSS.parse(r.body).items }.flatten
+          self.items = @requests.map{|r| ::SimpleRSS.parse(r.body).items }.flatten
         end
       end
     end

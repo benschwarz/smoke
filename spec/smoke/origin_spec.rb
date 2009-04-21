@@ -16,12 +16,16 @@ describe Smoke::Origin do
     end
   
     it "should be ordered by title" do
-      @origin.output.first.title.should == "Kangaroo"
+      @origin.output.first[:title].should == "Kangaroo"
     end
   end
   
   it "should output" do
     @origin.output.should be_an_instance_of(Array)
+  end
+  
+  it "should output two items" do
+    @origin.output.size.should == 2
   end
   
   it "should output json" do

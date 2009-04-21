@@ -11,10 +11,10 @@ $:<< File.join(File.dirname(__FILE__))
 # Core ext
 require 'core_ext/hash.rb'
 
-module Smoke
+module Smoke  
   class << self
     
-    @@active_sources = []
+    @@active_sources = {}
     attr_reader :active_sources
     
     # Smoke sources can invoke access to themselves
@@ -27,14 +27,26 @@ module Smoke
       class_eval { include mod }
     end
     
-    def join(*sources)
-      @items = get_sources(sources).map {|source| source[1] }
+    def [](source)
+      active_sources[source]
+    end
+    
+    def join(*sources, &block)
+      @items = get_sources(sources).map {|source| source[1].items }.flatten
+      
       joined_name = (sources << "joined").join("_").to_sym
-      Smoke::Origin.new(joined_name)
+      source = Origin.new(joined_name, &block)
+
+      source.items = @items
+      return source
     end
     
     def activate(name, source)
-      @@active_sources << {name => source}
+      if active_sources.has_key?(name)
+        Smoke.log.warn "Smoke source activation: Source with idential name already initialized" 
+      end
+      
+      active_sources.update({ name => source })
     end
     
     def active_sources
@@ -47,7 +59,7 @@ module Smoke
     
     private
     def get_sources(sources = [])
-      active_sources.find_all{|k,v| sources.include?(k) }
+      active_sources.find_all{|k, v| sources.include?(k) }
     end
   end
 end
