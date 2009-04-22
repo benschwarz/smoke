@@ -29,6 +29,11 @@ describe Smoke do
     it "should contain items from sources a and b" do
       @joined.output.size.should == (@source_a.output.size + @source_b.output.size)
     end
+    
+    it "should accept a block"
+    it "should allow sorting"
+    it "should allow renaming"
+    it "should allow changes to output"
   end
   
   describe "active sources" do

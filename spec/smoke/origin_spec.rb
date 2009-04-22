@@ -1,7 +1,7 @@
 require File.join(File.dirname(__FILE__), "..", "spec_helper.rb")
 
 describe Smoke::Origin do
-  before :each do
+  before do
     @origin = TestSource.source(:test) do
       emit do
         rename(:head => :title)
@@ -17,6 +17,25 @@ describe Smoke::Origin do
   
     it "should be ordered by title" do
       @origin.output.first[:title].should == "Kangaroo"
+    end
+  end
+  
+  describe "transformations" do
+    it "should rename properties" do
+      Smoke[:test].rename(:title => :header).output.first.should have_key(:header)
+    end
+    
+    it "should sort by a given property" do
+      Smoke[:test].sort(:title).output.first[:title].should == "Kangaroo"
+    end
+    
+    it "should truncate results given a length" do
+      Smoke[:test].truncate(1).output.size.should == 1
+    end
+    
+    describe "filtering" do
+      it "should accept items that match"
+      it "should deny items that match"
     end
   end
   

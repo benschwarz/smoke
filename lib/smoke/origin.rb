@@ -26,7 +26,7 @@ module Smoke
       (@transformations ||= []) << DelayedBlock.new(&block)
     end
 
-    # Re-sort items
+    # Re-sort items by a particular key
     def sort(key)
       @items = @items.sort_by{|i| i[key] }
     rescue NoMethodError => e
@@ -55,7 +55,7 @@ module Smoke
     # Usage
     # 
     #   output(:json)
-    #   => [{:title => "Ray"}, {:title => "Peace"}]
+    #   => "[{title: \"Ray\"}, {title: \"Peace\"}]"
     def output(type = :ruby)
       case type
       when :ruby
@@ -63,6 +63,17 @@ module Smoke
       when :json
         return ::JSON.generate(@items)
       end
+    end
+    
+    # Truncate your result set to this many objects
+    #
+    # Usage
+    #
+    #   truncate(3).output
+    #   => [{title => "Canon"}, {:title => "Nikon"}, {:title => "Pentax"}]
+    def truncate(length)
+      @items = @items[0..(length - 1)]
+      return self
     end
     
     def items=(items)
