@@ -30,10 +30,21 @@ describe Smoke do
       @joined.output.size.should == (@source_a.output.size + @source_b.output.size)
     end
     
-    it "should accept a block"
-    it "should allow sorting"
-    it "should allow renaming"
-    it "should allow changes to output"
+    it "should accept a block" do
+      lambda { Smoke.join(:a, :b, Proc.new {}) }.should_not raise_error
+    end
+    
+    it "should allow sorting" do
+      Smoke.join(:a, :b).should respond_to(:sort)
+    end
+    
+    it "should allow renaming" do
+      Smoke.join(:a, :b).should respond_to(:rename)
+    end
+    
+    it "should allow changes to output" do
+      Smoke.join(:a, :b).should respond_to(:output)
+    end
   end
   
   describe "active sources" do
