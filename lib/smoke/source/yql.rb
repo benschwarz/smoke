@@ -53,11 +53,11 @@ module Smoke
           @where << "#{column.to_s} = '#{value}'"
         end
         
-        private
         def dispatch
           @request = Smoke::Request.new(build_uri)
           self.items = @request.body[:query][:results][:result]
         end
+        private
         
         def build_uri
           "http://query.yahooapis.com/v1/public/yql?q=#{build_query}&format=json"
