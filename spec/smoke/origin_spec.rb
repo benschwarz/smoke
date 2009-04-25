@@ -51,6 +51,10 @@ describe Smoke::Origin do
     @origin.output(:json).should =~ /^\[\{/
   end
   
+  it "should output yml" do
+    @origin.output(:yaml).should =~ /--- \n- :title:/
+  end
+  
   it "method chaining" do
     @source = TestSource.source(:chain)
     @source.rename(:head => :header).sort(:header).output.should == [{:header => "Kangaroo"}, {:header => "Platypus"}]

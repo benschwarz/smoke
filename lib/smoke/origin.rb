@@ -44,7 +44,7 @@ module Smoke
       return self
     end
     
-    # Output your items in a range of formats (ruby and json currently)
+    # Output your items in a range of formats (:ruby, :json and :yaml currently)
     # Ruby is the default format and will automagically yielded from your source
     #
     # Usage
@@ -57,6 +57,8 @@ module Smoke
         return @items
       when :json
         return ::JSON.generate(@items)
+      when :yaml
+        return YAML.dump(@items)
       end
     end
     
