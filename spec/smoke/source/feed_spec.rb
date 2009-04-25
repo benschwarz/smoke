@@ -14,6 +14,10 @@ describe "Feed" do
     end
   end
   
+  it "should call dispatch" do
+    @rss.should_receive(:dispatch)
+  end
+  
   it "should be a list of things" do
     @rss.items.should be_an_instance_of(Array)
   end

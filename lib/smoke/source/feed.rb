@@ -1,5 +1,5 @@
 module Smoke
-  module Source
+  module Source # :nodoc:
     module Feed # :nodoc:
       Smoke.register(Smoke::Source::Feed)
       
@@ -7,19 +7,15 @@ module Smoke
         Feed.new(name, &block)
       end
       
+      # Feed can take multiple rss or atom feeds and munge them up together.
+      # 
+      # Usage:
+      #   Smoke.feed(:ruby) do
+      #     url "domain.tld/rss"
+      #     url "site.tld/atom"
+      #   end
       class Feed < Origin
         attr_reader :requests
-        
-        # Feed can take multiple rss or atom feeds and munge them up together.
-        # 
-        # Usage:
-        #   Smoke.feed(:ruby) do
-        #     url "domain.tld/rss"
-        #     url "site.tld/atom"
-        #   end
-        def initialize(name, &block)
-          super
-        end
         
         def url(feed_uri)
           (@feeds ||= [] ) << feed_uri

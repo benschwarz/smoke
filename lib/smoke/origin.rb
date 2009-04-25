@@ -1,19 +1,14 @@
 module Smoke
   class Origin
-    class NotImplemented < Exception; end
-    
     attr_reader :items, :name
     
     def initialize(name, &block)
       raise StandardError, "Sources must have a name" unless name
       @name = name
       @items = []
-      
-      if block_given?
-        self.instance_eval(&block)
-        dispatch
-        activate!
-      end
+      activate!
+      instance_eval(&block) if block_given?
+      dispatch if respond_to? :dispatch
     end
     
     # Transform each item
@@ -82,10 +77,6 @@ module Smoke
     end
     
     private
-    def dispatch
-      raise NotImplemented
-    end
-    
     def invoke_transformations
       @transformations.each{|t| t.execute! } unless @transformations.nil?
     end

@@ -1,5 +1,5 @@
 module Smoke
-  module Source
+  module Source # :nodoc:
     module YQL # :nodoc:
       Smoke.register(Smoke::Source::YQL)
       
@@ -7,18 +7,16 @@ module Smoke
         YQL.new(name, &block)
       end
       
+      # YQL will call to Yahoo YQL services
+      #
+      # Usage:
+      #   Smoke.yql(:ruby) do
+      #     select  :all
+      #     from    "search.web"
+      #     where   :query, "ruby"
+      #   end
       class YQL < Origin
         attr_reader :request
-        
-        # Usage:
-        #   Smoke.yql(:ruby) do
-        #     select  :all
-        #     from    "search.web"
-        #     where   :query, "ruby"
-        #   end
-        def initialize(name, &block)
-          super
-        end
         
         # Select indicates what YQL will be selecting
         # Usage:
