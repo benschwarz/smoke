@@ -27,6 +27,14 @@ module Smoke
       class_eval { include mod }
     end
     
+    # Access registered smoke source instances
+    #
+    # Usage:
+    #
+    #     Smoke.yql(:ruby) do ....
+    #
+    #     Smoke[:ruby]
+    #     => #<Smoke::Source::YQL::YQL:0x18428d4...
     def [](source)
       active_sources[source]
     end
@@ -49,10 +57,17 @@ module Smoke
       active_sources.update({ name => source })
     end
     
+    # Returns all activated smoke sources
     def active_sources
       @@active_sources
     end
     
+    # Log for info, debug, error and warn with:
+    # 
+    #   Smoke.log.info "message"
+    #   Smoke.log.debug "message"
+    #   Smoke.log.error "message"
+    #   Smoke.log.warn "message"
     def log
       @logger ||= Logger.new($stdout)
     end

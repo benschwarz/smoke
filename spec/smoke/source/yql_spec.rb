@@ -20,10 +20,6 @@ describe "YQL" do
     end
   end
   
-  it "should call dispatch" do
-    @ruby.should_receive(:dispatch)
-  end
-  
   it "should be a list of things" do
     @ruby.items.should be_an_instance_of(Array)
   end
