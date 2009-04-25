@@ -4,6 +4,7 @@ smoke is a Ruby based DSL that allows you to take data from YQL, RSS / Atom (and
 This "data" can then be re-represented, sorted and filtered. You can collect data from a multiude of sources, sort them on a common property
 and return a plain old ruby object or json (You could add in something to output XML too)
 
+In an early attempt to get feedback I created [this screencast](http://vimeo.com/4272804). I will do another once the library becomes closer to 1.0.0.
 
 ## The concept
 
