@@ -34,8 +34,26 @@ describe Smoke::Origin do
     end
     
     describe "filtering" do
-      it "should accept items that match"
-      it "should deny items that match"
+      before do
+        TestSource.source(:keep)
+        TestSource.source(:discard)
+      end
+      
+      it "should keep items" do
+        Smoke[:keep].should(respond_to(:keep))
+      end
+      
+      it "should only contain items that match" do
+        Smoke[:keep].keep(:head, /^K/).output.should == [{:head => "Kangaroo"}]
+      end
+      
+      it "should discard items" do
+        Smoke[:discard].should(respond_to(:discard))
+      end
+      
+      it "should not contain items that match" do
+        Smoke[:discard].discard(:head, /^K/).output.should == [{:head => "Platypus"}]
+      end
     end
   end
   

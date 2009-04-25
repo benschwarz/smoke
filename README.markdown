@@ -13,8 +13,7 @@ The concept comes from using [Yahoo Pipes](http://pipes.yahoo.com) to make littl
 ## How or what to contribute
 
 * Test everything you do
-* Add a source
-* Add a way of transforming the output (filters: accept, deny. etc)
+* Add a source (I was thinking a source that took simply took a url and parsed whatever it got)
 * Add a way to output (XML, anyone?)
 * Examples of queries you'd like to be able to do
 
@@ -25,6 +24,8 @@ The concept comes from using [Yahoo Pipes](http://pipes.yahoo.com) to make littl
       select  :all
       from    "search.web"
       where   :query, "ruby"
+      
+      discard :title, /tuesday/i
     end
 
     Smoke.yql(:python) do
@@ -47,7 +48,6 @@ or even
 
 ### TODO (working on, just mental notes)
 
-* Filters (accept, deny)
 * Consider invokation methods (registering of sources, namespacing et al)
 * YQL Definitions
 * YQL w/oAuth

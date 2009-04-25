@@ -29,6 +29,34 @@ module Smoke
     ensure
       return self
     end
+
+    # Keep items that match the regex
+    # 
+    # Usage (chained): 
+    #     Smoke[:ruby].keep(:title, /tuesday/i)
+    # Usage (block, during initialization):
+    #     Smoke.yql(:ruby) do
+    #       ...
+    #       keep(:title, /tuesday/i)
+    #     end
+    def keep(key, matcher)
+      @items.reject! {|i| (i[key] =~ matcher) ? false : true }
+      return self
+    end
+    
+    # Discard items that do not match the regex
+    # 
+    # Usage (chained): 
+    #     Smoke[:ruby].discard(:title, /tuesday/i)
+    # Usage (block, during initialization):
+    #     Smoke.yql(:ruby) do
+    #       ...
+    #       discard(:title, /tuesday/i)
+    #     end
+    def discard(key, matcher)
+      @items.reject! {|i| (i[key] =~ matcher) ? true : false }
+      return self
+    end
     
     # Rename one or many keys at a time
     # Suggested that you run it within an each block, but it makes no difference
