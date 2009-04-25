@@ -1,0 +1,136 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html lang='en'>
+  <head>
+    <title>File: README.markdown [smoke]</title>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type'>
+    <link href='../rdoc-style.css' media='screen' rel='stylesheet' type='text/css'>
+    <script type='text/javascript'>
+      //<![CDATA[
+        function popupCode(url) {
+          window.open(url, "Code", "resizable=yes,scrollbars=yes,toolbar=no,status=no,height=150,width=400")
+        }
+        
+        function toggleCode(id) {
+          var code = document.getElementById(id)
+        
+          code.style.display = code.style.display != 'block' ? 'block' : 'none'
+          return true
+        }
+        
+        // Make codeblocks hidden by default
+        document.writeln('<' + 'style type="text/css">.method .source pre { display: none }<\/style>')
+      //]]>
+    </script>
+  </head>
+  <body class='page'>
+    <div class='file' id='wrapper'>
+      <div class='header'>
+        <h1 class='name'>README.markdown</h1>
+        <div class='paths'>
+          README.markdown
+        </div>
+        <div class='last-update'>
+          Last Update:
+          <span class='datetime'>Sat Apr 25 19:58:10 +1000 2009</span>
+        </div>
+      </div>
+      <div id='content'>
+        <div id='text'>
+          <div id='description'>
+            <p>
+            # smoke
+            </p>
+            <p>
+            smoke is a Ruby based DSL that allows you to take data from YQL, RSS / Atom
+            (and more, if you think of a useful source). This &#8220;data&#8221; can
+            then be re-represented, sorted and filtered. You can collect data from a
+            multiude of sources, sort them on a common property and return a plain old
+            ruby object or json (You could add in something to output XML too)
+            </p>
+            <p>
+            In an early attempt to get feedback I created [this screencast](<a
+            href="http://vimeo.com/4272804">vimeo.com/4272804</a>). I will do another
+            once the library becomes closer to 1.0.0.
+            </p>
+            <p>
+            ## The concept
+            </p>
+            <p>
+            The concept comes from using [Yahoo Pipes](<a
+            href="http://pipes.yahoo.com">pipes.yahoo.com</a>) to make little mash ups,
+            get a list of tv shows for my torrent client, compile a recipe book or make
+            tools to give me a list of albums that artists in my music library are
+            about to be release.
+            </p>
+            <p>
+            ## How or what to contribute
+            </p>
+            <ul>
+            <li>Test everything you do
+            
+            </li>
+            <li>Add a source (I was thinking a source that took simply took a url and
+            parsed whatever it got)
+            
+            </li>
+            <li>Add a way to output (XML, anyone?)
+            
+            </li>
+            <li>Examples of queries you&#8217;d like to be able to do
+            
+            </li>
+            </ul>
+            <p>
+            ## API Examples ### YQL
+            </p>
+            <pre># This will use yahoo search to get an array of search results about Ruby&#x000A;Smoke.yql(:ruby) do&#x000A;  select  :all&#x000A;  from    &quot;search.web&quot;&#x000A;  where   :query, &quot;ruby&quot;&#x000A;&#x000A;  discard :title, /tuesday/i&#x000A;end&#x000A;&#x000A;Smoke.yql(:python) do&#x000A;  select  :all&#x000A;  from    &quot;search.web&quot;&#x000A;  where   :query, &quot;python&quot;&#x000A;end</pre>
+            <p>
+            ### Join sources and use them together
+            </p>
+            <pre>Smoke.join(:ruby, :python)</pre>
+            <p>
+            or even
+            </p>
+            <pre>Smoke.join(:python, :ruby) do&#x000A;  emit do&#x000A;    sort :title&#x000A;    rename :shit_name =&gt; :title&#x000A;  end&#x000A;end</pre>
+            <p>
+            ### CI
+            </p>
+            <p>
+            Integrity [is running for smoke](<a
+            href="http://integrity.ffolio.net/smoke">integrity.ffolio.net/smoke</a>)
+            </p>
+            <p>
+            ### TODO (working on, just mental notes)
+            </p>
+            <ul>
+            <li>Consider invokation methods (registering of sources, namespacing et al)
+            
+            </li>
+            <li>YQL Definitions
+            
+            </li>
+            <li>YQL w/oAuth
+            
+            </li>
+            <li>YQL Subqueries?
+            
+            </li>
+            </ul>
+            <p>
+            ### Copyright
+            </p>
+            <p>
+            Copyright &#169; 2009 Ben Schwarz. See LICENSE for details.
+            </p>
+          </div>
+          <div id='section'>
+          </div>
+        </div>
+      </div>
+      <div id='footer-push'></div>
+    </div>
+    <div id='footer'>
+      <a href="http://github.com/mislav/hanna/tree/master"><strong>Hanna</strong> RDoc template</a>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,204 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html lang='en'>
+  <head>
+    <title>: Smoke [smoke]</title>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type'>
+    <link href='../rdoc-style.css' media='screen' rel='stylesheet' type='text/css'>
+    <script type='text/javascript'>
+      //<![CDATA[
+        function popupCode(url) {
+          window.open(url, "Code", "resizable=yes,scrollbars=yes,toolbar=no,status=no,height=150,width=400")
+        }
+        
+        function toggleCode(id) {
+          var code = document.getElementById(id)
+        
+          code.style.display = code.style.display != 'block' ? 'block' : 'none'
+          return true
+        }
+        
+        // Make codeblocks hidden by default
+        document.writeln('<' + 'style type="text/css">.method .source pre { display: none }<\/style>')
+      //]]>
+    </script>
+  </head>
+  <body class='page'>
+    <div class='class' id='wrapper'>
+      <div class='header'>
+        <h1 class='name'>
+          <span class='type'>Module</span>
+          Smoke
+        </h1>
+        <ol class='paths'>
+          <li>
+            <a href="../files/lib/smoke/origin_rb.html">lib/smoke/origin.rb</a>
+          </li>
+          <li class='other'>
+            <a href="../files/lib/smoke/request_rb.html">lib/smoke/request.rb</a>
+          </li>
+          <li class='other'>
+            <a href="../files/lib/smoke/source/feed_rb.html">lib/smoke/source/feed.rb</a>
+          </li>
+          <li class='other'>
+            <a href="../files/lib/smoke/source/yql_rb.html">lib/smoke/source/yql.rb</a>
+          </li>
+          <li class='other'>
+            <a href="../files/lib/smoke_rb.html">lib/smoke.rb</a>
+          </li>
+          <li>
+            <a class='show' href='#' onclick='this.parentNode.parentNode.className += " expanded"; this.parentNode.removeChild(this); return false'>show all</a>
+          </li>
+        </ol>
+      </div>
+      <div id='content'>
+        <div id='text'>
+          <div id='method-list'>
+            <h2>Methods</h2>
+            <h3>public class</h3>
+            <ol>
+              <li><a href="#M000002">[]</a></li>
+              <li><a href="#M000004">activate</a></li>
+              <li><a href="#M000005">active_sources</a></li>
+              <li><a href="#M000003">join</a></li>
+              <li><a href="#M000006">log</a></li>
+              <li><a href="#M000001">register</a></li>
+            </ol>
+          </div>
+          <div id='section'>
+            <div id='class-list'>
+              <h2>Classes and Modules</h2>
+              Class <a href="Smoke/Origin.html" class="link">Smoke::Origin</a><br />
+            </div>
+            <div id='attribute-list'>
+              <h2 class='section-bar'>Attributes</h2>
+              <div class='name-list'>
+                <table>
+                  <tr class='top-aligned-row context-row'>
+                    <td class='context-item-name'>active_sources</td>
+                    <td class='context-item-value'>[R]</td>
+                    <td class='context-item-desc'></td>
+                  </tr>
+                </table>
+              </div>
+            </div>
+            <div id='methods'>
+              <h2>Public class methods</h2>
+              <div class='public-class method' id='method-M000002'>
+                <a name='M000002'>      </a>
+                <div class='synopsis'>
+                  <span class='name'>[]</span>
+                  <span class='arguments'>(source)</span>
+                </div>
+                <div class='description'>
+                  <p>
+                  Access registered smoke source instances
+                  </p>
+                  <p>
+                  Usage:
+                  </p>
+                  <pre>Smoke.yql(:ruby) do ....&#x000A;&#x000A;Smoke[:ruby]&#x000A;=&gt; #&lt;Smoke::Source::YQL::YQL:0x18428d4...</pre>
+                </div>
+                <div class='source'>
+                  <a class='source-toggle' href='#' onclick="toggleCode('M000002-source'); return false">
+                    [show source]
+                  </a>
+                  <pre id='M000002-source'>    <span class="ruby-comment cmt"># File lib/smoke.rb, line 38</span>&#x000A;38:     <span class="ruby-keyword kw">def</span> <span class="ruby-operator">[]</span>(<span class="ruby-identifier">source</span>)&#x000A;39:       <span class="ruby-identifier">active_sources</span>[<span class="ruby-identifier">source</span>]&#x000A;40:     <span class="ruby-keyword kw">end</span></pre>
+                </div>
+              </div>
+              <div class='public-class method' id='method-M000004'>
+                <a name='M000004'>      </a>
+                <div class='synopsis'>
+                  <span class='name'>activate</span>
+                  <span class='arguments'>(name, source)</span>
+                </div>
+                <div class='source'>
+                  <a class='source-toggle' href='#' onclick="toggleCode('M000004-source'); return false">
+                    [show source]
+                  </a>
+                  <pre id='M000004-source'>    <span class="ruby-comment cmt"># File lib/smoke.rb, line 52</span>&#x000A;52:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">activate</span>(<span class="ruby-identifier">name</span>, <span class="ruby-identifier">source</span>)&#x000A;53:       <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">active_sources</span>.<span class="ruby-identifier">has_key?</span>(<span class="ruby-identifier">name</span>)&#x000A;54:         <span class="ruby-constant">Smoke</span>.<span class="ruby-identifier">log</span>.<span class="ruby-identifier">warn</span> <span class="ruby-value str">&quot;Smoke source activation: Source with idential name already initialized&quot;</span> &#x000A;55:       <span class="ruby-keyword kw">end</span>&#x000A;56:       &#x000A;57:       <span class="ruby-identifier">active_sources</span>.<span class="ruby-identifier">update</span>({ <span class="ruby-identifier">name</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">source</span> })&#x000A;58:     <span class="ruby-keyword kw">end</span></pre>
+                </div>
+              </div>
+              <div class='public-class method' id='method-M000005'>
+                <a name='M000005'>      </a>
+                <div class='synopsis'>
+                  <span class='name'>active_sources</span>
+                  <span class='arguments'>()</span>
+                </div>
+                <div class='description'>
+                  <p>
+                  Returns all activated smoke sources
+                  </p>
+                </div>
+                <div class='source'>
+                  <a class='source-toggle' href='#' onclick="toggleCode('M000005-source'); return false">
+                    [show source]
+                  </a>
+                  <pre id='M000005-source'>    <span class="ruby-comment cmt"># File lib/smoke.rb, line 61</span>&#x000A;61:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">active_sources</span>&#x000A;62:       <span class="ruby-ivar">@@active_sources</span>&#x000A;63:     <span class="ruby-keyword kw">end</span></pre>
+                </div>
+              </div>
+              <div class='public-class method' id='method-M000003'>
+                <a name='M000003'>      </a>
+                <div class='synopsis'>
+                  <span class='name'>join</span>
+                  <span class='arguments'>(*sources, &amp;block)</span>
+                </div>
+                <div class='source'>
+                  <a class='source-toggle' href='#' onclick="toggleCode('M000003-source'); return false">
+                    [show source]
+                  </a>
+                  <pre id='M000003-source'>    <span class="ruby-comment cmt"># File lib/smoke.rb, line 42</span>&#x000A;42:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">join</span>(<span class="ruby-operator">*</span><span class="ruby-identifier">sources</span>, <span class="ruby-operator">&amp;</span><span class="ruby-identifier">block</span>)&#x000A;43:       <span class="ruby-ivar">@items</span> = <span class="ruby-identifier">get_sources</span>(<span class="ruby-identifier">sources</span>).<span class="ruby-identifier">map</span> {<span class="ruby-operator">|</span><span class="ruby-identifier">source</span><span class="ruby-operator">|</span> <span class="ruby-identifier">source</span>[<span class="ruby-value">1</span>].<span class="ruby-identifier">items</span> }.<span class="ruby-identifier">flatten</span>&#x000A;44:       &#x000A;45:       <span class="ruby-identifier">joined_name</span> = (<span class="ruby-identifier">sources</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-value str">&quot;joined&quot;</span>).<span class="ruby-identifier">join</span>(<span class="ruby-value str">&quot;_&quot;</span>).<span class="ruby-identifier">to_sym</span>&#x000A;46:       <span class="ruby-identifier">source</span> = <span class="ruby-constant">Origin</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">joined_name</span>, <span class="ruby-operator">&amp;</span><span class="ruby-identifier">block</span>)&#x000A;47: &#x000A;48:       <span class="ruby-identifier">source</span>.<span class="ruby-identifier">items</span> = <span class="ruby-ivar">@items</span>&#x000A;49:       <span class="ruby-keyword kw">return</span> <span class="ruby-identifier">source</span>&#x000A;50:     <span class="ruby-keyword kw">end</span></pre>
+                </div>
+              </div>
+              <div class='public-class method' id='method-M000006'>
+                <a name='M000006'>      </a>
+                <div class='synopsis'>
+                  <span class='name'>log</span>
+                  <span class='arguments'>()</span>
+                </div>
+                <div class='description'>
+                  <p>
+                  Log for info, debug, error and warn with:
+                  </p>
+                  <pre>Smoke.log.info &quot;message&quot;&#x000A;Smoke.log.debug &quot;message&quot;&#x000A;Smoke.log.error &quot;message&quot;&#x000A;Smoke.log.warn &quot;message&quot;</pre>
+                </div>
+                <div class='source'>
+                  <a class='source-toggle' href='#' onclick="toggleCode('M000006-source'); return false">
+                    [show source]
+                  </a>
+                  <pre id='M000006-source'>    <span class="ruby-comment cmt"># File lib/smoke.rb, line 71</span>&#x000A;71:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">log</span>&#x000A;72:       <span class="ruby-ivar">@logger</span> <span class="ruby-operator">||=</span> <span class="ruby-constant">Logger</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">$stdout</span>)&#x000A;73:     <span class="ruby-keyword kw">end</span></pre>
+                </div>
+              </div>
+              <div class='public-class method' id='method-M000001'>
+                <a name='M000001'>      </a>
+                <div class='synopsis'>
+                  <span class='name'>register</span>
+                  <span class='arguments'>(mod)</span>
+                </div>
+                <div class='description'>
+                  <p>
+                  <a href="Smoke.html">Smoke</a> sources can invoke access to themselves via
+                  the register method:
+                  </p>
+                  <pre>Smoke.register(Smoke::Source::YQL)</pre>
+                  <p>
+                  Check the supplied sources for usage
+                  </p>
+                </div>
+                <div class='source'>
+                  <a class='source-toggle' href='#' onclick="toggleCode('M000001-source'); return false">
+                    [show source]
+                  </a>
+                  <pre id='M000001-source'>    <span class="ruby-comment cmt"># File lib/smoke.rb, line 26</span>&#x000A;26:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">register</span>(<span class="ruby-identifier">mod</span>)&#x000A;27:       <span class="ruby-identifier">class_eval</span> { <span class="ruby-identifier">include</span> <span class="ruby-identifier">mod</span> }&#x000A;28:     <span class="ruby-keyword kw">end</span></pre>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div id='footer-push'></div>
+    </div>
+    <div id='footer'>
+      <a href="http://github.com/mislav/hanna/tree/master"><strong>Hanna</strong> RDoc template</a>
+    </div>
+  </body>
+</html>
