@@ -21,7 +21,7 @@ module Smoke
           (@feeds ||= [] ) << feed_uri
         end
         
-        private
+        protected
         def dispatch
           @requests = @feeds.map{|f| Smoke::Request.new(f, :raw_response) }
           self.items = @requests.map{|r| ::SimpleRSS.parse(r.body).items }.flatten

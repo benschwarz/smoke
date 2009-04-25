@@ -53,10 +53,12 @@ module Smoke
           @where << "#{column.to_s} = '#{value}'"
         end
         
+        protected
         def dispatch
           @request = Smoke::Request.new(build_uri)
           self.items = @request.body[:query][:results][:result]
         end
+        
         private
         
         def build_uri
