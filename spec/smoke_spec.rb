@@ -51,5 +51,11 @@ describe Smoke do
     it "should allow access to sources via an array accessor" do
       Smoke[:a].should be_an_instance_of(Smoke::Origin)
     end
+    
+    it "should be able to be renamed" do
+      @rename = Smoke.rename(:a => :b)
+      @rename.name.should == :b
+      Smoke[:b].should be_an_instance_of(Smoke::Origin)
+    end
   end
 end

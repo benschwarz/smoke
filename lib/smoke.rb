@@ -62,6 +62,14 @@ module Smoke
       @@active_sources
     end
     
+    # Rename a source 
+    def rename(candidates)
+      candidates.each do |o, n| 
+        active_sources[o].rename(o => n)
+        return active_sources[n]
+      end
+    end
+    
     # Log for info, debug, error and warn with:
     # 
     #   Smoke.log.info "message"
