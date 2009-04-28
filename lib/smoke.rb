@@ -65,7 +65,7 @@ module Smoke
     # Rename a source 
     def rename(candidates)
       candidates.each do |o, n| 
-        active_sources[o].rename(o => n)
+        active_sources.rename(o => n)
         return active_sources[n]
       end
     end

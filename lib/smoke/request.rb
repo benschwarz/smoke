@@ -9,7 +9,7 @@ module Smoke
       end
     end
     
-    SUPPORTED_TYPES = %w(json xml)
+    SUPPORTED_TYPES = %w(json xml javascript)
     attr_reader :uri, :content_type, :body, :type
        
     def initialize(uri, *options)
@@ -45,7 +45,7 @@ module Smoke
     
     def parse!
       case @type
-        when :json
+        when :json, :javascript
           @body = ::Crack::JSON.parse(@body).symbolize_keys!
         when :xml
           @body = ::Crack::XML.parse(@body).symbolize_keys!

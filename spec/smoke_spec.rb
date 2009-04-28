@@ -53,8 +53,8 @@ describe Smoke do
     end
     
     it "should be able to be renamed" do
-      @rename = Smoke.rename(:a => :b)
-      @rename.name.should == :b
+      Smoke.rename(:a => :b)
+      Smoke[:a].should be_nil
       Smoke[:b].should be_an_instance_of(Smoke::Origin)
     end
   end
