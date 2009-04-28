@@ -1,0 +1,9 @@
+HTTP/1.1 200 OK
+Date: Mon, 27 Apr 2009 08:04:23 GMT
+P3P: policyref="http://p3p.yahoo.com/w3c/p3p.xml", CP="CAO DSP COR CUR ADM DEV TAI PSA PSD IVAi IVDi CONi TELo OTPi OUR DELi SAMi OTRi UNRi PUBi IND PHY ONL UNI PUR FIN COM NAV INT DEM CNT STA POL HEA PRE GOV"
+Vary: Accept-Encoding
+Content-Length: 398
+Connection: close
+Content-Type: text/json; charset=utf-8
+
+{"photos":{"page":1, "pages":1, "perpage":100, "total":"2", "photo":[{"id":"3443335843", "owner":"36821533@N00", "secret":"5a15f0bfb9", "server":"3305", "farm":4, "title":"How I roll", "ispublic":1, "isfriend":0, "isfamily":0}, {"id":"3345220961", "owner":"36821533@N00", "secret":"a1dd2b9eca", "server":"3581", "farm":4, "title":"My desk", "ispublic":1, "isfriend":0, "isfamily":0}]}, "stat":"ok"}

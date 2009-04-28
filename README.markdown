@@ -53,6 +53,8 @@ Integrity [is running for smoke](http://integrity.ffolio.net/smoke)
 
 ### TODO (working on, just mental notes)
 
+* Look at moving object transformations into the origin class
+* Allow for sources to explicitly set the content type being returned for those stupid content providers
 * Consider invokation methods (registering of sources, namespacing et al)
 * YQL Definitions
 * YQL w/oAuth
