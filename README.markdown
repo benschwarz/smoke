@@ -17,9 +17,8 @@ The concept comes from using [Yahoo Pipes](http://pipes.yahoo.com) to make littl
 ## How or what to contribute
 
 * Test everything you do
-* Add a source (I was thinking a source that took simply took a url and parsed whatever it got)
 * Add a way to output (XML, anyone?)
-* Examples of queries you'd like to be able to do
+* Examples of queries you'd like to be able to do (email / github message them to me)
 
 ## API Examples
 ### YQL
