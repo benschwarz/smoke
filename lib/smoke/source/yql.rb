@@ -26,7 +26,7 @@ module Smoke
         #   => "SELECT title"
         #   select :title, :description
         #   => "SELECT title, description"
-        def select(what)
+        def select(what = :all)
           @select = what.join(",") and return if what.is_a? Array
           @select = "*" and return if what == :all
           @select = what.to_s
