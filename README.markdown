@@ -57,13 +57,13 @@ Integrity [is running for smoke](http://integrity.ffolio.net/smoke)
 
 ### TODO (working on, just mental notes)
 
-* Allow for sources to explicitly set the content type being returned for those stupid content providers
 * Consider variable injection (eg, allow to query sending a username within some aspect of the request)
 * Implement a disaptch / request method that will actually thread property (event-machine)
 * Checkout experimental fakeweb version to stub out the yql specs
 * YQL Definitions
 
 #### Later / maybe
+* Allow for sources to explicitly set the content type being returned for those stupid content providers
 * YQL w/oAuth
 * YQL Subqueries?
 
