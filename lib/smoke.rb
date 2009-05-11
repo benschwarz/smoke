@@ -88,6 +88,7 @@ module Smoke
 end
 
 require 'smoke/request'
+require 'smoke/transformations'
 require 'smoke/origin'
 require 'smoke/delayed_block'
 

@@ -4,10 +4,7 @@ describe "YQL" do
   before :all do
     # Fake web does not yet support regex matched uris
     
-    #FakeWeb.register_uri("query.yahooapis.com/*") do |response|
-    #  response.body = File.read(File.join(SPEC_DIR, 'supports', 'search-web.yql'))
-    #  response.content_type "text/json"
-    #end
+    FakeWeb.register_uri("query.yahooapis.com/*", :response => File.join(SPEC_DIR, 'supports', 'search-web.yql'))
     
     Smoke.yql(:search) do
       select  :all
@@ -44,6 +41,17 @@ describe "YQL" do
 
     it "should output a ruby object" do
       Smoke[:search].output.should be_an_instance_of(Array)
+    end
+  end
+  
+  describe "yql definitions" do
+    describe "setting a yql definition" do
+      it "should respond to use"
+      it "should only accept a valid URI"
+    end
+    
+    describe "dispatching with a yql definition set" do
+      it "should set the definition within the query for your original request"
     end
   end
 end
