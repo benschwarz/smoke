@@ -27,16 +27,22 @@ describe "Feed" do
     Smoke[:slashdot].should respond_to(:url)
   end
   
-  it "should accept multiple urls" do
-    Smoke[:slashdot].requests.should be_an_instance_of(Array)
-  end
-  
-  it "should hold the url used to query" do
-    Smoke[:slashdot].requests.collect{|r| r.uri }.should include("http://slashdot.org/index.rdf")
-  end
-  
-  it "should have renamed url to link" do
-    Smoke[:slashdot].items.first.should have_key(:url)
-    Smoke[:slashdot].items.first.should_not have_key(:link)
+  describe "after dispatch / query" do
+    before do
+      Smoke[:slashdot].output
+    end
+    
+    it "should accept multiple urls" do
+      Smoke[:slashdot].requests.should be_an_instance_of(Array)
+    end
+    
+    it "should hold the url used to query" do
+      Smoke[:slashdot].requests.collect{|r| r.uri }.should include("http://slashdot.org/index.rdf")
+    end
+    
+    it "should have renamed url to link" do
+      Smoke[:slashdot].output.first.should have_key(:url)
+      Smoke[:slashdot].output.first.should_not have_key(:link)
+    end
   end
 end

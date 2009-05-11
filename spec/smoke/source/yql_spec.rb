@@ -28,16 +28,22 @@ describe "YQL" do
     Smoke[:search].items.should be_an_instance_of(Array)
   end
   
-  it "should hold the url used to query" do
-    Smoke[:search].request.uri.should == "http://query.yahooapis.com/v1/public/yql?q=SELECT%20*%20FROM%20search.web%20WHERE%20query%20=%20'ruby'&format=json"
-  end
-  
-  it "should have renamed url to link" do
-    Smoke[:search].items.first.should have_key(:link)
-    Smoke[:search].items.first.should_not have_key(:href)
-  end
-  
-  it "should output a ruby object" do
-    Smoke[:search].output.should be_an_instance_of(Array)
+  describe "after dispatch" do
+    before do
+      Smoke[:search].output
+    end
+    
+    it "should hold the url used to query" do
+      Smoke[:search].request.uri.should == "http://query.yahooapis.com/v1/public/yql?q=SELECT%20*%20FROM%20search.web%20WHERE%20query%20=%20'ruby'&format=json"
+    end
+    
+    it "should have renamed url to link" do
+      Smoke[:search].output.first.should have_key(:link)
+      Smoke[:search].output.first.should_not have_key(:href)
+    end
+
+    it "should output a ruby object" do
+      Smoke[:search].output.should be_an_instance_of(Array)
+    end
   end
 end

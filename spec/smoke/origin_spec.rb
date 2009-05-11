@@ -57,20 +57,31 @@ describe Smoke::Origin do
     end
   end
   
-  it "should output" do
-    @origin.output.should be_an_instance_of(Array)
-  end
-  
-  it "should output two items" do
-    @origin.output.size.should == 2
-  end
-  
-  it "should output json" do
-    @origin.output(:json).should =~ /^\[\{/
-  end
-  
-  it "should output yml" do
-    @origin.output(:yaml).should =~ /--- \n- :title:/
+  describe "output" do
+    it "should output" do
+      @origin.output.should be_an_instance_of(Array)
+    end
+
+    it "should output two items" do
+      @origin.output.size.should == 2
+    end
+
+    it "should output json" do
+      @origin.output(:json).should =~ /^\[\{/
+    end
+
+    it "should output yml" do
+      @origin.output(:yaml).should =~ /--- \n- :title:/
+    end
+    
+    it "should dispatch when output is called" do
+      TestSource.source(:no_dispatch)
+      Smoke[:no_dispatch].should_not_receive(:dispatch)
+
+      TestSource.source(:dispatch)
+      Smoke[:dispatch].should_receive(:dispatch)
+      Smoke[:dispatch].output
+    end
   end
   
   it "method chaining" do

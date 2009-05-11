@@ -8,7 +8,6 @@ module Smoke
       @items = []
       activate!
       instance_eval(&block) if block_given?
-      dispatch if respond_to? :dispatch
     end
     
     # Transform each item
@@ -80,6 +79,8 @@ module Smoke
     #   output(:json)
     #   => "[{title: \"Ray\"}, {title: \"Peace\"}]"
     def output(type = :ruby)
+      dispatch if respond_to? :dispatch
+      
       case type
       when :ruby
         return @items
