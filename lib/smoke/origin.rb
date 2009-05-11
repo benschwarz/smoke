@@ -32,7 +32,7 @@ module Smoke
       end
     end
     
-    def items=(items)
+    def items=(items) # :nodoc:
       @items = items.map{|i| i.symbolize_keys! }
       invoke_transformations
     end

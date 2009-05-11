@@ -55,13 +55,13 @@
             <h2>Methods</h2>
             <h3>public instance</h3>
             <ol>
-              <li><a href="#M000010">from</a></li>
-              <li><a href="#M000009">select</a></li>
-              <li><a href="#M000011">where</a></li>
+              <li><a href="#M000014">from</a></li>
+              <li><a href="#M000013">select</a></li>
+              <li><a href="#M000015">where</a></li>
             </ol>
             <h3>protected instance</h3>
             <ol>
-              <li><a href="#M000012">dispatch</a></li>
+              <li><a href="#M000016">dispatch</a></li>
             </ol>
           </div>
           <div id='section'>
@@ -79,8 +79,8 @@
             </div>
             <div id='methods'>
               <h2>Public instance methods</h2>
-              <div class='public-instance method' id='method-M000010'>
-                <a name='M000010'>      </a>
+              <div class='public-instance method' id='method-M000014'>
+                <a name='M000014'>      </a>
                 <div class='synopsis'>
                   <span class='name'>from</span>
                   <span class='arguments'>(source)</span>
@@ -97,17 +97,17 @@
                   <pre>from :html</pre>
                 </div>
                 <div class='source'>
-                  <a class='source-toggle' href='#' onclick="toggleCode('M000010-source'); return false">
+                  <a class='source-toggle' href='#' onclick="toggleCode('M000014-source'); return false">
                     [show source]
                   </a>
-                  <pre id='M000010-source'>    <span class="ruby-comment cmt"># File lib/smoke/source/yql.rb, line 40</span>&#x000A;40:         <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">from</span>(<span class="ruby-identifier">source</span>)&#x000A;41:           <span class="ruby-ivar">@from</span> = <span class="ruby-identifier">source</span>.<span class="ruby-identifier">join</span>(<span class="ruby-value str">','</span>) <span class="ruby-keyword kw">and</span> <span class="ruby-keyword kw">return</span> <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">source</span>.<span class="ruby-identifier">is_a?</span> <span class="ruby-constant">Array</span>&#x000A;42:           <span class="ruby-ivar">@from</span> = <span class="ruby-identifier">source</span>.<span class="ruby-identifier">to_s</span>&#x000A;43:         <span class="ruby-keyword kw">end</span></pre>
+                  <pre id='M000014-source'>    <span class="ruby-comment cmt"># File lib/smoke/source/yql.rb, line 40</span>&#x000A;40:         <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">from</span>(<span class="ruby-identifier">source</span>)&#x000A;41:           <span class="ruby-ivar">@from</span> = <span class="ruby-identifier">source</span>.<span class="ruby-identifier">join</span>(<span class="ruby-value str">','</span>) <span class="ruby-keyword kw">and</span> <span class="ruby-keyword kw">return</span> <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">source</span>.<span class="ruby-identifier">is_a?</span> <span class="ruby-constant">Array</span>&#x000A;42:           <span class="ruby-ivar">@from</span> = <span class="ruby-identifier">source</span>.<span class="ruby-identifier">to_s</span>&#x000A;43:         <span class="ruby-keyword kw">end</span></pre>
                 </div>
               </div>
-              <div class='public-instance method' id='method-M000009'>
-                <a name='M000009'>      </a>
+              <div class='public-instance method' id='method-M000013'>
+                <a name='M000013'>      </a>
                 <div class='synopsis'>
                   <span class='name'>select</span>
-                  <span class='arguments'>(what)</span>
+                  <span class='arguments'>(what = :all)</span>
                 </div>
                 <div class='description'>
                   <p>
@@ -116,14 +116,14 @@
                   <pre>select :all&#x000A;=&gt; &quot;SELECT *&quot;&#x000A;select :title&#x000A;=&gt; &quot;SELECT title&quot;&#x000A;select :title, :description&#x000A;=&gt; &quot;SELECT title, description&quot;</pre>
                 </div>
                 <div class='source'>
-                  <a class='source-toggle' href='#' onclick="toggleCode('M000009-source'); return false">
+                  <a class='source-toggle' href='#' onclick="toggleCode('M000013-source'); return false">
                     [show source]
                   </a>
-                  <pre id='M000009-source'>    <span class="ruby-comment cmt"># File lib/smoke/source/yql.rb, line 29</span>&#x000A;29:         <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">select</span>(<span class="ruby-identifier">what</span>)&#x000A;30:           <span class="ruby-ivar">@select</span> = <span class="ruby-identifier">what</span>.<span class="ruby-identifier">join</span>(<span class="ruby-value str">&quot;,&quot;</span>) <span class="ruby-keyword kw">and</span> <span class="ruby-keyword kw">return</span> <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">what</span>.<span class="ruby-identifier">is_a?</span> <span class="ruby-constant">Array</span>&#x000A;31:           <span class="ruby-ivar">@select</span> = <span class="ruby-value str">&quot;*&quot;</span> <span class="ruby-keyword kw">and</span> <span class="ruby-keyword kw">return</span> <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">what</span> <span class="ruby-operator">==</span> <span class="ruby-identifier">:all</span>&#x000A;32:           <span class="ruby-ivar">@select</span> = <span class="ruby-identifier">what</span>.<span class="ruby-identifier">to_s</span>&#x000A;33:         <span class="ruby-keyword kw">end</span></pre>
+                  <pre id='M000013-source'>    <span class="ruby-comment cmt"># File lib/smoke/source/yql.rb, line 29</span>&#x000A;29:         <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">select</span>(<span class="ruby-identifier">what</span> = <span class="ruby-identifier">:all</span>)&#x000A;30:           <span class="ruby-ivar">@select</span> = <span class="ruby-identifier">what</span>.<span class="ruby-identifier">join</span>(<span class="ruby-value str">&quot;,&quot;</span>) <span class="ruby-keyword kw">and</span> <span class="ruby-keyword kw">return</span> <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">what</span>.<span class="ruby-identifier">is_a?</span> <span class="ruby-constant">Array</span>&#x000A;31:           <span class="ruby-ivar">@select</span> = <span class="ruby-value str">&quot;*&quot;</span> <span class="ruby-keyword kw">and</span> <span class="ruby-keyword kw">return</span> <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">what</span> <span class="ruby-operator">==</span> <span class="ruby-identifier">:all</span>&#x000A;32:           <span class="ruby-ivar">@select</span> = <span class="ruby-identifier">what</span>.<span class="ruby-identifier">to_s</span>&#x000A;33:         <span class="ruby-keyword kw">end</span></pre>
                 </div>
               </div>
-              <div class='public-instance method' id='method-M000011'>
-                <a name='M000011'>      </a>
+              <div class='public-instance method' id='method-M000015'>
+                <a name='M000015'>      </a>
                 <div class='synopsis'>
                   <span class='name'>where</span>
                   <span class='arguments'>(column, value)</span>
@@ -140,24 +140,24 @@
                   <pre>where :query, &quot;python&quot;</pre>
                 </div>
                 <div class='source'>
-                  <a class='source-toggle' href='#' onclick="toggleCode('M000011-source'); return false">
+                  <a class='source-toggle' href='#' onclick="toggleCode('M000015-source'); return false">
                     [show source]
                   </a>
-                  <pre id='M000011-source'>    <span class="ruby-comment cmt"># File lib/smoke/source/yql.rb, line 51</span>&#x000A;51:         <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">where</span>(<span class="ruby-identifier">column</span>, <span class="ruby-identifier">value</span>)&#x000A;52:           <span class="ruby-ivar">@where</span> = <span class="ruby-ivar">@where</span> <span class="ruby-operator">||</span> []&#x000A;53:           <span class="ruby-ivar">@where</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-node">&quot;#{column.to_s} = '#{value}'&quot;</span>&#x000A;54:         <span class="ruby-keyword kw">end</span></pre>
+                  <pre id='M000015-source'>    <span class="ruby-comment cmt"># File lib/smoke/source/yql.rb, line 51</span>&#x000A;51:         <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">where</span>(<span class="ruby-identifier">column</span>, <span class="ruby-identifier">value</span>)&#x000A;52:           <span class="ruby-ivar">@where</span> = <span class="ruby-ivar">@where</span> <span class="ruby-operator">||</span> []&#x000A;53:           <span class="ruby-ivar">@where</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-node">&quot;#{column.to_s} = '#{value}'&quot;</span>&#x000A;54:         <span class="ruby-keyword kw">end</span></pre>
                 </div>
               </div>
               <h2>Protected instance methods</h2>
-              <div class='protected-instance method' id='method-M000012'>
-                <a name='M000012'>      </a>
+              <div class='protected-instance method' id='method-M000016'>
+                <a name='M000016'>      </a>
                 <div class='synopsis'>
                   <span class='name'>dispatch</span>
                   <span class='arguments'>()</span>
                 </div>
                 <div class='source'>
-                  <a class='source-toggle' href='#' onclick="toggleCode('M000012-source'); return false">
+                  <a class='source-toggle' href='#' onclick="toggleCode('M000016-source'); return false">
                     [show source]
                   </a>
-                  <pre id='M000012-source'>    <span class="ruby-comment cmt"># File lib/smoke/source/yql.rb, line 57</span>&#x000A;57:         <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">dispatch</span>&#x000A;58:           <span class="ruby-ivar">@request</span> = <span class="ruby-constant">Smoke</span><span class="ruby-operator">::</span><span class="ruby-constant">Request</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">build_uri</span>)&#x000A;59:           <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">items</span> = <span class="ruby-ivar">@request</span>.<span class="ruby-identifier">body</span>[<span class="ruby-identifier">:query</span>][<span class="ruby-identifier">:results</span>][<span class="ruby-identifier">:result</span>]&#x000A;60:         <span class="ruby-keyword kw">end</span></pre>
+                  <pre id='M000016-source'>    <span class="ruby-comment cmt"># File lib/smoke/source/yql.rb, line 57</span>&#x000A;57:         <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">dispatch</span>&#x000A;58:           <span class="ruby-ivar">@request</span> = <span class="ruby-constant">Smoke</span><span class="ruby-operator">::</span><span class="ruby-constant">Request</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">build_uri</span>)&#x000A;59:           <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">items</span> = <span class="ruby-ivar">@request</span>.<span class="ruby-identifier">body</span>[<span class="ruby-identifier">:query</span>][<span class="ruby-identifier">:results</span>][<span class="ruby-identifier">:result</span>]&#x000A;60:         <span class="ruby-keyword kw">end</span></pre>
                 </div>
               </div>
             </div>

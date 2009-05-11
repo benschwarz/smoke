@@ -37,10 +37,16 @@
             <a href="../files/lib/smoke/request_rb.html">lib/smoke/request.rb</a>
           </li>
           <li class='other'>
+            <a href="../files/lib/smoke/source/data_rb.html">lib/smoke/source/data.rb</a>
+          </li>
+          <li class='other'>
             <a href="../files/lib/smoke/source/feed_rb.html">lib/smoke/source/feed.rb</a>
           </li>
           <li class='other'>
             <a href="../files/lib/smoke/source/yql_rb.html">lib/smoke/source/yql.rb</a>
+          </li>
+          <li class='other'>
+            <a href="../files/lib/smoke/transformations_rb.html">lib/smoke/transformations.rb</a>
           </li>
           <li class='other'>
             <a href="../files/lib/smoke_rb.html">lib/smoke.rb</a>
@@ -60,13 +66,15 @@
               <li><a href="#M000004">activate</a></li>
               <li><a href="#M000005">active_sources</a></li>
               <li><a href="#M000003">join</a></li>
-              <li><a href="#M000006">log</a></li>
+              <li><a href="#M000007">log</a></li>
               <li><a href="#M000001">register</a></li>
+              <li><a href="#M000006">rename</a></li>
             </ol>
           </div>
           <div id='section'>
             <div id='class-list'>
               <h2>Classes and Modules</h2>
+              Module <a href="Smoke/Transformations.html" class="link">Smoke::Transformations</a><br />
               Class <a href="Smoke/Origin.html" class="link">Smoke::Origin</a><br />
             </div>
             <div id='attribute-list'>
@@ -149,8 +157,8 @@
                   <pre id='M000003-source'>    <span class="ruby-comment cmt"># File lib/smoke.rb, line 42</span>&#x000A;42:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">join</span>(<span class="ruby-operator">*</span><span class="ruby-identifier">sources</span>, <span class="ruby-operator">&amp;</span><span class="ruby-identifier">block</span>)&#x000A;43:       <span class="ruby-ivar">@items</span> = <span class="ruby-identifier">get_sources</span>(<span class="ruby-identifier">sources</span>).<span class="ruby-identifier">map</span> {<span class="ruby-operator">|</span><span class="ruby-identifier">source</span><span class="ruby-operator">|</span> <span class="ruby-identifier">source</span>[<span class="ruby-value">1</span>].<span class="ruby-identifier">items</span> }.<span class="ruby-identifier">flatten</span>&#x000A;44:       &#x000A;45:       <span class="ruby-identifier">joined_name</span> = (<span class="ruby-identifier">sources</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-value str">&quot;joined&quot;</span>).<span class="ruby-identifier">join</span>(<span class="ruby-value str">&quot;_&quot;</span>).<span class="ruby-identifier">to_sym</span>&#x000A;46:       <span class="ruby-identifier">source</span> = <span class="ruby-constant">Origin</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">joined_name</span>, <span class="ruby-operator">&amp;</span><span class="ruby-identifier">block</span>)&#x000A;47: &#x000A;48:       <span class="ruby-identifier">source</span>.<span class="ruby-identifier">items</span> = <span class="ruby-ivar">@items</span>&#x000A;49:       <span class="ruby-keyword kw">return</span> <span class="ruby-identifier">source</span>&#x000A;50:     <span class="ruby-keyword kw">end</span></pre>
                 </div>
               </div>
-              <div class='public-class method' id='method-M000006'>
-                <a name='M000006'>      </a>
+              <div class='public-class method' id='method-M000007'>
+                <a name='M000007'>      </a>
                 <div class='synopsis'>
                   <span class='name'>log</span>
                   <span class='arguments'>()</span>
@@ -162,10 +170,10 @@
                   <pre>Smoke.log.info &quot;message&quot;&#x000A;Smoke.log.debug &quot;message&quot;&#x000A;Smoke.log.error &quot;message&quot;&#x000A;Smoke.log.warn &quot;message&quot;</pre>
                 </div>
                 <div class='source'>
-                  <a class='source-toggle' href='#' onclick="toggleCode('M000006-source'); return false">
+                  <a class='source-toggle' href='#' onclick="toggleCode('M000007-source'); return false">
                     [show source]
                   </a>
-                  <pre id='M000006-source'>    <span class="ruby-comment cmt"># File lib/smoke.rb, line 71</span>&#x000A;71:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">log</span>&#x000A;72:       <span class="ruby-ivar">@logger</span> <span class="ruby-operator">||=</span> <span class="ruby-constant">Logger</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">$stdout</span>)&#x000A;73:     <span class="ruby-keyword kw">end</span></pre>
+                  <pre id='M000007-source'>    <span class="ruby-comment cmt"># File lib/smoke.rb, line 79</span>&#x000A;79:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">log</span>&#x000A;80:       <span class="ruby-ivar">@logger</span> <span class="ruby-operator">||=</span> <span class="ruby-constant">Logger</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">$stdout</span>)&#x000A;81:     <span class="ruby-keyword kw">end</span></pre>
                 </div>
               </div>
               <div class='public-class method' id='method-M000001'>
@@ -189,6 +197,24 @@
                     [show source]
                   </a>
                   <pre id='M000001-source'>    <span class="ruby-comment cmt"># File lib/smoke.rb, line 26</span>&#x000A;26:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">register</span>(<span class="ruby-identifier">mod</span>)&#x000A;27:       <span class="ruby-identifier">class_eval</span> { <span class="ruby-identifier">include</span> <span class="ruby-identifier">mod</span> }&#x000A;28:     <span class="ruby-keyword kw">end</span></pre>
+                </div>
+              </div>
+              <div class='public-class method' id='method-M000006'>
+                <a name='M000006'>      </a>
+                <div class='synopsis'>
+                  <span class='name'>rename</span>
+                  <span class='arguments'>(candidates)</span>
+                </div>
+                <div class='description'>
+                  <p>
+                  Rename a source
+                  </p>
+                </div>
+                <div class='source'>
+                  <a class='source-toggle' href='#' onclick="toggleCode('M000006-source'); return false">
+                    [show source]
+                  </a>
+                  <pre id='M000006-source'>    <span class="ruby-comment cmt"># File lib/smoke.rb, line 66</span>&#x000A;66:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">rename</span>(<span class="ruby-identifier">candidates</span>)&#x000A;67:       <span class="ruby-identifier">candidates</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">o</span>, <span class="ruby-identifier">n</span><span class="ruby-operator">|</span> &#x000A;68:         <span class="ruby-identifier">active_sources</span>.<span class="ruby-identifier">rename</span>(<span class="ruby-identifier">o</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">n</span>)&#x000A;69:         <span class="ruby-keyword kw">return</span> <span class="ruby-identifier">active_sources</span>[<span class="ruby-identifier">n</span>]&#x000A;70:       <span class="ruby-keyword kw">end</span>&#x000A;71:     <span class="ruby-keyword kw">end</span></pre>
                 </div>
               </div>
             </div>

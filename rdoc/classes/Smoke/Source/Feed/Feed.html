@@ -55,11 +55,11 @@
             <h2>Methods</h2>
             <h3>public instance</h3>
             <ol>
-              <li><a href="#M000007">url</a></li>
+              <li><a href="#M000008">url</a></li>
             </ol>
             <h3>protected instance</h3>
             <ol>
-              <li><a href="#M000008">dispatch</a></li>
+              <li><a href="#M000009">dispatch</a></li>
             </ol>
           </div>
           <div id='section'>
@@ -77,31 +77,31 @@
             </div>
             <div id='methods'>
               <h2>Public instance methods</h2>
-              <div class='public-instance method' id='method-M000007'>
-                <a name='M000007'>      </a>
+              <div class='public-instance method' id='method-M000008'>
+                <a name='M000008'>      </a>
                 <div class='synopsis'>
                   <span class='name'>url</span>
                   <span class='arguments'>(feed_uri)</span>
                 </div>
                 <div class='source'>
-                  <a class='source-toggle' href='#' onclick="toggleCode('M000007-source'); return false">
+                  <a class='source-toggle' href='#' onclick="toggleCode('M000008-source'); return false">
                     [show source]
                   </a>
-                  <pre id='M000007-source'>    <span class="ruby-comment cmt"># File lib/smoke/source/feed.rb, line 20</span>&#x000A;20:         <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">url</span>(<span class="ruby-identifier">feed_uri</span>)&#x000A;21:           (<span class="ruby-ivar">@feeds</span> <span class="ruby-operator">||=</span> [] ) <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">feed_uri</span>&#x000A;22:         <span class="ruby-keyword kw">end</span></pre>
+                  <pre id='M000008-source'>    <span class="ruby-comment cmt"># File lib/smoke/source/feed.rb, line 20</span>&#x000A;20:         <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">url</span>(<span class="ruby-identifier">feed_uri</span>)&#x000A;21:           (<span class="ruby-ivar">@feeds</span> <span class="ruby-operator">||=</span> [] ) <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">feed_uri</span>&#x000A;22:         <span class="ruby-keyword kw">end</span></pre>
                 </div>
               </div>
               <h2>Protected instance methods</h2>
-              <div class='protected-instance method' id='method-M000008'>
-                <a name='M000008'>      </a>
+              <div class='protected-instance method' id='method-M000009'>
+                <a name='M000009'>      </a>
                 <div class='synopsis'>
                   <span class='name'>dispatch</span>
                   <span class='arguments'>()</span>
                 </div>
                 <div class='source'>
-                  <a class='source-toggle' href='#' onclick="toggleCode('M000008-source'); return false">
+                  <a class='source-toggle' href='#' onclick="toggleCode('M000009-source'); return false">
                     [show source]
                   </a>
-                  <pre id='M000008-source'>    <span class="ruby-comment cmt"># File lib/smoke/source/feed.rb, line 25</span>&#x000A;25:         <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">dispatch</span>&#x000A;26:           <span class="ruby-ivar">@requests</span> = <span class="ruby-ivar">@feeds</span>.<span class="ruby-identifier">map</span>{<span class="ruby-operator">|</span><span class="ruby-identifier">f</span><span class="ruby-operator">|</span> <span class="ruby-constant">Smoke</span><span class="ruby-operator">::</span><span class="ruby-constant">Request</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">f</span>, <span class="ruby-identifier">:raw_response</span>) }&#x000A;27:           <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">items</span> = <span class="ruby-ivar">@requests</span>.<span class="ruby-identifier">map</span>{<span class="ruby-operator">|</span><span class="ruby-identifier">r</span><span class="ruby-operator">|</span> <span class="ruby-operator">::</span><span class="ruby-constant">SimpleRSS</span>.<span class="ruby-identifier">parse</span>(<span class="ruby-identifier">r</span>.<span class="ruby-identifier">body</span>).<span class="ruby-identifier">items</span> }.<span class="ruby-identifier">flatten</span>&#x000A;28:         <span class="ruby-keyword kw">end</span></pre>
+                  <pre id='M000009-source'>    <span class="ruby-comment cmt"># File lib/smoke/source/feed.rb, line 25</span>&#x000A;25:         <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">dispatch</span>&#x000A;26:           <span class="ruby-ivar">@requests</span> = <span class="ruby-ivar">@feeds</span>.<span class="ruby-identifier">map</span>{<span class="ruby-operator">|</span><span class="ruby-identifier">f</span><span class="ruby-operator">|</span> <span class="ruby-constant">Smoke</span><span class="ruby-operator">::</span><span class="ruby-constant">Request</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">f</span>, <span class="ruby-identifier">:raw_response</span>) }&#x000A;27:           <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">items</span> = <span class="ruby-ivar">@requests</span>.<span class="ruby-identifier">map</span>{<span class="ruby-operator">|</span><span class="ruby-identifier">r</span><span class="ruby-operator">|</span> <span class="ruby-operator">::</span><span class="ruby-constant">SimpleRSS</span>.<span class="ruby-identifier">parse</span>(<span class="ruby-identifier">r</span>.<span class="ruby-identifier">body</span>).<span class="ruby-identifier">items</span> }.<span class="ruby-identifier">flatten</span>&#x000A;28:         <span class="ruby-keyword kw">end</span></pre>
                 </div>
               </div>
             </div>
