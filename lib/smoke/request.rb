@@ -5,7 +5,7 @@ module Smoke
       
       def initialize(uri, msg)
         @uri = URI.parse(uri)
-        Smoke.log.error "Smoke Request: Failed to get from #{@uri.host} via #{@uri.scheme}\n#{msg}"
+        Smoke.log.error "Smoke Request: Failed to get from #{@uri} (#{msg})"
       end
     end
     
