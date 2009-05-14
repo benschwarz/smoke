@@ -18,6 +18,10 @@ describe Smoke::Origin do
     it "should be ordered by title" do
       @origin.output.first[:title].should == "Kangaroo"
     end
+    
+    it "should output a single hash rather than a hash in an array when there is one item" do
+      Smoke[:test].truncate(1).output.should == {:title => "Kangaroo"}
+    end
   end
   
   describe "transformations" do
@@ -44,7 +48,7 @@ describe Smoke::Origin do
       end
       
       it "should only contain items that match" do
-        Smoke[:keep].keep(:head, /^K/).output.should == [{:head => "Kangaroo"}]
+        Smoke[:keep].keep(:head, /^K/).output.should == {:head => "Kangaroo"}
       end
       
       it "should discard items" do
@@ -52,7 +56,7 @@ describe Smoke::Origin do
       end
       
       it "should not contain items that match" do
-        Smoke[:discard].discard(:head, /^K/).output.should == [{:head => "Platypus"}]
+        Smoke[:discard].discard(:head, /^K/).output.should == {:head => "Platypus"}
       end
     end
   end

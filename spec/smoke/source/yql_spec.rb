@@ -35,23 +35,39 @@ describe "YQL" do
     end
     
     it "should have renamed url to link" do
-      Smoke[:search].output.first.should have_key(:link)
-      Smoke[:search].output.first.should_not have_key(:href)
+      Smoke[:search].output[:result].first.should have_key(:link)
+      Smoke[:search].output[:result].first.should_not have_key(:href)
     end
 
     it "should output a ruby object" do
-      Smoke[:search].output.should be_an_instance_of(Array)
+      Smoke[:search].output[:result].should be_an_instance_of(Array)
     end
   end
   
   describe "yql definitions" do
-    describe "setting a yql definition" do
-      it "should respond to use"
-      it "should only accept a valid URI"
+    before do
+      Smoke.yql(:smoke) do
+        use "http://datatables.org/alltables.env"
+
+        select :all
+        from "github.repo"
+        where :id, "benschwarz"
+        where :repo, "smoke"
+      end
+      
+      Smoke[:smoke].output # Force execution
+    end
+
+    it "should be a respository" do
+      Smoke[:smoke].output.should have_key(:repository)
+    end
+
+    it "should respond to use" do
+      Smoke[:smoke].should respond_to(:use)
     end
     
-    describe "dispatching with a yql definition set" do
-      it "should set the definition within the query for your original request"
+    it "should contain 'env' within the query string" do
+      Smoke[:smoke].request.uri.should =~ /env=/
     end
   end
 end

@@ -16,6 +16,7 @@ module Smoke
       #     where   :query, "ruby"
       #   end
       class YQL < Origin
+        API_BASE = "http://query.yahooapis.com/v1/public/yql"
         attr_reader :request
         
         # Select indicates what YQL will be selecting
@@ -53,20 +54,39 @@ module Smoke
           @where << "#{column.to_s} = '#{value}'"
         end
         
+        # `use` can be used to set the url location of the data-table
+        # that you want YQL to search upon
+        #
+        # Usage:
+        #   use "http://datatables.org/alltables.env"
+        def use(url)
+          params.merge!({:env => url})
+        end
+        
         protected
+        def params 
+          @params || @params = {}
+        end
+        
         def dispatch
           @request = Smoke::Request.new(build_uri)
-          self.items = @request.body[:query][:results][:result]
+          self.items = [@request.body[:query][:results]]
         end
         
         private
         
         def build_uri
-          "http://query.yahooapis.com/v1/public/yql?q=#{build_query}&format=json"
+          chunks = []
+          default_opts = {
+            :q => build_query,
+            :format => "json"
+          }.merge(params).each {|k,v| chunks << "#{k}=#{v}" }
+          
+          return URI.encode(API_BASE + "?" + chunks.join("&"))
         end
         
         def build_query
-          URI.encode("SELECT #{@select} FROM #{@from} WHERE #{@where.join(" AND ")}")
+          "SELECT #{@select} FROM #{@from} WHERE #{@where.join(" AND ")}"
         end
       end
     end
