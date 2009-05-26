@@ -96,4 +96,10 @@ describe Smoke::Origin do
   it "should softly error when attempting to sort on a key that doesn't exist" do
     TestSource.source(:chain).sort(:header).should_not raise_error("NoMethodError")
   end
+  
+  describe "variable injection" do
+    it "should allow variables to be left happlessly in your source definitions"
+    it "should allow setting of variables"
+    it "should error if output is called before a variable has been set"
+  end
 end

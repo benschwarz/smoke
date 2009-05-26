@@ -31,7 +31,7 @@ describe "YQL" do
     end
     
     it "should hold the url used to query" do
-      Smoke[:search].request.uri.should == "http://query.yahooapis.com/v1/public/yql?q=SELECT%20*%20FROM%20search.web%20WHERE%20query%20=%20'ruby'&format=json"
+      Smoke[:search].request.uri.should == "http://query.yahooapis.com/v1/public/yql?format=json&q=SELECT%20*%20FROM%20search.web%20WHERE%20query%20=%20'ruby'"
     end
     
     it "should have renamed url to link" do
