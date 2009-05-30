@@ -68,6 +68,7 @@ Integrity [is running for smoke](http://integrity.ffolio.net/smoke)
 
 #### For wiki pages (docs, later)
 * How to use `path`
+* YQL Definitions
 
 ### Copyright
 
