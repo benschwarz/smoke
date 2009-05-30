@@ -70,11 +70,10 @@ module Smoke
         
         def dispatch
           @request = Smoke::Request.new(build_uri)
-          self.items = [@request.body[:query][:results]]
+          self.items = [(@path.nil?) ? @request.body : drill(@request.body, *@path)]
         end
         
         private
-        
         def build_uri
           chunks = []
           default_opts = {

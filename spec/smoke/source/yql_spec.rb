@@ -10,6 +10,7 @@ describe "YQL" do
       select  :all
       from    "search.web"
       where   :query, "ruby"
+      path    :query, :results, :result
       
       emit do
         rename(:url => :link)
@@ -31,16 +32,16 @@ describe "YQL" do
     end
     
     it "should hold the url used to query" do
-      Smoke[:search].request.uri.should == "http://query.yahooapis.com/v1/public/yql?format=json&q=SELECT%20*%20FROM%20search.web%20WHERE%20query%20=%20'ruby'"
+      Smoke[:search].request.uri.should == "http://query.yahooapis.com/v1/public/yql?q=SELECT%20*%20FROM%20search.web%20WHERE%20query%20=%20'ruby'&format=json"
     end
     
     it "should have renamed url to link" do
-      Smoke[:search].output[:result].first.should have_key(:link)
-      Smoke[:search].output[:result].first.should_not have_key(:href)
+      Smoke[:search].output.first.should have_key(:link)
+      Smoke[:search].output.first.should_not have_key(:url)
     end
 
     it "should output a ruby object" do
-      Smoke[:search].output[:result].should be_an_instance_of(Array)
+      Smoke[:search].output.should be_an_instance_of(Array)
     end
   end
   
@@ -53,6 +54,7 @@ describe "YQL" do
         from "github.repo"
         where :id, "benschwarz"
         where :repo, "smoke"
+        path :query, :results
       end
       
       Smoke[:smoke].output # Force execution

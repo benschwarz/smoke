@@ -32,24 +32,10 @@ module Smoke
           @url = source_url
         end
         
-        # Path allows you to traverse the tree of a the items returned to 
-        # only give you access to what you're interested in. In the case
-        # of the comments in this document I traverse to the photos returned.
-        def path(*path)
-          @path = path
-        end
-        
         protected
         def dispatch
           @request = Smoke::Request.new(@url)
           self.items = (@path.nil?) ? @request.body : drill(@request.body, *@path)
-        end
-        
-        private
-        def drill(*path)
-          path.inject(nil) do |obj, pointer|
-            obj = obj.nil? ? pointer : obj[pointer]
-          end
         end
       end
     end
