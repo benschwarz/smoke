@@ -56,7 +56,7 @@ Integrity [is running for smoke](http://integrity.ffolio.net/smoke)
 
 ### TODO (working on, just mental notes)
 
-* YQL Definitions
+* Clean up / simplify source activation process
 * Consider variable injection (eg, allow to query sending a username within some aspect of the request)
 * Implement a disaptch / request method that will actually thread property (event-machine)
 * Checkout experimental fakeweb version to stub out the yql specs
@@ -65,6 +65,9 @@ Integrity [is running for smoke](http://integrity.ffolio.net/smoke)
 * Allow for sources to explicitly set the content type being returned for those stupid content providers
 * YQL w/oAuth
 * YQL Subqueries?
+
+#### For wiki pages (docs, later)
+* How to use `path`
 
 ### Copyright
 
