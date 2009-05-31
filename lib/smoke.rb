@@ -12,7 +12,7 @@ $:<< File.join(File.dirname(__FILE__))
 require 'core_ext/hash.rb'
 
 module Smoke  
-  class << self
+  class << self 
     
     @@active_sources = {}
     attr_reader :active_sources

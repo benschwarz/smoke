@@ -5,7 +5,8 @@ module Smoke
     def initialize(name, &block)
       raise StandardError, "Sources must have a name" unless name
       @name = name
-      @items = []
+      @items, @transformation = [], []
+
       activate!
       instance_eval(&block) if block_given?
     end
@@ -28,12 +29,36 @@ module Smoke
         return ::JSON.generate(output)
       when :yaml
         return YAML.dump(output)
-      end
+      end      
     end
     
     def items=(items) # :nodoc:
       @items = items.flatten.map{|i| i.symbolize_keys! }
-      invoke_transformations
+      invoke_transformation
+    end
+    
+    # Path allows you to traverse the tree of a the items returned to 
+    # only give you access to what you're interested in.
+    #
+    # Usage:
+    # path :down, :to, :the, :data
+    # 
+    # Will traverse through a tree as follows:
+    #
+    #   {
+    #     :down => {
+    #       :to => {
+    #         :the => {
+    #           :data => []
+    #         }
+    #       }
+    #     }
+    #   }
+    #
+    # You will need to help smoke find an array of 
+    # items that you're interested in. 
+    def path(*path)
+      @path = path
     end
     
     # Transform each item
@@ -43,7 +68,7 @@ module Smoke
     #     rename(:href => :link)
     #   end 
     def emit(&block)
-      (@transformations ||= []) << DelayedBlock.new(&block)
+      @transformation << DelayedBlock.new(&block)
     end
 
     # Re-sort items by a particular key
@@ -109,8 +134,14 @@ module Smoke
     end
     
     private
-    def invoke_transformations
-      @transformations.each{|t| t.execute! } unless @transformations.nil?
+    def invoke_transformation
+      @transformation.each{|t| t.execute! } unless @transformation.nil?
+    end
+    
+    def drill(*path)
+      path.inject(nil) do |obj, pointer|
+        obj = obj.nil? ? pointer : obj[pointer]
+      end
     end
     
     def activate!
