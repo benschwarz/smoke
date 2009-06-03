@@ -12,8 +12,7 @@ $:<< File.join(File.dirname(__FILE__))
 require 'core_ext/hash.rb'
 
 module Smoke  
-  class << self 
-    
+  class << self
     @@active_sources = {}
     attr_reader :active_sources
     
@@ -69,7 +68,7 @@ module Smoke
     #   Smoke.log.error "message"
     #   Smoke.log.warn "message"
     def log
-      @logger ||= Logger.new($stdout)
+      @@log ||= Logger.new($stdout)
     end
     
     def yql(name, &block); Smoke::Source::YQL.new(name, &block); end

@@ -56,7 +56,6 @@ Integrity [is running for smoke](http://integrity.ffolio.net/smoke)
 
 ### TODO (working on, just mental notes)
 
-* Clean up / simplify source activation process
 * Joined sources require a call to dispatch when their parent calls output
 * Sources that are renamed also need their @name's renaming
 * Consider variable injection (eg, allow to query sending a username within some aspect of the request)
