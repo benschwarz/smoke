@@ -17,16 +17,6 @@ module Smoke
     @@active_sources = {}
     attr_reader :active_sources
     
-    # Smoke sources can invoke access to themselves
-    # via the register method:
-    #
-    #   Smoke.register(Smoke::Source::YQL)
-    #
-    # Check the supplied sources for usage
-    def register(mod)
-      class_eval { include mod }
-    end
-    
     # Access registered smoke source instances
     #
     # Usage:
@@ -34,7 +24,7 @@ module Smoke
     #     Smoke.yql(:ruby) do ....
     #
     #     Smoke[:ruby]
-    #     => #<Smoke::Source::YQL::YQL:0x18428d4...
+    #     => #<Smoke::Source::YQL::0x18428d4...
     def [](source)
       active_sources[source]
     end
@@ -49,11 +39,13 @@ module Smoke
       return source
     end
     
+    # Activates new instances of sources
+    # Source instances are stored within the 
+    # @@active_sources class variable for later use
     def activate(name, source)
       if active_sources.has_key?(name)
         Smoke.log.warn "Smoke source activation: Source with idential name already initialized" 
       end
-      
       active_sources.update({ name => source })
     end
     
@@ -79,6 +71,10 @@ module Smoke
     def log
       @logger ||= Logger.new($stdout)
     end
+    
+    def yql(name, &block); Smoke::Source::YQL.new(name, &block); end
+    def data(name, &block); Smoke::Source::Data.new(name, &block); end
+    def feed(name, &block); Smoke::Source::Feed.new(name, &block); end
     
     private
     def get_sources(sources = [])

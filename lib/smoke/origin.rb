@@ -23,12 +23,12 @@ module Smoke
       output = (@items.length == 1) ? @items.first : @items
       
       case type
-      when :ruby
-        return output
       when :json
         return ::JSON.generate(output)
       when :yaml
         return YAML.dump(output)
+      else
+        return output
       end      
     end
     

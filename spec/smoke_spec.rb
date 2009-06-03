@@ -7,20 +7,6 @@ describe Smoke do
     @source_c = TestSource.source :c
   end
   
-  describe "registration" do
-    before do
-      Smoke.register(Smoke::SecretSauce) # defined in supports/mayo.rb
-    end
-    
-    it "should allow sources to register themselves" do
-      Smoke.included_modules.should include(SecretSauce)
-    end
-    
-    it "should have an instance method of 'mayo'" do
-      Smoke.instance_methods.should include("mayo")
-    end
-  end
-  
   describe "joining" do
     before do
       @joined = Smoke.join(:a, :b)

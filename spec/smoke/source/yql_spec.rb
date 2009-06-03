@@ -19,7 +19,7 @@ describe "YQL" do
   end
   
   it "should have been activated" do
-    Smoke[:search].should(be_an_instance_of(Smoke::Source::YQL::YQL))
+    Smoke[:search].should(be_an_instance_of(Smoke::Source::YQL))
   end
   
   it "should be a list of things" do
