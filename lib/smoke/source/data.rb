@@ -20,8 +20,7 @@ module Smoke
     #   end
     class Data < Origin
       attr_reader :request
-      def self.name; :data; end
-            
+
       def url(source_url)
         @url = source_url
       end

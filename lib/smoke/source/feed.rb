@@ -9,7 +9,6 @@ module Smoke
     #   end
     class Feed < Origin
       attr_reader :requests
-      def self.name; :feed; end
       
       def url(feed_uri)
         (@feeds ||= [] ) << feed_uri

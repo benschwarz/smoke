@@ -12,8 +12,6 @@ module Smoke
       API_BASE = "http://query.yahooapis.com/v1/public/yql"
       attr_reader :request
       
-      def self.name; :yql; end
-      
       # Select indicates what YQL will be selecting
       # Usage:
       #   select :all

@@ -5,7 +5,6 @@ require 'json'
 require 'crack'
 require 'simple-rss'
 
-
 $:<< File.join(File.dirname(__FILE__))
 
 # Core ext
