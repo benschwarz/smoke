@@ -5,7 +5,7 @@ module Smoke
     def initialize(name, &block)
       raise StandardError, "Sources must have a name" unless name
       @name = name
-      @items, @transformation = [], []
+      @items, @prepare, @transformation = [], [], []
 
       activate!
       instance_eval(&block) if block_given?
@@ -68,7 +68,7 @@ module Smoke
     #     rename(:href => :link)
     #   end 
     def emit(&block)
-      @transformation << DelayedBlock.new(&block)
+      @transformation << block
     end
 
     # Re-sort items by a particular key
@@ -135,7 +135,7 @@ module Smoke
     
     private
     def invoke_transformation
-      @transformation.each{|t| t.execute! } unless @transformation.nil?
+      @transformation.each{|t| t.call } unless @transformation.nil?
     end
     
     def drill(*path)

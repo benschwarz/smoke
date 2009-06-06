@@ -83,7 +83,6 @@ end
 
 require 'smoke/request'
 require 'smoke/origin'
-require 'smoke/delayed_block'
 
 class Object # :nodoc: 
   include Smoke
