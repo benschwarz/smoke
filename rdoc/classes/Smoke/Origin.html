@@ -45,20 +45,21 @@
             <h2>Methods</h2>
             <h3>public class</h3>
             <ol>
-              <li><a href="#M000023">new</a></li>
+              <li><a href="#M000020">new</a></li>
             </ol>
             <h3>public instance</h3>
             <ol>
-              <li><a href="#M000024">output</a></li>
+              <li><a href="#M000028">discard</a></li>
+              <li><a href="#M000023">emit</a></li>
+              <li><a href="#M000027">keep</a></li>
+              <li><a href="#M000025">method_missing</a></li>
+              <li><a href="#M000021">output</a></li>
+              <li><a href="#M000022">path</a></li>
+              <li><a href="#M000024">prepare</a></li>
+              <li><a href="#M000029">rename</a></li>
+              <li><a href="#M000026">sort</a></li>
+              <li><a href="#M000030">truncate</a></li>
             </ol>
-          </div>
-          <div id='context'>
-            <div id='includes'>
-              <h2>Included modules</h2>
-              <ol>
-                <li><a href="Transformations.html">Transformations</a></li>
-              </ol>
-            </div>
           </div>
           <div id='section'>
             <div id='attribute-list'>
@@ -80,22 +81,109 @@
             </div>
             <div id='methods'>
               <h2>Public class methods</h2>
-              <div class='public-class method' id='method-M000023'>
-                <a name='M000023'>      </a>
+              <div class='public-class method' id='method-M000020'>
+                <a name='M000020'>      </a>
                 <div class='synopsis'>
                   <span class='name'>new</span>
                   <span class='arguments'>(name, &amp;block)</span>
                 </div>
                 <div class='source'>
-                  <a class='source-toggle' href='#' onclick="toggleCode('M000023-source'); return false">
+                  <a class='source-toggle' href='#' onclick="toggleCode('M000020-source'); return false">
                     [show source]
                   </a>
-                  <pre id='M000023-source'>    <span class="ruby-comment cmt"># File lib/smoke/origin.rb, line 5</span>&#x000A; 5:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">initialize</span>(<span class="ruby-identifier">name</span>, <span class="ruby-operator">&amp;</span><span class="ruby-identifier">block</span>)&#x000A; 6:       <span class="ruby-identifier">raise</span> <span class="ruby-constant">StandardError</span>, <span class="ruby-value str">&quot;Sources must have a name&quot;</span> <span class="ruby-keyword kw">unless</span> <span class="ruby-identifier">name</span>&#x000A; 7:       <span class="ruby-ivar">@name</span> = <span class="ruby-identifier">name</span>&#x000A; 8:       <span class="ruby-ivar">@items</span> = []&#x000A; 9:       <span class="ruby-identifier">activate!</span>&#x000A;10:       <span class="ruby-identifier">instance_eval</span>(<span class="ruby-operator">&amp;</span><span class="ruby-identifier">block</span>) <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">block_given?</span>&#x000A;11:     <span class="ruby-keyword kw">end</span></pre>
+                  <pre id='M000020-source'>    <span class="ruby-comment cmt"># File lib/smoke/origin.rb, line 5</span>&#x000A; 5:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">initialize</span>(<span class="ruby-identifier">name</span>, <span class="ruby-operator">&amp;</span><span class="ruby-identifier">block</span>)&#x000A; 6:       <span class="ruby-identifier">raise</span> <span class="ruby-constant">StandardError</span>, <span class="ruby-value str">&quot;Sources must have a name&quot;</span> <span class="ruby-keyword kw">unless</span> <span class="ruby-identifier">name</span>&#x000A; 7:       <span class="ruby-ivar">@name</span> = <span class="ruby-identifier">name</span>&#x000A; 8:       <span class="ruby-ivar">@items</span>, <span class="ruby-ivar">@prepare</span>, <span class="ruby-ivar">@transformation</span> = [], [], []&#x000A; 9: &#x000A;10:       <span class="ruby-identifier">activate!</span>&#x000A;11:       <span class="ruby-identifier">instance_eval</span>(<span class="ruby-operator">&amp;</span><span class="ruby-identifier">block</span>) <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">block_given?</span>&#x000A;12:     <span class="ruby-keyword kw">end</span></pre>
                 </div>
               </div>
               <h2>Public instance methods</h2>
-              <div class='public-instance method' id='method-M000024'>
-                <a name='M000024'>      </a>
+              <div class='public-instance method' id='method-M000028'>
+                <a name='M000028'>      </a>
+                <div class='synopsis'>
+                  <span class='name'>discard</span>
+                  <span class='arguments'>(key, matcher)</span>
+                </div>
+                <div class='description'>
+                  <p>
+                  Discard items that do not match the regex
+                  </p>
+                  <p>
+                  Usage (chained):
+                  </p>
+                  <pre>Smoke[:ruby].discard(:title, /tuesday/i)</pre>
+                  <p>
+                  Usage (block, during initialization):
+                  </p>
+                  <pre>Smoke.yql(:ruby) do&#x000A;  ...&#x000A;  discard(:title, /tuesday/i)&#x000A;end</pre>
+                </div>
+                <div class='source'>
+                  <a class='source-toggle' href='#' onclick="toggleCode('M000028-source'); return false">
+                    [show source]
+                  </a>
+                  <pre id='M000028-source'>     <span class="ruby-comment cmt"># File lib/smoke/origin.rb, line 139</span>&#x000A;139:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">discard</span>(<span class="ruby-identifier">key</span>, <span class="ruby-identifier">matcher</span>)&#x000A;140:       <span class="ruby-ivar">@items</span>.<span class="ruby-identifier">reject!</span> {<span class="ruby-operator">|</span><span class="ruby-identifier">i</span><span class="ruby-operator">|</span> (<span class="ruby-identifier">i</span>[<span class="ruby-identifier">key</span>] <span class="ruby-operator">=~</span> <span class="ruby-identifier">matcher</span>) <span class="ruby-operator">?</span> <span class="ruby-keyword kw">true</span> <span class="ruby-operator">:</span> <span class="ruby-keyword kw">false</span> }&#x000A;141:       <span class="ruby-keyword kw">return</span> <span class="ruby-keyword kw">self</span>&#x000A;142:     <span class="ruby-keyword kw">end</span></pre>
+                </div>
+              </div>
+              <div class='public-instance method' id='method-M000023'>
+                <a name='M000023'>      </a>
+                <div class='synopsis'>
+                  <span class='name'>emit</span>
+                  <span class='arguments'>(&amp;block)</span>
+                </div>
+                <div class='description'>
+                  <p>
+                  Transform each item
+                  </p>
+                  <p>
+                  Usage:
+                  </p>
+                  <pre>emit do&#x000A;  rename(:href =&gt; :link)&#x000A;end</pre>
+                </div>
+                <div class='source'>
+                  <a class='source-toggle' href='#' onclick="toggleCode('M000023-source'); return false">
+                    [show source]
+                  </a>
+                  <pre id='M000023-source'>    <span class="ruby-comment cmt"># File lib/smoke/origin.rb, line 71</span>&#x000A;71:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">emit</span>(<span class="ruby-operator">&amp;</span><span class="ruby-identifier">block</span>)&#x000A;72:       <span class="ruby-ivar">@transformation</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">block</span>&#x000A;73:     <span class="ruby-keyword kw">end</span></pre>
+                </div>
+              </div>
+              <div class='public-instance method' id='method-M000027'>
+                <a name='M000027'>      </a>
+                <div class='synopsis'>
+                  <span class='name'>keep</span>
+                  <span class='arguments'>(key, matcher)</span>
+                </div>
+                <div class='description'>
+                  <p>
+                  Keep items that match the regex
+                  </p>
+                  <p>
+                  Usage (chained):
+                  </p>
+                  <pre>Smoke[:ruby].keep(:title, /tuesday/i)</pre>
+                  <p>
+                  Usage (block, during initialization):
+                  </p>
+                  <pre>Smoke.yql(:ruby) do&#x000A;  ...&#x000A;  keep(:title, /tuesday/i)&#x000A;end</pre>
+                </div>
+                <div class='source'>
+                  <a class='source-toggle' href='#' onclick="toggleCode('M000027-source'); return false">
+                    [show source]
+                  </a>
+                  <pre id='M000027-source'>     <span class="ruby-comment cmt"># File lib/smoke/origin.rb, line 125</span>&#x000A;125:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">keep</span>(<span class="ruby-identifier">key</span>, <span class="ruby-identifier">matcher</span>)&#x000A;126:       <span class="ruby-ivar">@items</span>.<span class="ruby-identifier">reject!</span> {<span class="ruby-operator">|</span><span class="ruby-identifier">i</span><span class="ruby-operator">|</span> (<span class="ruby-identifier">i</span>[<span class="ruby-identifier">key</span>] <span class="ruby-operator">=~</span> <span class="ruby-identifier">matcher</span>) <span class="ruby-operator">?</span> <span class="ruby-keyword kw">false</span> <span class="ruby-operator">:</span> <span class="ruby-keyword kw">true</span> }&#x000A;127:       <span class="ruby-keyword kw">return</span> <span class="ruby-keyword kw">self</span>&#x000A;128:     <span class="ruby-keyword kw">end</span></pre>
+                </div>
+              </div>
+              <div class='public-instance method' id='method-M000025'>
+                <a name='M000025'>      </a>
+                <div class='synopsis'>
+                  <span class='name'>method_missing</span>
+                  <span class='arguments'>(symbol, *args, &amp;block)</span>
+                </div>
+                <div class='source'>
+                  <a class='source-toggle' href='#' onclick="toggleCode('M000025-source'); return false">
+                    [show source]
+                  </a>
+                  <pre id='M000025-source'>     <span class="ruby-comment cmt"># File lib/smoke/origin.rb, line 95</span>&#x000A; 95:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">method_missing</span>(<span class="ruby-identifier">symbol</span>, <span class="ruby-operator">*</span><span class="ruby-identifier">args</span>, <span class="ruby-operator">&amp;</span><span class="ruby-identifier">block</span>)&#x000A; 96:       <span class="ruby-identifier">ivar</span> = <span class="ruby-node">&quot;@#{symbol}&quot;</span>&#x000A; 97:       &#x000A; 98:       <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">args</span>.<span class="ruby-identifier">empty?</span>&#x000A; 99:         <span class="ruby-keyword kw">return</span> <span class="ruby-identifier">instance_variable_get</span>(<span class="ruby-identifier">ivar</span>) <span class="ruby-operator">||</span> <span class="ruby-keyword kw">super</span>  &#x000A;100:       <span class="ruby-keyword kw">else</span>&#x000A;101:         <span class="ruby-identifier">instance_variable_set</span>(<span class="ruby-identifier">ivar</span>, <span class="ruby-identifier">args</span>.<span class="ruby-identifier">pop</span>)&#x000A;102:       <span class="ruby-keyword kw">end</span>&#x000A;103: &#x000A;104:       <span class="ruby-keyword kw">return</span> <span class="ruby-keyword kw">self</span>&#x000A;105:     <span class="ruby-keyword kw">end</span></pre>
+                </div>
+              </div>
+              <div class='public-instance method' id='method-M000021'>
+                <a name='M000021'>      </a>
                 <div class='synopsis'>
                   <span class='name'>output</span>
                   <span class='arguments'>(type = :ruby)</span>
@@ -111,10 +199,132 @@
                   <pre>output(:json)&#x000A;=&gt; &quot;[{title: \&quot;Ray\&quot;}, {title: \&quot;Peace\&quot;}]&quot;</pre>
                 </div>
                 <div class='source'>
+                  <a class='source-toggle' href='#' onclick="toggleCode('M000021-source'); return false">
+                    [show source]
+                  </a>
+                  <pre id='M000021-source'>    <span class="ruby-comment cmt"># File lib/smoke/origin.rb, line 21</span>&#x000A;21:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">output</span>(<span class="ruby-identifier">type</span> = <span class="ruby-identifier">:ruby</span>)&#x000A;22:       <span class="ruby-identifier">prepare!</span>&#x000A;23:       <span class="ruby-identifier">dispatch</span> <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">respond_to?</span> <span class="ruby-identifier">:dispatch</span>&#x000A;24:       <span class="ruby-identifier">output</span> = (<span class="ruby-ivar">@items</span>.<span class="ruby-identifier">length</span> <span class="ruby-operator">==</span> <span class="ruby-value">1</span>) <span class="ruby-operator">?</span> <span class="ruby-ivar">@items</span>.<span class="ruby-identifier">first</span> <span class="ruby-operator">:</span> <span class="ruby-ivar">@items</span>&#x000A;25:       &#x000A;26:       <span class="ruby-keyword kw">case</span> <span class="ruby-identifier">type</span>&#x000A;27:       <span class="ruby-keyword kw">when</span> <span class="ruby-identifier">:json</span>&#x000A;28:         <span class="ruby-keyword kw">return</span> <span class="ruby-operator">::</span><span class="ruby-constant">JSON</span>.<span class="ruby-identifier">generate</span>(<span class="ruby-identifier">output</span>)&#x000A;29:       <span class="ruby-keyword kw">when</span> <span class="ruby-identifier">:yaml</span>&#x000A;30:         <span class="ruby-keyword kw">return</span> <span class="ruby-constant">YAML</span>.<span class="ruby-identifier">dump</span>(<span class="ruby-identifier">output</span>)&#x000A;31:       <span class="ruby-keyword kw">else</span>&#x000A;32:         <span class="ruby-keyword kw">return</span> <span class="ruby-identifier">output</span>&#x000A;33:       <span class="ruby-keyword kw">end</span>      &#x000A;34:     <span class="ruby-keyword kw">end</span></pre>
+                </div>
+              </div>
+              <div class='public-instance method' id='method-M000022'>
+                <a name='M000022'>      </a>
+                <div class='synopsis'>
+                  <span class='name'>path</span>
+                  <span class='arguments'>(*path)</span>
+                </div>
+                <div class='description'>
+                  <p>
+                  Path allows you to traverse the tree of a the items returned to only give
+                  you access to what you&#8217;re interested in.
+                  </p>
+                  <p>
+                  Usage: path :down, :to, :the, :data
+                  </p>
+                  <p>
+                  Will traverse through a tree as follows:
+                  </p>
+                  <pre>{&#x000A;  :down =&gt; {&#x000A;    :to =&gt; {&#x000A;      :the =&gt; {&#x000A;        :data =&gt; []&#x000A;      }&#x000A;    }&#x000A;  }&#x000A;}</pre>
+                  <p>
+                  You will need to help smoke find an array of items that you&#8217;re
+                  interested in.
+                  </p>
+                </div>
+                <div class='source'>
+                  <a class='source-toggle' href='#' onclick="toggleCode('M000022-source'); return false">
+                    [show source]
+                  </a>
+                  <pre id='M000022-source'>    <span class="ruby-comment cmt"># File lib/smoke/origin.rb, line 61</span>&#x000A;61:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">path</span>(<span class="ruby-operator">*</span><span class="ruby-identifier">path</span>)&#x000A;62:       <span class="ruby-ivar">@path</span> = <span class="ruby-identifier">path</span>&#x000A;63:     <span class="ruby-keyword kw">end</span></pre>
+                </div>
+              </div>
+              <div class='public-instance method' id='method-M000024'>
+                <a name='M000024'>      </a>
+                <div class='synopsis'>
+                  <span class='name'>prepare</span>
+                  <span class='arguments'>(&amp;block)</span>
+                </div>
+                <div class='description'>
+                  <p>
+                  Prepare is used when you&#8217;d like to provision for arguments /
+                  variables to be set after the source definition. Eg, create a source
+                  definition for twitter, omitting the &#8220;username&#8221;. Set the
+                  username using chaining later.
+                  </p>
+                  <p>
+                  Usage:
+                  </p>
+                  <pre># Definition&#x000A;Smoke.feed :twitter do&#x000A;  prepare do&#x000A;    url &quot;http://twitter.com/#{username}/rss&quot;&#x000A;  end&#x000A;end&#x000A;&#x000A;# End use&#x000A;Smoke[:twitter].username(:benschwarz).output</pre>
+                </div>
+                <div class='source'>
                   <a class='source-toggle' href='#' onclick="toggleCode('M000024-source'); return false">
                     [show source]
                   </a>
-                  <pre id='M000024-source'>    <span class="ruby-comment cmt"># File lib/smoke/origin.rb, line 22</span>&#x000A;22:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">output</span>(<span class="ruby-identifier">type</span> = <span class="ruby-identifier">:ruby</span>)&#x000A;23:       <span class="ruby-identifier">dispatch</span> <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">respond_to?</span> <span class="ruby-identifier">:dispatch</span>&#x000A;24:       &#x000A;25:       <span class="ruby-keyword kw">case</span> <span class="ruby-identifier">type</span>&#x000A;26:       <span class="ruby-keyword kw">when</span> <span class="ruby-identifier">:ruby</span>&#x000A;27:         <span class="ruby-keyword kw">return</span> <span class="ruby-ivar">@items</span>&#x000A;28:       <span class="ruby-keyword kw">when</span> <span class="ruby-identifier">:json</span>&#x000A;29:         <span class="ruby-keyword kw">return</span> <span class="ruby-operator">::</span><span class="ruby-constant">JSON</span>.<span class="ruby-identifier">generate</span>(<span class="ruby-ivar">@items</span>)&#x000A;30:       <span class="ruby-keyword kw">when</span> <span class="ruby-identifier">:yaml</span>&#x000A;31:         <span class="ruby-keyword kw">return</span> <span class="ruby-constant">YAML</span>.<span class="ruby-identifier">dump</span>(<span class="ruby-ivar">@items</span>)&#x000A;32:       <span class="ruby-keyword kw">end</span>&#x000A;33:     <span class="ruby-keyword kw">end</span></pre>
+                  <pre id='M000024-source'>    <span class="ruby-comment cmt"># File lib/smoke/origin.rb, line 90</span>&#x000A;90:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">prepare</span>(<span class="ruby-operator">&amp;</span><span class="ruby-identifier">block</span>)&#x000A;91:       <span class="ruby-identifier">raise</span> <span class="ruby-constant">ArgumentError</span>, <span class="ruby-value str">&quot;requires a block&quot;</span> <span class="ruby-keyword kw">unless</span> <span class="ruby-identifier">block_given?</span>&#x000A;92:       <span class="ruby-ivar">@prepare</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">block</span>&#x000A;93:     <span class="ruby-keyword kw">end</span></pre>
+                </div>
+              </div>
+              <div class='public-instance method' id='method-M000029'>
+                <a name='M000029'>      </a>
+                <div class='synopsis'>
+                  <span class='name'>rename</span>
+                  <span class='arguments'>(*args)</span>
+                </div>
+                <div class='description'>
+                  <p>
+                  Rename one or many keys at a time Suggested that you run it within an each
+                  block, but it makes no difference other than readability
+                  </p>
+                  <p>
+                  Usage
+                  </p>
+                  <pre># Renames all items with a key of href to link&#x000A;rename(:href =&gt; :link)</pre>
+                  <p>
+                  or
+                  </p>
+                  <pre>rename(:href =&gt; :link, :description =&gt; :excerpt)</pre>
+                </div>
+                <div class='source'>
+                  <a class='source-toggle' href='#' onclick="toggleCode('M000029-source'); return false">
+                    [show source]
+                  </a>
+                  <pre id='M000029-source'>     <span class="ruby-comment cmt"># File lib/smoke/origin.rb, line 153</span>&#x000A;153:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">rename</span>(<span class="ruby-operator">*</span><span class="ruby-identifier">args</span>)&#x000A;154:       <span class="ruby-ivar">@items</span>.<span class="ruby-identifier">each</span> {<span class="ruby-operator">|</span><span class="ruby-identifier">item</span><span class="ruby-operator">|</span> <span class="ruby-identifier">item</span>.<span class="ruby-identifier">rename</span>(<span class="ruby-operator">*</span><span class="ruby-identifier">args</span>) }&#x000A;155:       <span class="ruby-keyword kw">return</span> <span class="ruby-keyword kw">self</span>&#x000A;156:     <span class="ruby-keyword kw">end</span></pre>
+                </div>
+              </div>
+              <div class='public-instance method' id='method-M000026'>
+                <a name='M000026'>      </a>
+                <div class='synopsis'>
+                  <span class='name'>sort</span>
+                  <span class='arguments'>(key)</span>
+                </div>
+                <div class='description'>
+                  <p>
+                  Re-sort items by a particular key
+                  </p>
+                </div>
+                <div class='source'>
+                  <a class='source-toggle' href='#' onclick="toggleCode('M000026-source'); return false">
+                    [show source]
+                  </a>
+                  <pre id='M000026-source'>     <span class="ruby-comment cmt"># File lib/smoke/origin.rb, line 108</span>&#x000A;108:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">sort</span>(<span class="ruby-identifier">key</span>)&#x000A;109:       <span class="ruby-ivar">@items</span> = <span class="ruby-ivar">@items</span>.<span class="ruby-identifier">sort_by</span>{<span class="ruby-operator">|</span><span class="ruby-identifier">i</span><span class="ruby-operator">|</span> <span class="ruby-identifier">i</span>[<span class="ruby-identifier">key</span>] }&#x000A;110:     <span class="ruby-keyword kw">rescue</span> <span class="ruby-constant">NoMethodError</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">e</span>&#x000A;111:       <span class="ruby-constant">Smoke</span>.<span class="ruby-identifier">log</span>.<span class="ruby-identifier">info</span> <span class="ruby-node">&quot;You're trying to sort by \&quot;#{key}\&quot; but it does not exist in your item set&quot;</span>&#x000A;112:     <span class="ruby-keyword kw">ensure</span>&#x000A;113:       <span class="ruby-keyword kw">return</span> <span class="ruby-keyword kw">self</span>&#x000A;114:     <span class="ruby-keyword kw">end</span></pre>
+                </div>
+              </div>
+              <div class='public-instance method' id='method-M000030'>
+                <a name='M000030'>      </a>
+                <div class='synopsis'>
+                  <span class='name'>truncate</span>
+                  <span class='arguments'>(length)</span>
+                </div>
+                <div class='description'>
+                  <p>
+                  Truncate your result set to this many objects
+                  </p>
+                  <p>
+                  Usage
+                  </p>
+                  <pre>truncate(3).output&#x000A;=&gt; [{title =&gt; &quot;Canon&quot;}, {:title =&gt; &quot;Nikon&quot;}, {:title =&gt; &quot;Pentax&quot;}]</pre>
+                </div>
+                <div class='source'>
+                  <a class='source-toggle' href='#' onclick="toggleCode('M000030-source'); return false">
+                    [show source]
+                  </a>
+                  <pre id='M000030-source'>     <span class="ruby-comment cmt"># File lib/smoke/origin.rb, line 164</span>&#x000A;164:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">truncate</span>(<span class="ruby-identifier">length</span>)&#x000A;165:       <span class="ruby-ivar">@items</span> = <span class="ruby-ivar">@items</span>[<span class="ruby-value">0</span><span class="ruby-operator">..</span>(<span class="ruby-identifier">length</span> <span class="ruby-operator">-</span> <span class="ruby-value">1</span>)]&#x000A;166:       <span class="ruby-keyword kw">return</span> <span class="ruby-keyword kw">self</span>&#x000A;167:     <span class="ruby-keyword kw">end</span></pre>
                 </div>
               </div>
             </div>
