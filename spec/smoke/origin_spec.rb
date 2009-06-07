@@ -97,9 +97,64 @@ describe Smoke::Origin do
     TestSource.source(:chain).sort(:header).should_not raise_error("NoMethodError")
   end
   
-  describe "variable injection" do
-    it "should allow variables to be left happlessly in your source definitions"
-    it "should allow setting of variables"
-    it "should error if output is called before a variable has been set"
+  describe "preperation" do
+    before :all do
+      @source = TestSource.source(:preperation)
+    end
+    
+    it "should respond to prepare" do
+      @source.should respond_to(:prepare)
+    end
+    
+    it "should require a block" do
+      lambda { @source.prepare }.should raise_error
+      lambda { @source.prepare {} }.should_not raise_error
+    end
+    
+    describe "call order" do
+      before :all do
+        @url = "http://domain.tld/benschwarz/feed"
+        FakeWeb.register_uri(@url, :response => File.join(SPEC_DIR, 'supports', 'flickr-photo.json'))
+        
+        Smoke.data :feed_preperation_call_order do
+          prepare do 
+            url "http://domain.tld/#{username}/feed"
+          end
+          
+          path :photos, :photo
+        end
+      end
+      
+      describe "before setting variables" do
+        it "should fail" do
+          lambda { Smoke[:feed_preperation_call_order].output }.should raise_error(NameError)
+        end
+      end
+      
+      describe "setting abstract properties" do
+        it "should not respond to a property that hasn't been set" do
+          lambda { Smoke[:feed_preperation_call_order].abstract }.should raise_error(NoMethodError)
+        end
+        
+        it "should allow setting a property" do
+          lambda { Smoke[:feed_preperation_call_order].abstract(:value) }.should_not raise_error(NoMethodError)
+          Smoke[:feed_preperation_call_order].abstract.should == :value
+        end
+        
+        it "should chain the source when setting a property" do
+          Smoke[:feed_preperation_call_order].abstract(:value).should be_an_instance_of(Smoke::Source::Data)
+        end
+      end
+      
+      describe "after setting variables" do
+        it "should output successfully" do
+          lambda { Smoke[:feed_preperation_call_order].username("benschwarz").output }.should_not raise_error
+        end
+        
+        it "should have used the correct url" do
+          Smoke[:feed_preperation_call_order].request.uri.should == @url
+        end
+      end
+    end
   end
 end

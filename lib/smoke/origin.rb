@@ -19,6 +19,7 @@ module Smoke
     #   output(:json)
     #   => "[{title: \"Ray\"}, {title: \"Peace\"}]"
     def output(type = :ruby)
+      prepare!
       dispatch if respond_to? :dispatch
       output = (@items.length == 1) ? @items.first : @items
       
@@ -34,7 +35,7 @@ module Smoke
     
     def items=(items) # :nodoc:
       @items = items.flatten.map{|i| i.symbolize_keys! }
-      invoke_transformation
+      transform!
     end
     
     # Path allows you to traverse the tree of a the items returned to 
@@ -69,6 +70,38 @@ module Smoke
     #   end 
     def emit(&block)
       @transformation << block
+    end
+    
+    # Prepare is used when you'd like to provision for 
+    # arguments / variables to be set after the source definition.
+    # Eg, create a source definition for twitter, omitting the "username".
+    # Set the username using chaining later.
+    # 
+    # Usage:
+    #   # Definition
+    #   Smoke.feed :twitter do
+    #     prepare do
+    #       url "http://twitter.com/#{username}/rss"
+    #     end
+    #   end
+    #   
+    #   # End use
+    #   Smoke[:twitter].username(:benschwarz).output
+    def prepare(&block)
+      raise ArgumentError, "requires a block" unless block_given?
+      @prepare << block
+    end
+    
+    def method_missing(symbol, *args, &block)
+      ivar = "@#{symbol}"
+      
+      if args.empty?
+        return instance_variable_get(ivar) || super  
+      else
+        instance_variable_set(ivar, args.pop)
+      end
+
+      return self
     end
 
     # Re-sort items by a particular key
@@ -134,7 +167,11 @@ module Smoke
     end
     
     private
-    def invoke_transformation
+    def prepare!
+      @prepare.each{|p| p.call } unless @prepare.nil?
+    end
+    
+    def transform!
       @transformation.each{|t| t.call } unless @transformation.nil?
     end
     
