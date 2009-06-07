@@ -48,7 +48,21 @@ or even
         rename :shit_name => :title
       end
     end
+    
+### Define a source allowing for variables to be injected later
 
+Source definition:
+
+    Smoke.feed :delicious do
+      prepare do
+        url "http://feeds.delicious.com/v2/rss/#{username}?count=15"
+      end
+    end
+
+Execution: 
+
+    Smoke[:delicious].username("bschwarz").output
+    
 ### CI
 
 Integrity [is running for smoke](http://integrity.ffolio.net/smoke)
