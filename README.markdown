@@ -58,7 +58,6 @@ Integrity [is running for smoke](http://integrity.ffolio.net/smoke)
 
 * Joined sources require a call to dispatch when their parent calls output
 * Sources that are renamed also need their @name's renaming
-* Consider variable injection (eg, allow to query sending a username within some aspect of the request)
 * Implement a disaptch / request method that will actually thread property (event-machine)
 * Checkout experimental fakeweb version to stub out the yql specs
 
