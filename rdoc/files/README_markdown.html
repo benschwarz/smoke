@@ -31,7 +31,7 @@
         </div>
         <div class='last-update'>
           Last Update:
-          <span class='datetime'>Sat Jun 06 19:07:27 +1000 2009</span>
+          <span class='datetime'>Mon Jun 08 19:58:40 +1000 2009</span>
         </div>
       </div>
       <div id='content'>
@@ -99,6 +99,17 @@
             </p>
             <pre>Smoke.join(:python, :ruby) do&#x000A;  emit do&#x000A;    sort :title&#x000A;    rename :shit_name =&gt; :title&#x000A;  end&#x000A;end</pre>
             <p>
+            ### Define a source allowing for variables to be injected later
+            </p>
+            <p>
+            Source definition:
+            </p>
+            <pre>Smoke.feed :delicious do&#x000A;  prepare do&#x000A;    url &quot;http://feeds.delicious.com/v2/rss/#{username}?count=15&quot;&#x000A;  end&#x000A;end</pre>
+            <p>
+            Execution:
+            </p>
+            <pre>Smoke[:delicious].username(&quot;bschwarz&quot;).output</pre>
+            <p>
             ### CI
             </p>
             <p>
@@ -113,10 +124,6 @@
             
             </li>
             <li>Sources that are renamed also need their @name&#8217;s renaming
-            
-            </li>
-            <li>Consider variable injection (eg, allow to query sending a username within
-            some aspect of the request)
             
             </li>
             <li>Implement a disaptch / request method that will actually thread property
