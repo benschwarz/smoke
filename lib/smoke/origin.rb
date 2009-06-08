@@ -1,6 +1,7 @@
 module Smoke
   class Origin
-    attr_reader :items, :name
+    attr_reader :items
+    attr_accessor :name
     
     def initialize(name, &block)
       raise StandardError, "Sources must have a name" unless name
@@ -182,7 +183,7 @@ module Smoke
     end
     
     def activate!
-      Smoke.activate(name, self)
+      Smoke.activate(@name, self)
     end
   end
 end

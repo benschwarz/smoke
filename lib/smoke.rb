@@ -27,16 +27,6 @@ module Smoke
       active_sources[source]
     end
     
-    def join(*sources, &block)
-      @items = get_sources(sources).map {|source| source[1].items }.flatten
-      
-      joined_name = (sources << "joined").join("_").to_sym
-      source = Origin.new(joined_name, &block)
-
-      source.items = @items
-      return source
-    end
-    
     # Activates new instances of sources
     # Source instances are stored within the 
     # @@active_sources class variable for later use
@@ -55,6 +45,7 @@ module Smoke
     # Rename a source 
     def rename(candidates)
       candidates.each do |o, n| 
+        active_sources[o].name = n.to_s
         active_sources.rename(o => n)
         return active_sources[n]
       end
@@ -74,10 +65,13 @@ module Smoke
     def data(name, &block); Smoke::Source::Data.new(name, &block); end
     def feed(name, &block); Smoke::Source::Feed.new(name, &block); end
     
-    private
-    def get_sources(sources = [])
-      active_sources.find_all{|k, v| sources.include?(k) }
-    end
+    # Join multiple sources together into a single feed
+    # Usage:
+    #   Smoke.join(:delicious, :twitter, :flickr) do
+    #     name :stream
+    #     path :photos, :photo
+    #   end
+    def join(*names, &block); Smoke::Source::Join.new(names, &block); end
   end
 end
 
