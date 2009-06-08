@@ -46,5 +46,21 @@ describe "Join" do
         Smoke[:rename_spec].name.should == "rename_spec"
       end
     end
+    
+    describe "dispatching" do
+      before :all do
+        FakeWeb.register_uri("http://photos.tld", :response => File.join(SPEC_DIR, 'supports', 'flickr-photo.json'))
+
+        Smoke.data(:should_dispatch) do
+          url "http://photos.tld"
+          path :photos, :photo
+        end
+      end
+      
+      it "should call dispatch for its children" do
+        Smoke[:should_dispatch].should_receive(:dispatch)
+        Smoke.join(:a, :should_dispatch).output
+      end
+    end
   end
 end
