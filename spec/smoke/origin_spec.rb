@@ -33,6 +33,10 @@ describe Smoke::Origin do
       Smoke[:test].sort(:header).output.first[:header].should == "Kangaroo"
     end
     
+    it "should reverse the results" do
+      Smoke[:test].sort(:header).reverse.output.should == [{:header => "Platypus"}, {:header => "Kangaroo"}]
+    end
+    
     it "should truncate results given a length" do
       Smoke[:test].truncate(1).output.size.should == 1
     end

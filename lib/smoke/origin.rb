@@ -113,6 +113,18 @@ module Smoke
     ensure
       return self
     end
+    
+    # Reverse the order of the items
+    # 
+    # Usage
+    #   Smoke[:ruby].ouput
+    # Returns [{:header => "Platypus"}, {:header => "Kangaroo"}]
+    #   Smoke[:ruby].reverse.output
+    # Returns [{:header => "Kangaroo"}, {:header => "Platypus"}]
+    def reverse
+      @items.reverse!
+      return self
+    end
 
     # Keep items that match the regex
     # 
