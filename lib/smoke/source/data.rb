@@ -28,7 +28,7 @@ module Smoke
       protected
       def dispatch
         @request = Smoke::Request.new(@url)
-        self.items = (@path.nil?) ? @request.body : drill(@request.body, *@path)
+        self.items = @request.body
       end
     end
   end

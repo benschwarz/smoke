@@ -63,7 +63,7 @@ module Smoke
       
       def dispatch
         @request = Smoke::Request.new(build_uri)
-        self.items = [(@path.nil?) ? @request.body : drill(@request.body, *@path)]
+        self.items = @request.body
       end
       
       private

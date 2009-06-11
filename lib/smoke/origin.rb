@@ -34,8 +34,9 @@ module Smoke
       end      
     end
     
-    def items=(items) # :nodoc:
-      @items = items.flatten.map{|i| i.symbolize_keys! }
+    def items=(response) # :nodoc:
+      @items = [(@path.nil?) ? response : drill(response, *@path)]
+      symbolize_keys!
       transform!
     end
     
@@ -186,6 +187,10 @@ module Smoke
     
     def transform!
       @transformation.each{|t| t.call } unless @transformation.nil?
+    end
+    
+    def symbolize_keys!
+      @items = items.flatten.map{|i| i.symbolize_keys! } if items.respond_to? :flatten
     end
     
     def drill(*path)

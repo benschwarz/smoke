@@ -70,7 +70,7 @@ Integrity [is running for smoke](http://integrity.ffolio.net/smoke)
 
 ### TODO (working on, just mental notes)
 
-* Implement a disaptch / request method that will actually thread property (event-machine)
+* Secrets
 * Checkout experimental fakeweb version to stub out the yql specs
 
 #### Later / maybe
