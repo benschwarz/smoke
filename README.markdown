@@ -74,9 +74,11 @@ Integrity [is running for smoke](http://integrity.ffolio.net/smoke)
 * Checkout experimental fakeweb version to stub out the yql specs
 
 #### Later / maybe
-* Allow for sources to explicitly set the content type being returned for those stupid content providers
 * YQL w/oAuth
 * YQL Subqueries?
+* Implement basic auth for sources
+* Allow for sources to explicitly set the content type being returned for those stupid content providers
+
 
 #### For wiki pages (docs, later)
 * How to use `path`
