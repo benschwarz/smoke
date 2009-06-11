@@ -14,3 +14,7 @@ require 'smoke'
 
 require 'supports/mayo.rb'
 require 'supports/test_source.rb'
+
+Smoke.configure do |c|
+  c[:enable_logging] = false
+end

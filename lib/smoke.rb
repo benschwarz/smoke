@@ -13,7 +13,10 @@ require 'core_ext/hash.rb'
 module Smoke  
   class << self
     @@active_sources = {}
-    attr_reader :active_sources
+    @@config = {
+      :enable_logging => true,
+      :user_agent     => "Ruby/#{RUBY_VERSION}/Smoke"
+    }
     
     # Access registered smoke source instances
     #
@@ -58,7 +61,25 @@ module Smoke
     #   Smoke.log.error "message"
     #   Smoke.log.warn "message"
     def log
-      @@log ||= Logger.new($stdout)
+      @@log ||= Logger.new(config[:enable_logging] ? $stdout : "/dev/null")
+    end
+    
+    # Set any configurable options
+    #
+    #     Smoke.configure do |c|
+    #       c[:user_agent] = "Some other site"
+    #     end
+    #
+    def configure(&block)
+      yield @@config
+    end
+    
+    # Access configuration options
+    #
+    #   Smoke.config[:option_name]
+    #   => true
+    def config
+      @@config 
     end
     
     def yql(name, &block); Smoke::Source::YQL.new(name, &block); end

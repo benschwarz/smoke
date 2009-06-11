@@ -21,7 +21,7 @@ module Smoke
     private
     def dispatch
       Thread.new {
-        open(@uri, "User-Agent" => "Ruby/#{RUBY_VERSION}/Smoke") do |request|
+        open(@uri, "User-Agent" => Smoke.config[:user_agent]) do |request|
           @content_type = request.content_type
           @body = request.read
         end
