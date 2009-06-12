@@ -31,6 +31,10 @@ describe Smoke::Request do
     @request.body.should be_an_instance_of(String)
   end
   
+  describe "gzipped responses" do
+    it "should handle a gzipped response" # Need to think about how to spec this behaviour
+  end
+  
   describe "http redirects" do
     it "should follow a redirect to a resource"
     it "should follow only one html redirect before raising an error"

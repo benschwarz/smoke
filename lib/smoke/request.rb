@@ -20,9 +20,14 @@ module Smoke
     
     private
     def dispatch
+      opts = {
+        "User-Agent"      => Smoke.config[:user_agent],
+        "Accept-Encoding" => "gzip"
+      }
       Thread.new {
-        open(@uri, "User-Agent" => Smoke.config[:user_agent]) do |request|
+        open(@uri, opts) do |request|
           @content_type = request.content_type
+          request = Zlib::GzipReader.new(request) if request.content_encoding.include? "gzip"
           @body = request.read
         end
       }.join
