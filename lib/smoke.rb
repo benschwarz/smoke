@@ -1,8 +1,6 @@
-require 'rubygems'
 require 'zlib'
 require 'open-uri'
 require 'logger'
-require 'json'
 require 'crack'
 require 'simple-rss'
 
