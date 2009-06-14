@@ -75,20 +75,22 @@ module Smoke
     end
     
     # Transform must be used inside an `emit` block.
-    # It can be used to alter the a single field at a time
+    # It can be used to alter named keys within the item set
     #
     # Usage:
     #     emit do
-    #       transform :name do |name|
+    #       transform :name, :description do |name|
     #         name.gsub(/\302/, "")
     #       end
     #     end
     #
     # In quasi-english: The result of the block is returned and set to each 
-    # of the :name attributes in the result set.
-    def transform(name, &block)
-      items.each do |item|
-        item[name] = yield(item[name]) || item[name]
+    # of the :name and :description keys in the result set.
+    def transform(*keys, &block)
+      keys.each do |key|
+        items.each do |item|
+          item[key] = yield(item[key]) || item[key]
+        end
       end
     end
     

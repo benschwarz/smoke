@@ -7,7 +7,7 @@ describe Smoke::Origin do
         rename(:head => :title)
         sort(:title)
         
-        transform :title do |title|
+        transform :title, :name do |title|
           title.gsub(/Animal: /, '')
         end
       end
@@ -24,7 +24,7 @@ describe Smoke::Origin do
     end
     
     it "should output a single hash rather than a hash in an array when there is one item" do
-      Smoke[:test].truncate(1).output.should == {:title => "Kangaroo"}
+      Smoke[:test].truncate(1).output.should == {:title => "Kangaroo", :name => "Kelly"}
     end
   end
   
@@ -38,11 +38,11 @@ describe Smoke::Origin do
     end
     
     it "should reverse the results" do
-      Smoke[:test].sort(:header).reverse.output.should == [{:header => "Platypus"}, {:header => "Kangaroo"}]
+      Smoke[:test].sort(:header).reverse.output.should == [{:header => "Platypus", :name => "Peter"}, {:header => "Kangaroo", :name => "Kelly"}]
     end
     
     it "should truncate results given a length" do
-      Smoke[:test].truncate(1).output.size.should == 1
+      Smoke[:test].truncate(1).output.should be_an_instance_of(Hash)
     end
     
     describe "filtering" do
@@ -69,7 +69,7 @@ describe Smoke::Origin do
       end
       
       it "should only contain items that match" do
-        Smoke[:keep].keep(:head, /^K/).output.should == {:head => "Kangaroo"}
+        Smoke[:keep].keep(:head, /^K/).output.should == {:head => "Kangaroo", :name => "Kelly"}
       end
       
       it "should discard items" do
@@ -77,7 +77,7 @@ describe Smoke::Origin do
       end
       
       it "should not contain items that match" do
-        Smoke[:discard].discard(:head, /^K/).output.should == {:head => "Platypus"}
+        Smoke[:discard].discard(:head, /^K/).output.should == {:head => "Platypus", :name => "Peter"}
       end
     end
   end
@@ -96,7 +96,7 @@ describe Smoke::Origin do
     end
 
     it "should output yml" do
-      @origin.output(:yaml).should =~ /--- \n- :title:/
+      @origin.output(:yaml).should =~ /^--- \n- :/
     end
     
     it "should dispatch when output is called" do
@@ -117,7 +117,7 @@ describe Smoke::Origin do
         end
       end
     end
-    Smoke[:chain].rename(:head => :header).sort(:header).output.should == [{:header => "Kangaroo"}, {:header => "Platypus"}]
+    Smoke[:chain].rename(:head => :header).sort(:header).output.should == [{:header => "Kangaroo", :name => "Kelly"}, {:header => "Platypus", :name => "Peter"}]
   end
   
   it "should softly error when attempting to sort on a key that doesn't exist" do
