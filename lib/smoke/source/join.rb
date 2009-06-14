@@ -6,7 +6,6 @@ module Smoke
     #
     # Usage:
     #   Smoke.join(:delicious, :twitter, :flickr) do
-    #     name :stream
     #     path :photos, :photo
     #   end
     class Join < Origin # :nodoc: 

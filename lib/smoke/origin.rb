@@ -74,6 +74,24 @@ module Smoke
       @transformation << block
     end
     
+    # Transform must be used inside an `emit` block.
+    # It can be used to alter the a single field at a time
+    #
+    # Usage:
+    #     emit do
+    #       transform :name do |name|
+    #         name.gsub(/\302/, "")
+    #       end
+    #     end
+    #
+    # In quasi-english: The result of the block is returned and set to each 
+    # of the :name attributes in the result set.
+    def transform(name, &block)
+      items.each do |item|
+        item[name] = yield(item[name]) || item[name]
+      end
+    end
+    
     # Prepare is used when you'd like to provision for 
     # arguments / variables to be set after the source definition.
     # Eg, create a source definition for twitter, omitting the "username".

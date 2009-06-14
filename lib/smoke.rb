@@ -3,6 +3,7 @@ require 'open-uri'
 require 'logger'
 require 'crack'
 require 'simple-rss'
+require 'json'
 
 $:<< File.join(File.dirname(__FILE__))
 

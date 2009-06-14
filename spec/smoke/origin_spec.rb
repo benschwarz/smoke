@@ -6,6 +6,10 @@ describe Smoke::Origin do
       emit do
         rename(:head => :title)
         sort(:title)
+        
+        transform :title do |title|
+          title.gsub(/Animal: /, '')
+        end
       end
     end
   end
@@ -43,8 +47,21 @@ describe Smoke::Origin do
     
     describe "filtering" do
       before do
-        TestSource.source(:keep)
-        TestSource.source(:discard)
+        TestSource.source(:keep) do
+          emit do
+            transform :head do |head|
+              head.gsub(/Animal: /, '')
+            end
+          end
+        end
+        
+        TestSource.source(:discard) do
+          emit do
+            transform :head do |head|
+              head.gsub(/Animal: /, '')
+            end
+          end
+        end
       end
       
       it "should keep items" do
@@ -93,12 +110,18 @@ describe Smoke::Origin do
   end
   
   it "method chaining" do
-    @source = TestSource.source(:chain)
-    @source.rename(:head => :header).sort(:header).output.should == [{:header => "Kangaroo"}, {:header => "Platypus"}]
+    TestSource.source(:chain) do
+      emit do
+        transform :head do |head|
+          head.gsub(/Animal: /, '')
+        end
+      end
+    end
+    Smoke[:chain].rename(:head => :header).sort(:header).output.should == [{:header => "Kangaroo"}, {:header => "Platypus"}]
   end
   
   it "should softly error when attempting to sort on a key that doesn't exist" do
-    TestSource.source(:chain).sort(:header).should_not raise_error("NoMethodError")
+    Smoke[:chain].sort(:header).should_not raise_error("NoMethodError")
   end
   
   describe "preperation" do
@@ -114,51 +137,65 @@ describe Smoke::Origin do
       lambda { @source.prepare }.should raise_error
       lambda { @source.prepare {} }.should_not raise_error
     end
+  end
+  
+  describe "call order" do
+    before :all do
+      @url = "http://domain.tld/benschwarz/feed"
+      FakeWeb.register_uri(@url, :response => File.join(SPEC_DIR, 'supports', 'flickr-photo.json'))
+      
+      Smoke.data :feed_preperation_call_order do
+        prepare do 
+          url "http://domain.tld/#{username}/feed"
+        end
+        
+        path :photos, :photo
+      end
+    end
     
-    describe "call order" do
-      before :all do
-        @url = "http://domain.tld/benschwarz/feed"
-        FakeWeb.register_uri(@url, :response => File.join(SPEC_DIR, 'supports', 'flickr-photo.json'))
-        
-        Smoke.data :feed_preperation_call_order do
-          prepare do 
-            url "http://domain.tld/#{username}/feed"
-          end
-          
-          path :photos, :photo
-        end
+    describe "before setting variables" do
+      it "should fail" do
+        lambda { Smoke[:feed_preperation_call_order].output }.should raise_error(NameError)
+      end
+    end
+    
+    describe "setting abstract properties" do
+      it "should not respond to a property that hasn't been set" do
+        lambda { Smoke[:feed_preperation_call_order].abstract }.should raise_error(NoMethodError)
       end
       
-      describe "before setting variables" do
-        it "should fail" do
-          lambda { Smoke[:feed_preperation_call_order].output }.should raise_error(NameError)
-        end
+      it "should allow setting a property" do
+        lambda { Smoke[:feed_preperation_call_order].abstract(:value) }.should_not raise_error(NoMethodError)
+        Smoke[:feed_preperation_call_order].abstract.should == :value
       end
       
-      describe "setting abstract properties" do
-        it "should not respond to a property that hasn't been set" do
-          lambda { Smoke[:feed_preperation_call_order].abstract }.should raise_error(NoMethodError)
-        end
-        
-        it "should allow setting a property" do
-          lambda { Smoke[:feed_preperation_call_order].abstract(:value) }.should_not raise_error(NoMethodError)
-          Smoke[:feed_preperation_call_order].abstract.should == :value
-        end
-        
-        it "should chain the source when setting a property" do
-          Smoke[:feed_preperation_call_order].abstract(:value).should be_an_instance_of(Smoke::Source::Data)
-        end
+      it "should chain the source when setting a property" do
+        Smoke[:feed_preperation_call_order].abstract(:value).should be_an_instance_of(Smoke::Source::Data)
+      end
+    end
+    
+    describe "after setting variables" do
+      it "should output successfully" do
+        lambda { Smoke[:feed_preperation_call_order].username("benschwarz").output }.should_not raise_error
       end
       
-      describe "after setting variables" do
-        it "should output successfully" do
-          lambda { Smoke[:feed_preperation_call_order].username("benschwarz").output }.should_not raise_error
-        end
-        
-        it "should have used the correct url" do
-          Smoke[:feed_preperation_call_order].request.uri.should == @url
-        end
+      it "should have used the correct url" do
+        Smoke[:feed_preperation_call_order].request.uri.should == @url
       end
+    end
+  end
+
+  describe "trasformations" do
+    it "should respond to emit" do
+      Smoke[:test].should respond_to(:emit)
+    end
+    
+    it "should respond to transform" do
+      Smoke[:test].should respond_to(:transform)
+    end
+    
+    it "should have at least one transformation" do
+      Smoke[:test].transformation.size.should == 1
     end
   end
 end
