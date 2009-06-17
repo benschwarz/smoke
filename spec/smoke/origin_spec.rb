@@ -218,5 +218,15 @@ describe Smoke::Origin do
       Smoke[:test].insert(:source, "twitter").output.first.should have_key :source
       Smoke[:test].insert(:source, "twitter").output.first[:source].should == "twitter"
     end
+    
+    it "should work in a block" do
+      TestSource.source(:inserts) do
+        emit do
+          insert :x, "exx"
+        end
+      end
+      
+      Smoke[:inserts].output.first.should have_key(:x)
+    end
   end
 end
