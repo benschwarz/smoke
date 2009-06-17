@@ -84,6 +84,7 @@ Integrity [is running for smoke](http://integrity.ffolio.net/smoke)
 * How to use `path`
 * YQL Definitions
 * Tranformations
+* Insert
 * Joining
 * Variable injection
 * Sort, Reverse
