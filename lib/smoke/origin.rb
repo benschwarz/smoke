@@ -95,6 +95,25 @@ module Smoke
         end
       end
     end
+    
+    # Insert must be used inside an `emit` block.
+    # It can be used to insert named keys to all items within the result set
+    # 
+    # Usage: 
+    #   
+    #   emit do
+    #     insert :source, "twitter"
+    #   end
+    # 
+    # Once output is called, all items will contain a key of :source with
+    # a value of "twitter"
+    def insert(key, value)
+      @items.each do |item|
+        item[key] = value
+      end
+      
+      return self
+    end
 
     # Prepare is used when you'd like to provision for 
     # arguments / variables to be set after the source definition.

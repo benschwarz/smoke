@@ -208,4 +208,15 @@ describe Smoke::Origin do
       Smoke[:test].transformation.size.should_not be_nil
     end
   end
+  
+  describe "key insertion" do
+    it "should respond to insert" do
+      Smoke[:test].should respond_to(:insert)
+    end
+    
+    it "should insert values into each key" do
+      Smoke[:test].insert(:source, "twitter").output.first.should have_key :source
+      Smoke[:test].insert(:source, "twitter").output.first[:source].should == "twitter"
+    end
+  end
 end
