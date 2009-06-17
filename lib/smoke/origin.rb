@@ -71,6 +71,7 @@ module Smoke
     #     rename(:href => :link)
     #   end 
     def emit(&block)
+      raise ArgumentError, "requires a block" unless block_given?
       @transformation << block
     end
     
@@ -86,14 +87,15 @@ module Smoke
     #
     # In quasi-english: The result of the block is returned and set to each 
     # of the :name and :description keys in the result set.
-    def transform(*keys, &block)
+    def transform(*keys)
+      raise ArgumentError, "requires a block" unless block_given?
       keys.each do |key|
         items.each do |item|
           item[key] = yield(item[key]) || item[key]
         end
       end
     end
-    
+
     # Prepare is used when you'd like to provision for 
     # arguments / variables to be set after the source definition.
     # Eg, create a source definition for twitter, omitting the "username".

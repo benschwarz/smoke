@@ -190,12 +190,22 @@ describe Smoke::Origin do
       Smoke[:test].should respond_to(:emit)
     end
     
+    it "emit should require a block" do
+      lambda { Smoke[:test].emit }.should raise_error
+      lambda { Smoke[:test].emit {} }.should_not raise_error
+    end
+    
     it "should respond to transform" do
       Smoke[:test].should respond_to(:transform)
     end
     
+    it "tranform should require a block" do
+      lambda { Smoke[:test].transform }.should raise_error
+      lambda { Smoke[:test].transform {} }.should_not raise_error
+    end
+    
     it "should have at least one transformation" do
-      Smoke[:test].transformation.size.should == 1
+      Smoke[:test].transformation.size.should_not be_nil
     end
   end
 end

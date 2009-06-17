@@ -5,11 +5,6 @@ require 'crack'
 require 'simple-rss'
 require 'json'
 
-$:<< File.join(File.dirname(__FILE__))
-
-# Core ext
-require 'core_ext/hash.rb'
-
 module Smoke  
   class << self
     @@active_sources = {}
@@ -96,8 +91,7 @@ module Smoke
   end
 end
 
-require 'smoke/request'
-require 'smoke/origin'
+%w(core_ext/hash smoke/request smoke/origin).each {|r| require File.join(File.dirname(__FILE__), r)}
 
 class Object # :nodoc: 
   include Smoke
