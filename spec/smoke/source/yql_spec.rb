@@ -2,11 +2,9 @@ require File.join(File.dirname(__FILE__), "..", "..", "spec_helper.rb")
 
 describe "YQL" do
   before :all do
-    # Fake web does not yet support regex matched uris
+    FakeWeb.register_uri("http://query.yahooapis.com*", :response => File.join(SPEC_DIR, 'supports', 'search-web.yql'))
     
-    FakeWeb.register_uri("query.yahooapis.com/*", :response => File.join(SPEC_DIR, 'supports', 'search-web.yql'))
-    
-    Smoke.yql(:search) do
+    @source = Smoke.yql(:search) do
       select  :all
       from    "search.web"
       where   :query, "ruby"
@@ -17,6 +15,8 @@ describe "YQL" do
       end
     end
   end
+  
+  it_should_behave_like "all sources"
   
   it "should have been activated" do
     Smoke[:search].should(be_an_instance_of(Smoke::Source::YQL))

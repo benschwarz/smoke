@@ -185,7 +185,7 @@ describe Smoke::Origin do
     end
   end
 
-  describe "trasformations" do
+  describe "transformations" do
     it "should respond to emit" do
       Smoke[:test].should respond_to(:emit)
     end

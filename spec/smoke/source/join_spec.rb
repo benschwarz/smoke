@@ -9,8 +9,10 @@ describe "Join" do
   
   describe "joining" do
     before do
-      @joined = Smoke.join(:a, :b)
+      @source = Smoke.join(:a, :b)
     end
+    
+    it_should_behave_like "all sources"
     
     it "should be named in a_b_joined" do
       Smoke[:a_b_joined].should be_an_instance_of(Smoke::Source::Join)
@@ -30,21 +32,6 @@ describe "Join" do
     
     it "should allow changes to output" do
       Smoke[:a_b_joined].should respond_to(:output)
-    end
-        
-    describe "renaming" do
-      it "should allow renaming" do
-        Smoke[:a_b_joined].should respond_to(:rename)
-      end
-      
-      it "should be renamed" do
-        Smoke.rename(:a_b_joined => :rename_spec)
-        Smoke[:rename_spec].should be_an_instance_of(Smoke::Source::Join)
-      end
-      
-      it "should change its name property after being renamed" do
-        Smoke[:rename_spec].name.should == "rename_spec"
-      end
     end
     
     describe "dispatching" do

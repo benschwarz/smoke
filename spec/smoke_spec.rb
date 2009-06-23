@@ -16,6 +16,10 @@ describe Smoke do
       Smoke[:a].should be_nil
       Smoke[:b].should be_an_instance_of(Smoke::Origin)
     end
+
+    it "should change its name property after being renamed" do
+      Smoke[:b].name.should == "b"
+    end
   end
   
   describe "configuration" do

@@ -4,12 +4,14 @@ describe "'Data' source" do
   before :all do
     FakeWeb.register_uri("http://photos.tld/index.json", :response => File.join(SPEC_DIR, 'supports', 'flickr-photo.json'))
     
-    Smoke.data(:photos) do
+    @source = Smoke.data(:photos) do
       url "http://photos.tld/index.json"
       
       path :photos, :photo
     end
   end
+  
+  it_should_behave_like "all sources"
   
   it "should have been activated" do
     Smoke[:photos].should(be_an_instance_of(Smoke::Source::Data))

@@ -1,8 +1,6 @@
 HTTP/1.1 200 OK
-Date: Mon, 27 Apr 2009 08:04:23 GMT
-P3P: policyref="http://p3p.yahoo.com/w3c/p3p.xml", CP="CAO DSP COR CUR ADM DEV TAI PSA PSD IVAi IVDi CONi TELo OTPi OUR DELi SAMi OTRi UNRi PUBi IND PHY ONL UNI PUR FIN COM NAV INT DEM CNT STA POL HEA PRE GOV"
+Date: Mon, 1 Jan 2000 01:00:00 GMT
 Vary: Accept-Encoding
-Content-Length: 398
 Connection: close
 Content-Type: text/json; charset=utf-8
 

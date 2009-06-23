@@ -4,7 +4,7 @@ describe "Feed" do
   before :all do
     FakeWeb.register_uri("http://slashdot.org/index.rdf", :file => File.join(SPEC_DIR, 'supports', 'slashdot.xml'))
     
-    Smoke.feed(:slashdot) do
+    @source = Smoke.feed(:slashdot) do
       url "http://slashdot.org/index.rdf"
       url "http://slashdot.org/index.rdf"
       
@@ -14,6 +14,7 @@ describe "Feed" do
     end
   end
   
+  it_should_behave_like "all sources"
   
   it "should have been activated" do
     Smoke[:slashdot].should(be_an_instance_of(Smoke::Source::Feed))
