@@ -10,6 +10,7 @@ begin
     gem.email = "ben.schwarz@gmail.com"
     gem.homepage = "http://github.com/benschwarz/smoke"
     gem.authors = ["Ben Schwarz"]
+    gem.add_dependency("rest-client", ">= 0.9.2")
     gem.add_dependency("simple-rss", "= 1.2")
     gem.add_dependency("crack", "= 0.1.1")
     # gem is a Gem::Specification... see http://www.rubygems.org/read/chapter/20 for additional settings

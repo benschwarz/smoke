@@ -96,7 +96,9 @@ shared_examples_for "all sources" do
       @source.output.should be_an_instance_of(Array)
     end
 
-    it "should output a single hash when there is only one result"
+    it "should output a single hash when there is only one result" do
+      @source.truncate(1).output.should be_an_instance_of(Hash)
+    end
 
     it "should output two items" do
       @source.output.size.should == 2
