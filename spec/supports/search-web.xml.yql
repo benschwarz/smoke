@@ -1,0 +1,83 @@
+HTTP/1.1 200 OK
+Date: Wed, 24 Jun 2009 06:18:07 GMT
+P3P: policyref="http://info.yahoo.com/w3c/p3p.xml", CP="CAO DSP COR CUR ADM DEV TAI PSA PSD IVAi IVDi CONi TELo OTPi OUR DELi SAMi OTRi UNRi PUBi IND PHY ONL UNI PUR FIN COM NAV INT DEM CNT STA POL HEA PRE LOC GOV"
+Cache-Control: no-cache
+Pragma: no-cache
+Expires: Thu, 01 Jan 1970 00:00:00 GMT
+Access-Control-Allow-Origin: *
+Connection: close
+Transfer-Encoding: chunked
+Content-Type: text/xml;charset=utf-8
+
+<?xml version="1.0" encoding="UTF-8"?>
+<query xmlns:yahoo="http://www.yahooapis.com/v1/base.rng" yahoo:count="10" yahoo:created="2009-06-24T06:18:08Z" yahoo:lang="en-US" yahoo:updated="2009-06-24T06:18:08Z" yahoo:uri="http://query.yahooapis.com/v1/yql?q=SELECT+*+FROM+search.web+WHERE+query+%3D+%27ruby%27"><diagnostics><publiclyCallable>true</publiclyCallable><url execution-time="314"><![CDATA[http://boss.yahooapis.com/ysearch/web/v1/ruby?format=xml&start=0&count=10]]></url><user-time>316</user-time><service-time>314</service-time><build-version>1949</build-version></diagnostics><results><result xmlns="http://www.inktomi.com/">
+      <abstract><![CDATA[For the programming language, see <b>Ruby</b> (programming language) <b>...</b> The <b>ruby</b> is considered one of the four precious stones, together with the <b>...</b>]]></abstract>
+      <clickurl>http://lrd.yahooapis.com/_ylc=X3oDMTQ4NHZqZ2gzBF9TAzIwMjMxNTI3MDIEYXBwaWQDb0pfTWdwbklrWW5CMWhTZnFUZEd5TkouTXNxZlNMQmkEY2xpZW50A2Jvc3MEc2VydmljZQNCT1NTBHNsawN0aXRsZQRzcmNwdmlkA1VQczBUa2dlQXUxOHRFZGhZczFXUG1KbTBqSE1sRXBCeFI4QUR0a0o-/SIG=116cnla88/**http%3A//en.wikipedia.org/wiki/Ruby</clickurl>
+      <date>2009/06/17</date>
+      <dispurl><![CDATA[<b>en.wikipedia.org</b>/wiki/<b>Ruby</b>]]></dispurl>
+      <size>72719</size>
+      <title><![CDATA[<b>Ruby</b> - Wikipedia, the free encyclopedia]]></title>
+      <url>http://en.wikipedia.org/wiki/Ruby</url></result><result xmlns="http://www.inktomi.com/">
+      <abstract><![CDATA[<b>Ruby</b> originated in Japan during the mid-1990s and was initially developed and <b>...</b> <b>Ruby</b> supports multiple programming paradigms, including functional, object <b>...</b>]]></abstract>
+      <clickurl>http://lrd.yahooapis.com/_ylc=X3oDMTQ4NHZqZ2gzBF9TAzIwMjMxNTI3MDIEYXBwaWQDb0pfTWdwbklrWW5CMWhTZnFUZEd5TkouTXNxZlNMQmkEY2xpZW50A2Jvc3MEc2VydmljZQNCT1NTBHNsawN0aXRsZQRzcmNwdmlkA1VQczBUa2dlQXUxOHRFZGhZczFXUG1KbTBqSE1sRXBCeFI4QUR0a0o-/SIG=11tsuk1oo/**http%3A//en.wikipedia.org/wiki/Ruby_(programming_language)</clickurl>
+      <date>2009/06/17</date>
+      <dispurl><![CDATA[<b>en.wikipedia.org</b>/wiki/<wbr><b>Ruby</b>_(programming_language)]]></dispurl>
+      <size>131489</size>
+      <title><![CDATA[<b>Ruby</b> (programming language) - Wikipedia, the free encyclopedia]]></title>
+      <url>http://en.wikipedia.org/wiki/Ruby_(programming_language)</url></result><result xmlns="http://www.inktomi.com/">
+      <abstract><![CDATA["<b>Ruby</b> on Rails is a breakthrough in lowering the barriers of entry to programming. <b>...</b> "Before <b>Ruby</b> on Rails, web programming required a lot of verbiage, steps <b>...</b>]]></abstract>
+      <clickurl>http://lrd.yahooapis.com/_ylc=X3oDMTQ4NHZqZ2gzBF9TAzIwMjMxNTI3MDIEYXBwaWQDb0pfTWdwbklrWW5CMWhTZnFUZEd5TkouTXNxZlNMQmkEY2xpZW50A2Jvc3MEc2VydmljZQNCT1NTBHNsawN0aXRsZQRzcmNwdmlkA1VQczBUa2dlQXUxOHRFZGhZczFXUG1KbTBqSE1sRXBCeFI4QUR0a0o-/SIG=10sqpm4qa/**http%3A//rubyonrails.org/</clickurl>
+      <date>2009/06/23</date>
+      <dispurl><![CDATA[<b>rubyonrails.org</b>]]></dispurl>
+      <size>11882</size>
+      <title><![CDATA[<b>Ruby</b> on Rails]]></title>
+      <url>http://rubyonrails.org/</url></result><result xmlns="http://www.inktomi.com/"><abstract/>
+      <clickurl>http://lrd.yahooapis.com/_ylc=X3oDMTQ4NHZqZ2gzBF9TAzIwMjMxNTI3MDIEYXBwaWQDb0pfTWdwbklrWW5CMWhTZnFUZEd5TkouTXNxZlNMQmkEY2xpZW50A2Jvc3MEc2VydmljZQNCT1NTBHNsawN0aXRsZQRzcmNwdmlkA1VQczBUa2dlQXUxOHRFZGhZczFXUG1KbTBqSE1sRXBCeFI4QUR0a0o-/SIG=110v0kjjt/**http%3A//www.ruby-lang.org/en</clickurl>
+      <date>2009/06/22</date>
+      <dispurl><![CDATA[www.<b>ruby-lang.org</b>/en]]></dispurl>
+      <size>12140</size>
+      <title><![CDATA[<b>Ruby</b> Programming Language]]></title>
+      <url>http://www.ruby-lang.org/en</url></result><result xmlns="http://www.inktomi.com/">
+      <abstract><![CDATA[Premier 1940s restaurant. Shooby Dooby down to <b>Ruby's</b> for authentic 1940's fun.]]></abstract>
+      <clickurl>http://lrd.yahooapis.com/_ylc=X3oDMTQ4NHZqZ2gzBF9TAzIwMjMxNTI3MDIEYXBwaWQDb0pfTWdwbklrWW5CMWhTZnFUZEd5TkouTXNxZlNMQmkEY2xpZW50A2Jvc3MEc2VydmljZQNCT1NTBHNsawN0aXRsZQRzcmNwdmlkA1VQczBUa2dlQXUxOHRFZGhZczFXUG1KbTBqSE1sRXBCeFI4QUR0a0o-/SIG=10qvjehb6/**http%3A//www.rubys.com/</clickurl>
+      <date>2009/06/22</date>
+      <dispurl><![CDATA[www.<b>rubys.com</b>]]></dispurl>
+      <size>529321</size>
+      <title><![CDATA[<b>Ruby's</b>]]></title>
+      <url>http://www.rubys.com/</url></result><result xmlns="http://www.inktomi.com/">
+      <abstract><![CDATA[<b>Ruby</b> is a very popular open-source language which lends itself especially well <b>...</b> Educational sites where you can learn how to program using <b>Ruby</b>. <b>...</b>]]></abstract>
+      <clickurl>http://lrd.yahooapis.com/_ylc=X3oDMTQ4NHZqZ2gzBF9TAzIwMjMxNTI3MDIEYXBwaWQDb0pfTWdwbklrWW5CMWhTZnFUZEd5TkouTXNxZlNMQmkEY2xpZW50A2Jvc3MEc2VydmljZQNCT1NTBHNsawN0aXRsZQRzcmNwdmlkA1VQczBUa2dlQXUxOHRFZGhZczFXUG1KbTBqSE1sRXBCeFI4QUR0a0o-/SIG=115aqsp4l/**http%3A//developer.yahoo.com/ruby/</clickurl>
+      <date>2009/06/20</date>
+      <dispurl><![CDATA[<b>developer.yahoo.com</b>/<b>ruby</b>]]></dispurl>
+      <size>21787</size>
+      <title><![CDATA[<b>Ruby</b> Developer Center - Yahoo! Developer Network]]></title>
+      <url>http://developer.yahoo.com/ruby/</url></result><result xmlns="http://www.inktomi.com/">
+      <abstract><![CDATA[<b>ruby</b> n. , pl. -bies . A deep red, translucent variety of the mineral corundum, highly valued as a precious stone <b>...</b> red of fine-quality <b>ruby</b> is the result of <b>...</b>]]></abstract>
+      <clickurl>http://lrd.yahooapis.com/_ylc=X3oDMTQ4NHZqZ2gzBF9TAzIwMjMxNTI3MDIEYXBwaWQDb0pfTWdwbklrWW5CMWhTZnFUZEd5TkouTXNxZlNMQmkEY2xpZW50A2Jvc3MEc2VydmljZQNCT1NTBHNsawN0aXRsZQRzcmNwdmlkA1VQczBUa2dlQXUxOHRFZGhZczFXUG1KbTBqSE1sRXBCeFI4QUR0a0o-/SIG=116gndgit/**http%3A//www.answers.com/topic/ruby</clickurl>
+      <date>2009/06/12</date>
+      <dispurl><![CDATA[www.<b>answers.com</b>/topic/<b>ruby</b>]]></dispurl>
+      <size>134619</size>
+      <title><![CDATA[<b>ruby</b>: Definition from Answers.com]]></title>
+      <url>http://www.answers.com/topic/ruby</url></result><result xmlns="http://www.inktomi.com/">
+      <abstract><![CDATA[An on-line copy of the first edition of the book Programming <b>Ruby</b>, by Dave Thomas. <b>...</b> 10 Things Every Java Programmer Should Know About <b>Ruby</b> <b>...</b>]]></abstract>
+      <clickurl>http://lrd.yahooapis.com/_ylc=X3oDMTQ4NHZqZ2gzBF9TAzIwMjMxNTI3MDIEYXBwaWQDb0pfTWdwbklrWW5CMWhTZnFUZEd5TkouTXNxZlNMQmkEY2xpZW50A2Jvc3MEc2VydmljZQNCT1NTBHNsawN0aXRsZQRzcmNwdmlkA1VQczBUa2dlQXUxOHRFZGhZczFXUG1KbTBqSE1sRXBCeFI4QUR0a0o-/SIG=10tjnj1v2/**http%3A//www.ruby-doc.org/</clickurl>
+      <date>2009/06/09</date>
+      <dispurl><![CDATA[www.<b>ruby-doc.org</b>]]></dispurl>
+      <size>13955</size>
+      <title><![CDATA[[<b>Ruby</b>-Doc.org: Documenting the <b>Ruby</b> Language]]]></title>
+      <url>http://www.ruby-doc.org/</url></result><result xmlns="http://www.inktomi.com/">
+      <abstract><![CDATA[And red is also the colour of the <b>ruby</b>, the king of the gemstones. <b>...</b> For a long time India was regarded as the <b>ruby's</b> classical country of origin. <b>...</b>]]></abstract>
+      <clickurl>http://lrd.yahooapis.com/_ylc=X3oDMTQ4NHZqZ2gzBF9TAzIwMjMxNTI3MDIEYXBwaWQDb0pfTWdwbklrWW5CMWhTZnFUZEd5TkouTXNxZlNMQmkEY2xpZW50A2Jvc3MEc2VydmljZQNCT1NTBHNsawN0aXRsZQRzcmNwdmlkA1VQczBUa2dlQXUxOHRFZGhZczFXUG1KbTBqSE1sRXBCeFI4QUR0a0o-/SIG=11pea0sti/**http%3A//www.gemstone.org/gem-by-gem/english/ruby.html</clickurl>
+      <date>2008/09/23</date>
+      <dispurl><![CDATA[www.<b>gemstone.org</b>/gem-by-gem/<wbr>english/<b>ruby</b>.html]]></dispurl>
+      <size>52995</size>
+      <title><![CDATA[<b>Ruby</b> - english]]></title>
+      <url>http://www.gemstone.org/gem-by-gem/english/ruby.html</url></result><result xmlns="http://www.inktomi.com/">
+      <abstract><![CDATA[<b>...</b> <b>Ruby</b> Developer Center, where you'll find all the information and tools you need <b>...</b> The <b>Ruby</b>-on-Rails community offers a mailing list, wiki, IRC, bug <b>...</b>]]></abstract>
+      <clickurl>http://lrd.yahooapis.com/_ylc=X3oDMTQ4NHZqZ2gzBF9TAzIwMjMxNTI3MDIEYXBwaWQDb0pfTWdwbklrWW5CMWhTZnFUZEd5TkouTXNxZlNMQmkEY2xpZW50A2Jvc3MEc2VydmljZQNCT1NTBHNsawN0aXRsZQRzcmNwdmlkA1VQczBUa2dlQXUxOHRFZGhZczFXUG1KbTBqSE1sRXBCeFI4QUR0a0o-/SIG=114fkbio4/**http%3A//developers.sun.com/ruby/</clickurl>
+      <date>2009/06/13</date>
+      <dispurl><![CDATA[<b>developers.sun.com</b>/<b>ruby</b>]]></dispurl>
+      <size>23151</size>
+      <title><![CDATA[<b>Ruby</b> Developer Center - Sun Developer Network (SDN)]]></title>
+      <url>http://developers.sun.com/ruby/</url></result></results></query><!-- total: 318 -->
+<!-- yqlengine1.pipes.sp1.yahoo.com uncompressed/chunked Tue Jun 23 23:18:07 PDT 2009 -->

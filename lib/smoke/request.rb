@@ -13,29 +13,25 @@ module Smoke
     attr_reader :uri, :content_type, :body, :type
        
     def initialize(uri, *options)
-      @uri = uri
-      @options = options
+      @uri, @options = uri, options
       dispatch
     end
     
     private
     def dispatch
       opts = {
-        "User-Agent"      => Smoke.config[:user_agent],
-        "Accept-Encoding" => "gzip"
+        :user_agent       => Smoke.config[:user_agent],
+        :accept_encoding  => "gzip"
       }
       Thread.new {
-        open(@uri, opts) do |request|
-          @content_type = request.content_type
-          request = Zlib::GzipReader.new(request) if request.content_encoding.include? "gzip"
-          @body = request.read
-        end
+        request = RestClient.get(@uri, opts)
+        @content_type = request.headers[:content_type]
+        @body = request
       }.join
       
-      unless @options.include?(:raw_response)
-        present!
-      end
-    rescue OpenURI::HTTPError => e
+      present! unless @options.include?(:raw_response)
+      
+    rescue RestClient::Exception => e
       Failure.new(@uri, e)
     end
     

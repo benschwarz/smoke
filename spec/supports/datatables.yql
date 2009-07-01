@@ -1,0 +1,12 @@
+HTTP/1.1 200 OK
+Date: Wed, 24 Jun 2009 06:14:01 GMT
+P3P: policyref="http://info.yahoo.com/w3c/p3p.xml", CP="CAO DSP COR CUR ADM DEV TAI PSA PSD IVAi IVDi CONi TELo OTPi OUR DELi SAMi OTRi UNRi PUBi IND PHY ONL UNI PUR FIN COM NAV INT DEM CNT STA POL HEA PRE LOC GOV"
+Cache-Control: no-cache, private
+Pragma: no-cache
+Expires: Thu, 01 Jan 1970 00:00:00 GMT
+Access-Control-Allow-Origin: *
+Content-Length: 955
+Connection: close
+Content-Type: application/json;charset=utf-8
+
+{"query":{"count":"1","created":"2009-06-24T06:14:01Z","lang":"en-US","updated":"2009-06-24T06:14:01Z","uri":"http://query.yahooapis.com/v1/yql?q=SELECT+*+FROM+github.repo+WHERE+id+%3D+%27benschwarz%27+AND+repo+%3D+%27smoke%27","diagnostics":{"publiclyCallable":"true","url":[{"execution-time":"1","content":"http://datatables.org/alltables.env"},{"execution-time":"3","content":"http://www.datatables.org/github/github.repo.xml"},{"execution-time":"369","content":"http://github.com/api/v2/xml/repos/show/benschwarz/smoke"}],"user-time":"428","service-time":"373","build-version":"1949"},"results":{"repository":{"watchers":{"type":"integer","content":"17"},"open-issues":{"type":"integer","content":"0"},"description":null,"owner":"benschwarz","name":"smoke","private":{"type":"boolean","content":"false"},"url":"http://github.com/benschwarz/smoke","fork":{"type":"boolean","content":"false"},"forks":{"type":"integer","content":"1"},"homepage":null}}}}

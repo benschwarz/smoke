@@ -2,7 +2,7 @@ require File.join(File.dirname(__FILE__), "..", "..", "spec_helper.rb")
 
 describe "YQL" do
   before :all do
-    FakeWeb.register_uri("http://query.yahooapis.com*", :response => File.join(SPEC_DIR, 'supports', 'search-web.yql'))
+    FakeWeb.register_uri("http://query.yahooapis.com:80/v1/public/yql?q=SELECT%20*%20FROM%20search.web%20WHERE%20query%20=%20'ruby'&format=json", :response => File.join(SPEC_DIR, 'supports', 'search-web.json.yql'))
     
     @source = Smoke.yql(:search) do
       select  :all
@@ -16,7 +16,7 @@ describe "YQL" do
     end
   end
   
-  it_should_behave_like "all sources"
+  # it_should_behave_like "all sources"
   
   it "should have been activated" do
     Smoke[:search].should(be_an_instance_of(Smoke::Source::YQL))
@@ -28,7 +28,7 @@ describe "YQL" do
   
   describe "after dispatch" do
     before do
-      Smoke[:search].output
+     Smoke[:search].output
     end
     
     describe "url" do
@@ -57,6 +57,8 @@ describe "YQL" do
   
   describe "yql definitions" do
     before do
+      FakeWeb.register_uri("http://query.yahooapis.com:80/v1/public/yql?q=SELECT%20*%20FROM%20github.repo%20WHERE%20id%20=%20'benschwarz'%20AND%20repo%20=%20'smoke'&format=json&env=http://datatables.org/alltables.env", :response => File.join(SPEC_DIR, 'supports', 'datatables.yql'))
+      
       Smoke.yql(:smoke) do
         use "http://datatables.org/alltables.env"
 

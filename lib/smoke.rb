@@ -1,5 +1,4 @@
-require 'zlib'
-require 'open-uri'
+require 'restclient'
 require 'logger'
 require 'crack'
 require 'simple-rss'
