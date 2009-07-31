@@ -24,7 +24,7 @@ describe Smoke::Origin do
     end
     
     it "should output a single hash rather than a hash in an array when there is one item" do
-      Smoke[:test].truncate(1).output.should == {:title => "Kangaroo", :name => "Kelly"}
+      Smoke[:test].truncate(1).output.should == [{:title => "Kangaroo", :name => "Kelly"}]
     end
   end
   
@@ -42,7 +42,7 @@ describe Smoke::Origin do
     end
     
     it "should truncate results given a length" do
-      Smoke[:test].truncate(1).output.should be_an_instance_of(Hash)
+      Smoke[:test].truncate(1).output.size.should == 1
     end
     
     describe "filtering" do
@@ -69,7 +69,7 @@ describe Smoke::Origin do
       end
       
       it "should only contain items that match" do
-        Smoke[:keep].keep(:head, /^K/).output.should == {:head => "Kangaroo", :name => "Kelly"}
+        Smoke[:keep].keep(:head, /^K/).output.should == [{:head => "Kangaroo", :name => "Kelly"}]
       end
       
       it "should discard items" do
@@ -77,7 +77,7 @@ describe Smoke::Origin do
       end
       
       it "should not contain items that match" do
-        Smoke[:discard].discard(:head, /^K/).output.should == {:head => "Platypus", :name => "Peter"}
+        Smoke[:discard].discard(:head, /^K/).output.should == [{:head => "Platypus", :name => "Peter"}]
       end
     end
   end

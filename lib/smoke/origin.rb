@@ -22,15 +22,14 @@ module Smoke
     def output(type = :ruby)
       prepare!
       dispatch if respond_to? :dispatch
-      output = (@items.length == 1) ? @items.first : @items
       
       case type
       when :json
-        return ::JSON.generate(output)
+        return ::JSON.generate(@items)
       when :yaml
-        return YAML.dump(output)
+        return YAML.dump(@items)
       else
-        return output
+        return @items
       end      
     end
     
