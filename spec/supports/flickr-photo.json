@@ -2,6 +2,6 @@ HTTP/1.1 200 OK
 Date: Mon, 1 Jan 2000 01:00:00 GMT
 Vary: Accept-Encoding
 Connection: close
-Content-Type: text/json; charset=utf-8
+Content-Type: text/plain; charset=utf-8
 
 {"photos":{"page":1, "pages":1, "perpage":100, "total":"2", "photo":[{"id":"3443335843", "owner":"36821533@N00", "secret":"5a15f0bfb9", "server":"3305", "farm":4, "title":"How I roll", "ispublic":1, "isfriend":0, "isfamily":0}, {"id":"3345220961", "owner":"36821533@N00", "secret":"a1dd2b9eca", "server":"3581", "farm":4, "title":"My desk", "ispublic":1, "isfriend":0, "isfamily":0}]}, "stat":"ok"}

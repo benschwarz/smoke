@@ -69,15 +69,10 @@ Integrity [is running for smoke](http://integrity.ffolio.net/smoke)
 
 
 ### TODO (working on, just mental notes)
-
-* Secrets
-* Checkout experimental fakeweb version to stub out the yql specs
-
 #### Later / maybe
 * YQL w/oAuth
 * YQL Subqueries?
 * Implement basic auth for sources
-* Allow for sources to explicitly set the content type being returned for those stupid content providers
 
 
 #### For wiki pages (docs, later)
@@ -90,7 +85,7 @@ Integrity [is running for smoke](http://integrity.ffolio.net/smoke)
 * Sort, Reverse
 * Keep, Discard
 * Truncate
-
+* Manually setting the content type for a url
 
 ### Copyright
 

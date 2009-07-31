@@ -12,7 +12,7 @@ module Smoke
     SUPPORTED_TYPES = %w(json xml javascript)
     attr_reader :uri, :content_type, :body, :type
        
-    def initialize(uri, *options)
+    def initialize(uri, options = {})
       @uri, @options = uri, options
       dispatch
     end
@@ -29,7 +29,7 @@ module Smoke
         @body = request
       }.join
       
-      present! unless @options.include?(:raw_response)
+      present! unless @options[:raw_response]
       
     rescue RestClient::Exception => e
       Failure.new(@uri, e)
@@ -41,7 +41,7 @@ module Smoke
     end
     
     def set_type
-      @type = (SUPPORTED_TYPES.detect{|t| @content_type =~ /#{t}/ } || "unknown").to_sym
+      @type =  @options[:type] || (SUPPORTED_TYPES.detect{|t| @content_type =~ /#{t}/ } || "unknown").to_sym
     end
     
     def parse!

@@ -146,7 +146,7 @@ describe Smoke::Origin do
       
       Smoke.data :feed_preperation_call_order do
         prepare do 
-          url "http://domain.tld/#{username}/feed"
+          url "http://domain.tld/#{username}/feed", :type => :json
         end
         
         path :photos, :photo

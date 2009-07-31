@@ -16,7 +16,7 @@ module Smoke
       
       protected
       def dispatch
-        @requests = @feeds.map{|f| Smoke::Request.new(f, :raw_response) }
+        @requests = @feeds.map{|f| Smoke::Request.new(f, {:raw_response => true}) }
         self.items = @requests.map{|r| ::SimpleRSS.parse(r.body).items }.flatten
       end
     end
