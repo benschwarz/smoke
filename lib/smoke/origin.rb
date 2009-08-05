@@ -158,7 +158,7 @@ module Smoke
     # Reverse the order of the items
     # 
     # Usage
-    #   Smoke[:ruby].ouput
+    #   Smoke[:ruby].output
     # Returns [{:header => "Platypus"}, {:header => "Kangaroo"}]
     #   Smoke[:ruby].reverse.output
     # Returns [{:header => "Kangaroo"}, {:header => "Platypus"}]
