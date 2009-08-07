@@ -9,15 +9,20 @@ module Smoke
     @@active_sources = {}
     @@config = {
       :enable_logging => true,
-      :user_agent     => "Ruby/#{RUBY_VERSION}/Smoke"
+      :user_agent     => "Ruby/#{RUBY_VERSION}/Smoke",
+      :cache          => {
+        :enabled  => false,
+        :store    => :Memory,
+        :options  => {},
+        :expiry   => 1800
+      }
     }
     
     # Access registered smoke source instances
     #
-    # Usage:
-    #
+    # Define your source:
     #     Smoke.yql(:ruby) do ....
-    #
+    # Then access it:
     #     Smoke[:ruby]
     #     => #<Smoke::Source::YQL::0x18428d4...
     def [](source)
