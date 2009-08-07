@@ -71,6 +71,7 @@ module Smoke
     #
     def configure(&block)
       yield @@config
+      Smoke::Cache.configure!
     end
     
     # Access configuration options
