@@ -95,7 +95,7 @@ module Smoke
   end
 end
 
-%w(core_ext/hash smoke/request smoke/origin).each {|r| require File.join(File.dirname(__FILE__), r)}
+%w(core_ext/hash smoke/cache smoke/request smoke/origin).each {|r| require File.join(File.dirname(__FILE__), r)}
 
 class Object # :nodoc: 
   include Smoke
