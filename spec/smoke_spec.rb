@@ -42,9 +42,9 @@ describe Smoke do
       end
 
       it "should allow overwriting default configurations" do
-        key = Smoke.config.keys.first
-        Smoke.configure {|c| c[key] = true }
-        Smoke.config[key].should be_true
+        key = :user_agent
+        Smoke.configure {|c| c[key] = "Smoke, dude" }
+        Smoke.config[key].should == "Smoke, dude"
       end
     end
   end
