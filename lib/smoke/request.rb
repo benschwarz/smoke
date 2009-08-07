@@ -10,7 +10,7 @@ module Smoke
     end
     
     SUPPORTED_TYPES = %w(json xml javascript)
-    @@request_options {
+    @@request_options = {
       :user_agent       => Smoke.config[:user_agent],
       :accept_encoding  => "gzip"
     }
