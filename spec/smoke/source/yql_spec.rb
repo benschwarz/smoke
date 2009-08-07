@@ -73,7 +73,7 @@ describe "YQL" do
     end
 
     it "should be a respository" do
-      Smoke[:smoke].output.should have_key(:repository)
+      Smoke[:smoke].output.first.should have_key(:repository)
     end
 
     it "should respond to use" do

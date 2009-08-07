@@ -22,15 +22,14 @@ module Smoke
     def output(type = :ruby)
       prepare!
       dispatch if respond_to? :dispatch
-      output = (@items.length == 1) ? @items.first : @items
       
       case type
       when :json
-        return ::JSON.generate(output)
+        return ::JSON.generate(@items)
       when :yaml
-        return YAML.dump(output)
+        return YAML.dump(@items)
       else
-        return output
+        return @items
       end      
     end
     
@@ -111,8 +110,6 @@ module Smoke
       @items.each do |item|
         item[key] = value
       end
-      
-      return self
     end
 
     # Prepare is used when you'd like to provision for 
@@ -148,77 +145,82 @@ module Smoke
     end
 
     # Re-sort items by a particular key
+    # Sort must be used inside an `emit` block.
     def sort(key)
       @items = @items.sort_by{|i| i[key] }
     rescue NoMethodError => e
       Smoke.log.info "You're trying to sort by \"#{key}\" but it does not exist in your item set"
-    ensure
-      return self
     end
     
     # Reverse the order of the items
     # 
     # Usage
-    #   Smoke[:ruby].ouput
+    #   Smoke[:ruby].output
     # Returns [{:header => "Platypus"}, {:header => "Kangaroo"}]
-    #   Smoke[:ruby].reverse.output
+    #   Smoke.yql(:ruby) do
+    #     ... Define your source
+    #     emit do
+    #       reverse
+    #     end
+    #   end
     # Returns [{:header => "Kangaroo"}, {:header => "Platypus"}]
+    # Reverse must be used inside an `emit` block.
     def reverse
       @items.reverse!
-      return self
     end
 
     # Keep items that match the regex
     # 
-    # Usage (chained): 
-    #     Smoke[:ruby].keep(:title, /tuesday/i)
     # Usage (block, during initialization):
     #     Smoke.yql(:ruby) do
     #       ...
-    #       keep(:title, /tuesday/i)
+    #       emit do
+    #         keep(:title, /tuesday/i)
+    #       end
     #     end
+    # Keep must be used inside an `emit` block.
     def keep(key, matcher)
       @items.reject! {|i| (i[key] =~ matcher) ? false : true }
-      return self
     end
 
     # Discard items that do not match the regex
     # 
-    # Usage (chained): 
-    #     Smoke[:ruby].discard(:title, /tuesday/i)
     # Usage (block, during initialization):
     #     Smoke.yql(:ruby) do
     #       ...
-    #       discard(:title, /tuesday/i)
+    #       emit do
+    #         discard(:title, /tuesday/i)
+    #       end
     #     end
+    # Discard must be used inside an `emit` block.
     def discard(key, matcher)
       @items.reject! {|i| (i[key] =~ matcher) ? true : false }
-      return self
     end
 
     # Rename one or many keys at a time
-    # Suggested that you run it within an each block, but it makes no difference
-    # other than readability
     #
     # Usage
     #   # Renames all items with a key of href to link
     #   rename(:href => :link)
     # or
     #   rename(:href => :link, :description => :excerpt)
+    # Rename must be used inside an `emit` block.
     def rename(*args)
       @items.each {|item| item.rename(*args) }
-      return self
     end
 
     # Truncate your result set to this many objects
     #
     # Usage
-    #
-    #   truncate(3).output
+    #   Smoke.yql(:ruby) do
+    #     ...
+    #     truncate(3)
+    #   end
+    #   Smoke[:ruby].output
     #   => [{title => "Canon"}, {:title => "Nikon"}, {:title => "Pentax"}]
+    # Truncate must be used inside an `emit` block.
     def truncate(length)
       @items = @items[0..(length - 1)]
-      return self
     end
     
     private

@@ -6,6 +6,8 @@ describe Smoke::Origin do
       emit do
         rename(:head => :title)
         sort(:title)
+        reverse
+        truncate 1
         
         transform :title, :name do |title|
           title.gsub(/Animal: /, '')
@@ -13,53 +15,47 @@ describe Smoke::Origin do
       end
     end
   end
-  
-  describe "after emit, object output" do
-    it "should not have a key of head" do
-      @origin.output.first.should_not have_key(:head)
-    end
-  
-    it "should be ordered by title" do
-      @origin.output.first[:title].should == "Kangaroo"
-    end
     
-    it "should output a single hash rather than a hash in an array when there is one item" do
-      Smoke[:test].truncate(1).output.should == {:title => "Kangaroo", :name => "Kelly"}
-    end
-  end
-  
   describe "transformations" do
-    it "should rename properties" do
-      Smoke[:test].rename(:title => :header).output.first.should have_key(:header)
+    it "should have renamed properties" do
+      Smoke[:test].output.first.should have_key(:title)
     end
     
     it "should sort by a given property" do
-      Smoke[:test].sort(:header).output.first[:header].should == "Kangaroo"
+      Smoke[:test].output.first[:title].should == "Platypus"
     end
     
     it "should reverse the results" do
-      Smoke[:test].sort(:header).reverse.output.should == [{:header => "Platypus", :name => "Peter"}, {:header => "Kangaroo", :name => "Kelly"}]
+      Smoke[:test].output.should == [{:title => "Platypus", :name => "Peter"}]
     end
     
     it "should truncate results given a length" do
-      Smoke[:test].truncate(1).output.should be_an_instance_of(Hash)
+      Smoke[:test].output.size.should == 1
+    end
+    
+    it "should output" do
+      Smoke[:test].output.should be_an_instance_of(Array)
+    end
+
+    it "should output json" do
+      Smoke[:test].output(:json).should =~ /^\[\{/
+    end
+
+    it "should output yml" do
+      Smoke[:test].output(:yaml).should =~ /^--- \n- :/
     end
     
     describe "filtering" do
-      before do
+      before :all do
         TestSource.source(:keep) do
           emit do
-            transform :head do |head|
-              head.gsub(/Animal: /, '')
-            end
+            keep(:head, /roo/)
           end
         end
         
         TestSource.source(:discard) do
           emit do
-            transform :head do |head|
-              head.gsub(/Animal: /, '')
-            end
+            discard(:head, /roo/)
           end
         end
       end
@@ -69,7 +65,7 @@ describe Smoke::Origin do
       end
       
       it "should only contain items that match" do
-        Smoke[:keep].keep(:head, /^K/).output.should == {:head => "Kangaroo", :name => "Kelly"}
+        Smoke[:keep].output.should == [{:head => "Animal: Kangaroo", :name => "Kelly"}]
       end
       
       it "should discard items" do
@@ -77,28 +73,12 @@ describe Smoke::Origin do
       end
       
       it "should not contain items that match" do
-        Smoke[:discard].discard(:head, /^K/).output.should == {:head => "Platypus", :name => "Peter"}
+        Smoke[:discard].output.should == [{:head => "Animal: Platypus", :name => "Peter"}]
       end
     end
   end
   
-  describe "output" do
-    it "should output" do
-      @origin.output.should be_an_instance_of(Array)
-    end
-
-    it "should output two items" do
-      @origin.output.size.should == 2
-    end
-
-    it "should output json" do
-      @origin.output(:json).should =~ /^\[\{/
-    end
-
-    it "should output yml" do
-      @origin.output(:yaml).should =~ /^--- \n- :/
-    end
-    
+  describe "dispatching" do  
     it "should dispatch when output is called" do
       TestSource.source(:no_dispatch)
       Smoke[:no_dispatch].should_not_receive(:dispatch)
@@ -107,21 +87,6 @@ describe Smoke::Origin do
       Smoke[:dispatch].should_receive(:dispatch)
       Smoke[:dispatch].output
     end
-  end
-  
-  it "method chaining" do
-    TestSource.source(:chain) do
-      emit do
-        transform :head do |head|
-          head.gsub(/Animal: /, '')
-        end
-      end
-    end
-    Smoke[:chain].rename(:head => :header).sort(:header).output.should == [{:header => "Kangaroo", :name => "Kelly"}, {:header => "Platypus", :name => "Peter"}]
-  end
-  
-  it "should softly error when attempting to sort on a key that doesn't exist" do
-    Smoke[:chain].sort(:header).should_not raise_error("NoMethodError")
   end
   
   describe "preperation" do
@@ -146,7 +111,7 @@ describe Smoke::Origin do
       
       Smoke.data :feed_preperation_call_order do
         prepare do 
-          url "http://domain.tld/#{username}/feed"
+          url "http://domain.tld/#{username}/feed", :type => :json
         end
         
         path :photos, :photo
@@ -210,23 +175,46 @@ describe Smoke::Origin do
   end
   
   describe "key insertion" do
+    before do
+      TestSource.source(:insertion) do
+        emit do
+          insert(:source, "twitter")
+        end
+      end
+    end
+    
     it "should respond to insert" do
-      Smoke[:test].should respond_to(:insert)
+      Smoke[:insertion].should respond_to(:insert)
     end
     
     it "should insert values into each key" do
-      Smoke[:test].insert(:source, "twitter").output.first.should have_key :source
-      Smoke[:test].insert(:source, "twitter").output.first[:source].should == "twitter"
+      Smoke[:insertion].output.first.should have_key :source
+      Smoke[:insertion].output.first[:source].should == "twitter"
     end
-    
-    it "should work in a block" do
-      TestSource.source(:inserts) do
+  end
+  
+  describe "sorting" do
+    before :all do
+      TestSource.source(:sorting) do
         emit do
-          insert :x, "exx"
+          sort :header
         end
       end
       
-      Smoke[:inserts].output.first.should have_key(:x)
+      TestSource.source(:reversed) do
+        emit do
+          sort :header
+          reverse
+        end
+      end
+    end
+    
+    it "should softly error when attempting to sort on a key that doesn't exist" do
+      Smoke[:sorting].output.should_not raise_error("NoMethodError")
+    end
+    
+    it "should be reversed" do
+      Smoke[:reversed].output.should == Smoke[:sorting].output.reverse
     end
   end
 end

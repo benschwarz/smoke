@@ -10,26 +10,29 @@ module Smoke
     end
     
     SUPPORTED_TYPES = %w(json xml javascript)
+    @@request_options {
+      :user_agent       => Smoke.config[:user_agent],
+      :accept_encoding  => "gzip"
+    }
+    
     attr_reader :uri, :content_type, :body, :type
        
-    def initialize(uri, *options)
+    def initialize(uri, options = {})
       @uri, @options = uri, options
       dispatch
     end
     
     private
-    def dispatch
-      opts = {
-        :user_agent       => Smoke.config[:user_agent],
-        :accept_encoding  => "gzip"
-      }
-      Thread.new {
-        request = RestClient.get(@uri, opts)
-        @content_type = request.headers[:content_type]
-        @body = request
-      }.join
+    def dispatch  
+      Smoke::Cache.fetch @uri do
+        Thread.new {
+          request = RestClient.get(@uri, @@request_options)
+          @content_type = request.headers[:content_type]
+          @body = request
+        }.join
+      end
       
-      present! unless @options.include?(:raw_response)
+      present! unless @options[:raw_response]
       
     rescue RestClient::Exception => e
       Failure.new(@uri, e)
@@ -41,7 +44,7 @@ module Smoke
     end
     
     def set_type
-      @type = (SUPPORTED_TYPES.detect{|t| @content_type =~ /#{t}/ } || "unknown").to_sym
+      @type =  @options[:type] || (SUPPORTED_TYPES.detect{|t| @content_type =~ /#{t}/ } || "unknown").to_sym
     end
     
     def parse!

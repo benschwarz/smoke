@@ -20,14 +20,18 @@ module Smoke
     #   end
     class Data < Origin
       attr_reader :request
-
-      def url(source_url)
-        @url = source_url
+      
+      # The URL that you'd like smoke to source its data from
+      # You can also set the type for silly servers that don't set a correct content-type (Flickr!)
+      # Example:
+      #   url "http://site.com/resource.json", :type => :json
+      def url(source_url, options = {})
+        @url, @options = source_url, options
       end
       
       protected
-      def dispatch
-        @request = Smoke::Request.new(@url)
+      def dispatch          
+        @request = Smoke::Request.new(@url, @options)
         self.items = @request.body
       end
     end

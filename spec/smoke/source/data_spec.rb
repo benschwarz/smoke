@@ -5,7 +5,7 @@ describe "'Data' source" do
     FakeWeb.register_uri("http://photos.tld/index.json", :response => File.join(SPEC_DIR, 'supports', 'flickr-photo.json'))
     
     @source = Smoke.data(:photos) do
-      url "http://photos.tld/index.json"
+      url "http://photos.tld/index.json", :type => :json
       
       path :photos, :photo
     end
@@ -38,6 +38,28 @@ describe "'Data' source" do
       keys = [:ispublic, :title, :farm, :id, :isfamily, :server, :isfriend, :owner, :secret].each do |key|
         Smoke[:photos].output.first.should(have_key(key))
       end
+    end
+  end
+  
+  describe "making a request to a web service without a correctly set content-type in return" do
+    before :each do
+      FakeWeb.register_uri("http://photos.tld/no-format", :response => File.join(SPEC_DIR, 'supports', 'flickr-photo.json'), :content_type => "text/plain")
+    end
+    
+    it "should fail" do
+      @source = Smoke.data(:flickr) do
+        url "http://photos.tld/no-format"
+        path :photos, :photo
+      end
+      lambda { @source.output }.should raise_error
+    end
+    
+    it "should not fail" do
+      @source = Smoke.data(:flickr) do
+        url "http://photos.tld/no-format", :type => :json
+        path :photos, :photo
+      end
+      lambda { @source.output }.should_not raise_error
     end
   end
 end
