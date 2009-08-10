@@ -23,6 +23,7 @@ module Smoke
       def select(what = :all)
         @select = what.join(",") and return if what.is_a? Array
         @select = "*" and return if what == :all
+        @select = what and return
       end
       
       # from corresponds to the from fragment of the YQL query
