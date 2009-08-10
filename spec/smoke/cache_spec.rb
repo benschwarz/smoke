@@ -44,4 +44,10 @@ describe Smoke::Cache do
       end
     end
   end
+  
+  describe "caching my block" do
+    before :all do
+      Smoke.configure {|c| c[:cache][:store] = :memory }
+    end
+  end
 end
