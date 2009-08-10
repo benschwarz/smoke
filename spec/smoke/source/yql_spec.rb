@@ -26,6 +26,30 @@ describe "YQL" do
     Smoke[:search].items.should be_an_instance_of(Array)
   end
   
+  describe "select" do
+    before do
+      FakeWeb.register_uri("http://query.yahooapis.com:80/v1/public/yql?q=SELECT%20url%20FROM%20search.images%20WHERE%20query%20=%20'amc%20pacer'&format=json", :response => File.join(SPEC_DIR, 'supports', 'amc_pacer.json.yql'))
+      
+      Smoke.yql(:pacer) do
+        select :url
+        from "search.images"
+        where :query, "amc pacer"
+        
+        path :query, :results, :result
+      end
+      
+      Smoke[:pacer].output
+    end
+    
+    it "should query correctly" do
+      Smoke[:pacer].request.uri.should == "http://query.yahooapis.com/v1/public/yql?q=SELECT%20url%20FROM%20search.images%20WHERE%20query%20=%20'amc%20pacer'&format=json"
+    end
+    
+    it "should have urls" do
+      Smoke[:pacer].output.first.should have_key(:url)
+    end
+  end
+  
   describe "after dispatch" do
     before do
      Smoke[:search].output
