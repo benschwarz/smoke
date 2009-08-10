@@ -12,7 +12,7 @@ module Smoke
       :user_agent     => "Ruby/#{RUBY_VERSION}/Smoke",
       :cache          => {
         :enabled  => false,
-        :store    => :Memory,
+        :store    => :memory,
         :options  => {},
         :expiry   => 1800
       }

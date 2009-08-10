@@ -5,7 +5,7 @@ module Smoke
   class Cache
     class << self
       def configure!
-        require "moneta/#{Smoke.config[:cache][:store].to_s.downcase}" if enabled?
+        require "moneta/#{Smoke.config[:cache][:store].to_s}" if enabled?
       rescue LoadError
         Smoke.log.fatal "Cache store not found. Smoke uses moneta for cache stores, ensure that you've chosen a moneta supported store"
       end
