@@ -1,11 +1,7 @@
 require File.join(File.dirname(__FILE__), "..", "spec_helper.rb")
 
 describe Smoke::Cache do
-  describe "class methods" do
-    it "should respond to configure!" do
-      Smoke::Cache.should respond_to(:configure!)
-    end
-    
+  describe "class methods" do  
     it "should respond to fetch" do
       Smoke::Cache.should respond_to(:fetch)
     end
@@ -47,7 +43,33 @@ describe Smoke::Cache do
   
   describe "caching my block" do
     before :all do
-      Smoke.configure {|c| c[:cache][:store] = :memory }
+      Smoke.configure do |c| 
+        c[:cache][:enabled] = true
+        c[:cache][:store] = :memory
+      end
+      
+      @url = "http://memory.tld/store"
+      FakeWeb.register_uri(@url, :file => File.join(SPEC_DIR, 'supports', 'slashdot.xml'))
+      
+      require 'moneta/memory'
+      @store = Moneta::Memory.new
+      Moneta::Memory.stub!(:new).and_return(@store)
+    end
+    
+    it "should use the moneta::memory store" do
+      Moneta::Memory.should_receive(:new).with(Smoke.config[:cache][:options])
+      
+      Smoke::Cache.fetch @url, {}
+    end
+        
+    it "should try to read from the memory store" do  
+      @store.should_receive(:[])
+      Smoke::Cache.fetch @url, {}
+    end
+    
+    it "should be stored in the cache" do
+      Smoke::Cache.fetch @url, {}
+      @store['33af9f13054e64520430f7a437cdd377'].should_not be_nil
     end
   end
 end

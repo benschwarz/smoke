@@ -23,14 +23,10 @@ module Smoke
     end
     
     private
-    def dispatch  
-      Smoke::Cache.fetch @uri do
-        Thread.new {
-          request = RestClient.get(@uri, @@request_options)
-          @content_type = request.headers[:content_type]
-          @body = request
-        }.join
-      end
+    def dispatch
+      get = Smoke::Cache.fetch @uri, @@request_options
+      @body = get[:body]
+      @content_type = get[:content_type]
       
       present! unless @options[:raw_response]
       
