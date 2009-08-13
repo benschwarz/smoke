@@ -1,3 +1,9 @@
+begin
+  require "vendor/dependencies/lib/dependencies"
+rescue LoadError
+  require "dependencies"
+end
+
 require 'restclient'
 require 'logger'
 require 'crack'
@@ -71,7 +77,6 @@ module Smoke
     #
     def configure(&block)
       yield @@config
-      Smoke::Cache.configure!
     end
     
     # Access configuration options
@@ -96,7 +101,7 @@ module Smoke
   end
 end
 
-%w(core_ext/hash smoke/cache smoke/request smoke/origin).each {|r| require File.join(File.dirname(__FILE__), r)}
+%w(core_ext/hash core_ext/string smoke/cache smoke/request smoke/origin).each {|r| require File.join(File.dirname(__FILE__), r)}
 
 class Object # :nodoc: 
   include Smoke
