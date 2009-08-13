@@ -1,0 +1,83 @@
+#! /usr/bin/env ruby -rubygems
+
+$:.unshift(File.expand_path(File.dirname(__FILE__) + "/../lib"))
+
+require "fileutils"
+require "dependencies/dep"
+require "thor"
+
+class App < Thor
+  include Thor::Actions
+
+  desc "list [ENV]", "lists dependencies"
+  def list(env = nil)
+    deps.filter(env).each { |dep| puts dep }
+    deps.require(env)
+  end
+
+  desc "vendor", "vendors the dependency to ./vendor"
+  method_options :all => :boolean
+  def vendor(name = nil)
+    name || options[:all] || flunk("No dependency given. Did you mean --all?")
+
+    if name
+      vendor_one(name)
+    else
+      vendor_all
+    end
+  end
+
+protected
+
+  def vendor_one(name)
+    dep = dependency(name)  || flunk("Dependency #{name} not found in dependencies.")
+    dep.version || dep.url  || flunk("Don't know where to vendor #{name} from (no version or URL given...)")
+
+    FileUtils.mkdir("vendor") unless File.directory?("vendor")
+
+    inside "vendor", :verbose => true do
+      fetch dep
+      remove_file File.join(dep.name, ".git")
+    end
+  end
+
+  def vendor_all
+    prevent_exit do
+      deps.each do |dep|
+        vendor_one(dep.name)
+      end
+    end
+  end
+
+  def fetch(dep)
+    if dep.version
+      run "gem unpack #{dep.name} -v #{dep.version}"
+    else
+      run "git clone #{dep.url} #{dep.name} -q --depth 1"
+    end
+  end
+
+  def deps
+    @deps ||= Dep.new(File.read("dependencies"))
+  rescue Errno::ENOENT
+    flunk "No dependencies file found."
+  end
+
+  def dependency(name)
+    deps.find { |dep| dep.name == name }
+  end
+
+  def flunk(message)
+    $stderr.puts(message)
+    exit 1 unless @prevent_exit
+  end
+
+  def prevent_exit
+    aux, @prevent_exit = @prevent_exit, false
+    yield
+  ensure
+    @prevent_exit = aux
+  end
+end
+
+App.start
