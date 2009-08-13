@@ -1,11 +1,16 @@
 # smoke
 
-smoke is a Ruby based DSL that allows you to take data from YQL, RSS / Atom (and more, if you think of a useful source).
-This "data" can then be re-represented, sorted and filtered. You can collect data from a multiude of sources, sort them on a common property
-and return a plain old ruby object or json (You could add in something to output XML too)
+smoke is a Ruby based DSL that allows you to query web services such as YQL, RSS / Atom and JSON or XML in an elegant manner.
+
+These "services" can then be re-represented, sorted and filtered. Data can be collected from multiple sources, sorted via a common property, chopped up and refried. 
+
+Then you can output as a plain ruby object (or JSON)
 
 ## Examples of use
-I powered [my entire site](http://www.germanforblack.com) [using smoke](http://github.com/benschwarz/benschwarz-site/blob/44de70463c744d821d3ffd2cf940e6d3e415fbdd/lib/stream.rb), until further documentation exists, this is probably a good place to start.
+
+* The `examples` directory has something to get you running straight away
+* I powered [my entire site](http://www.germanforblack.com) [using smoke](http://github.com/benschwarz/benschwarz-site/blob/44de70463c744d821d3ffd2cf940e6d3e415fbdd/lib/stream.rb), until further documentation exists, this is probably a good place to start.
+* Read further details in the [rdoc documentation](http://rdoc.info/projects/benschwarz/smoke) or [the wiki](http://wiki.github.com/benschwarz/smoke)
 
 ## Media
 
@@ -15,7 +20,7 @@ I powered [my entire site](http://www.germanforblack.com) [using smoke](http://g
 
 ## The concept
 
-The concept comes from using [Yahoo Pipes](http://pipes.yahoo.com) to make little mash ups, get a list of tv shows for my torrent client, compile a recipe book or make tools to give me a list of albums that artists in my music library are about to be release.
+The concept comes from using [Yahoo Pipes](http://pipes.yahoo.com) to make web based mash ups: Get a list of tv shows for my torrent client, compile a recipe book or make tools to give me a list of albums that artists in my music library are about to be released.
 
 ## How or what to contribute
 
@@ -79,6 +84,7 @@ Integrity [is running for smoke](http://integrity.ffolio.net/smoke)
 
 
 #### For wiki pages (docs, later)
+* Document all sources with their irrespective differential methods
 * How to use `path`
 * YQL Definitions
 * Tranformations
