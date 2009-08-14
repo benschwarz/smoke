@@ -1,8 +1,4 @@
-begin
-  require "vendor/dependencies/lib/dependencies"
-rescue LoadError
-  require "dependencies"
-end
+require "#{File.dirname(__FILE__)}/../vendor/dependencies/lib/dependencies"
 
 require 'restclient'
 require 'logger'
