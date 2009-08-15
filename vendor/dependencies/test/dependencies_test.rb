@@ -9,8 +9,6 @@ require "fileutils"
 
 $:.unshift File.join(File.dirname(__FILE__), "..", "lib")
 
-DEP_BINARY = File.expand_path(File.join(File.dirname(__FILE__), "..", "bin", "dep"))
-
 class Dep
   # Override exit to allow the tests to keep running.
   def exit(*attrs)
@@ -106,7 +104,7 @@ class DependenciesTest < Test::Unit::TestCase
     def dep(args = nil)
       out, err = nil
 
-      Open3.popen3("#{DEP_BINARY} #{args}") do |stdin, stdout, stderr|
+      Open3.popen3("#{File.expand_path(File.join("../bin/dep"))} #{args}") do |stdin, stdout, stderr|
         out = stdout.read
         err = stderr.read
       end
@@ -129,28 +127,9 @@ class DependenciesTest < Test::Unit::TestCase
         end
       end
 
-      test "allow for arbitrary spaces in the declarations" do
-        with_dependencies "foo   1.0   (test)\nbar   >= 3.1      (test)\nbaz   2.0 (development)" do
-          out, err = dep "list test"
-          assert_equal "foo 1.0 (test)\nbar >= 3.1 (test)\n", out
-        end
-      end
-
       test "complains when no dependencies file found" do
         out, err = dep "list"
         assert_equal "No dependencies file found.\n", err
-      end
-
-      test "search recursively for the dependencies file" do
-        with_dependencies "foo 1.0 (test)\nbar (development)\nbarz 2.0\nbaz 0.1 (test)" do
-          FileUtils.rm_rf("dep-test")
-          FileUtils.mkdir("dep-test")
-          Dir.chdir("dep-test") do
-            out, err = dep "list test"
-            assert_equal "foo 1.0 (test)\nbarz 2.0\nbaz 0.1 (test)\n", out
-          end
-          FileUtils.rm_rf("dep-test")
-        end
       end
     end
 

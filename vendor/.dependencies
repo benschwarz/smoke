@@ -4,4 +4,4 @@ json 1.1.3
 fakeweb 1.2.5
 crack 0.1.1
 moneta git://github.com/benschwarz/moneta.git
-dependencies git://github.com/benschwarz/dependencies.git
+dependencies git://github.com/djanowski/dependencies.git

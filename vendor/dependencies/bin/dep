@@ -58,8 +58,8 @@ protected
   end
 
   def deps
-    @deps ||= Dep.new(File.read(Dep.dependencies_file))
-  rescue Dep::DependenciesFileNotFound
+    @deps ||= Dep.new(File.read("dependencies"))
+  rescue Errno::ENOENT
     flunk "No dependencies file found."
   end
 
