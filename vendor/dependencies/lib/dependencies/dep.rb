@@ -1,4 +1,20 @@
+require "pathname"
+
 class Dep
+  DependenciesFileNotFound = Class.new(StandardError)
+
+  def self.dependencies_file
+    current = Pathname.new(Dir.pwd)
+
+    until current.root?
+      filename = current.join("dependencies")
+      return filename if filename.exist? and filename.file?
+      current = current.parent
+    end
+
+    raise DependenciesFileNotFound
+  end
+
   class Dependency
     attr :name
     attr :version
@@ -62,7 +78,7 @@ class Dep
     @missing = []
 
     dependencies.each_line do |line|
-      next unless line =~ /^([\w\-_]+) ?([<~=> \d\.]+)?(?: \(([\w, ]+)\))?(?: ([a-z]+:\/\/.+?))?$/
+      next unless line =~ /^([\w\-_]+)\s*([<~=>]* ?[\d\.]+)?\s*(?: \(([\w, ]+)\))?\s*(?: ([a-z]+:\/\/.+?))?\s*$/
       @dependencies << Dependency.new($1, $2, $3, $4)
     end
   end
