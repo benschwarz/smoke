@@ -1,10 +1,10 @@
-require "#{File.dirname(__FILE__)}/../vendor/dependencies/lib/dependencies"
+__DIR__ = File.dirname(__FILE__)
+require File.expand_path(File.join(__DIR__, '..', 'vendor', 'gems', 'environment'))
 
-require 'restclient'
+Bundler.require_env
+
 require 'logger'
-require 'crack'
-require 'simple-rss'
-require 'json'
+require 'digest/md5'
 
 module Smoke  
   class << self

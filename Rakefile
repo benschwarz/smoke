@@ -10,7 +10,7 @@ begin
     gem.email = "ben.schwarz@gmail.com"
     gem.homepage = "http://github.com/benschwarz/smoke"
     gem.authors = ["Ben Schwarz"]
-    gem.files = FileList['dependencies', 'lib/**/*.rb', 'rdoc/**/*', '[A-Z]*', 'spec/**/*', 'vendor/**/*'].to_a
+    gem.files = FileList['lib/**/*.rb', 'rdoc/**/*', '[A-Z]*', 'spec/**/*', 'vendor/**/*'].to_a
     # gem is a Gem::Specification... see http://www.rubygems.org/read/chapter/20 for additional settings
   end
 rescue LoadError
