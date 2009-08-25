@@ -5,20 +5,18 @@
 
 Gem::Specification.new do |s|
   s.name = %q{smoke}
-  s.version = "0.5.7"
+  s.version = "0.5.8"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Ben Schwarz"]
   s.date = %q{2009-08-25}
   s.email = %q{ben.schwarz@gmail.com}
-  s.executables = ["edit_json.rb", "restclient"]
   s.extra_rdoc_files = [
     "LICENSE",
      "README.markdown"
   ]
   s.files = [
-    "Gemfile",
-     "LICENSE",
+    "LICENSE",
      "README.markdown",
      "Rakefile",
      "VERSION.yml",
@@ -71,196 +69,7 @@ Gem::Specification.new do |s|
      "spec/supports/search-web.json.yql",
      "spec/supports/search-web.xml.yql",
      "spec/supports/slashdot.xml",
-     "spec/supports/test_source.rb",
-     "vendor/gems/cache/adamwiggins-rest-client-1.0.3.gem",
-     "vendor/gems/cache/crack-0.1.1.gem",
-     "vendor/gems/cache/fakeweb-1.2.5.gem",
-     "vendor/gems/cache/json-1.1.3.gem",
-     "vendor/gems/cache/simple-rss-1.2.gem",
-     "vendor/gems/cache/wycats-moneta-0.6.0.gem",
-     "vendor/gems/environment.rb",
-     "vendor/gems/gems/adamwiggins-rest-client-1.0.3/README.rdoc",
-     "vendor/gems/gems/adamwiggins-rest-client-1.0.3/Rakefile",
-     "vendor/gems/gems/adamwiggins-rest-client-1.0.3/VERSION",
-     "vendor/gems/gems/adamwiggins-rest-client-1.0.3/bin/restclient",
-     "vendor/gems/gems/adamwiggins-rest-client-1.0.3/lib/rest_client.rb",
-     "vendor/gems/gems/adamwiggins-rest-client-1.0.3/lib/restclient.rb",
-     "vendor/gems/gems/adamwiggins-rest-client-1.0.3/lib/restclient/exceptions.rb",
-     "vendor/gems/gems/adamwiggins-rest-client-1.0.3/lib/restclient/mixin/response.rb",
-     "vendor/gems/gems/adamwiggins-rest-client-1.0.3/lib/restclient/raw_response.rb",
-     "vendor/gems/gems/adamwiggins-rest-client-1.0.3/lib/restclient/request.rb",
-     "vendor/gems/gems/adamwiggins-rest-client-1.0.3/lib/restclient/resource.rb",
-     "vendor/gems/gems/adamwiggins-rest-client-1.0.3/lib/restclient/response.rb",
-     "vendor/gems/gems/adamwiggins-rest-client-1.0.3/spec/base.rb",
-     "vendor/gems/gems/adamwiggins-rest-client-1.0.3/spec/exceptions_spec.rb",
-     "vendor/gems/gems/adamwiggins-rest-client-1.0.3/spec/mixin/response_spec.rb",
-     "vendor/gems/gems/adamwiggins-rest-client-1.0.3/spec/raw_response_spec.rb",
-     "vendor/gems/gems/adamwiggins-rest-client-1.0.3/spec/request_spec.rb",
-     "vendor/gems/gems/adamwiggins-rest-client-1.0.3/spec/resource_spec.rb",
-     "vendor/gems/gems/adamwiggins-rest-client-1.0.3/spec/response_spec.rb",
-     "vendor/gems/gems/adamwiggins-rest-client-1.0.3/spec/restclient_spec.rb",
-     "vendor/gems/gems/crack-0.1.1/LICENSE",
-     "vendor/gems/gems/crack-0.1.1/README.rdoc",
-     "vendor/gems/gems/crack-0.1.1/VERSION.yml",
-     "vendor/gems/gems/crack-0.1.1/lib/crack.rb",
-     "vendor/gems/gems/crack-0.1.1/lib/crack/core_extensions.rb",
-     "vendor/gems/gems/crack-0.1.1/lib/crack/json.rb",
-     "vendor/gems/gems/crack-0.1.1/lib/crack/xml.rb",
-     "vendor/gems/gems/crack-0.1.1/test/crack_test.rb",
-     "vendor/gems/gems/crack-0.1.1/test/json_test.rb",
-     "vendor/gems/gems/crack-0.1.1/test/test_helper.rb",
-     "vendor/gems/gems/crack-0.1.1/test/xml_test.rb",
-     "vendor/gems/gems/fakeweb-1.2.5/CHANGELOG",
-     "vendor/gems/gems/fakeweb-1.2.5/LICENSE.txt",
-     "vendor/gems/gems/fakeweb-1.2.5/README.rdoc",
-     "vendor/gems/gems/fakeweb-1.2.5/Rakefile",
-     "vendor/gems/gems/fakeweb-1.2.5/lib/fake_web.rb",
-     "vendor/gems/gems/fakeweb-1.2.5/lib/fake_web/ext/net_http.rb",
-     "vendor/gems/gems/fakeweb-1.2.5/lib/fake_web/registry.rb",
-     "vendor/gems/gems/fakeweb-1.2.5/lib/fake_web/responder.rb",
-     "vendor/gems/gems/fakeweb-1.2.5/lib/fake_web/response.rb",
-     "vendor/gems/gems/fakeweb-1.2.5/lib/fake_web/stub_socket.rb",
-     "vendor/gems/gems/fakeweb-1.2.5/lib/fake_web/utility.rb",
-     "vendor/gems/gems/fakeweb-1.2.5/lib/fakeweb.rb",
-     "vendor/gems/gems/fakeweb-1.2.5/test/fixtures/google_response_from_curl",
-     "vendor/gems/gems/fakeweb-1.2.5/test/fixtures/google_response_with_transfer_encoding",
-     "vendor/gems/gems/fakeweb-1.2.5/test/fixtures/google_response_without_transfer_encoding",
-     "vendor/gems/gems/fakeweb-1.2.5/test/fixtures/test_example.txt",
-     "vendor/gems/gems/fakeweb-1.2.5/test/fixtures/test_txt_file",
-     "vendor/gems/gems/fakeweb-1.2.5/test/test_allow_net_connect.rb",
-     "vendor/gems/gems/fakeweb-1.2.5/test/test_deprecations.rb",
-     "vendor/gems/gems/fakeweb-1.2.5/test/test_fake_authentication.rb",
-     "vendor/gems/gems/fakeweb-1.2.5/test/test_fake_web.rb",
-     "vendor/gems/gems/fakeweb-1.2.5/test/test_fake_web_open_uri.rb",
-     "vendor/gems/gems/fakeweb-1.2.5/test/test_helper.rb",
-     "vendor/gems/gems/fakeweb-1.2.5/test/test_missing_open_uri.rb",
-     "vendor/gems/gems/fakeweb-1.2.5/test/test_precedence.rb",
-     "vendor/gems/gems/fakeweb-1.2.5/test/test_query_string.rb",
-     "vendor/gems/gems/fakeweb-1.2.5/test/test_regexes.rb",
-     "vendor/gems/gems/fakeweb-1.2.5/test/test_response_headers.rb",
-     "vendor/gems/gems/fakeweb-1.2.5/test/test_trailing_slashes.rb",
-     "vendor/gems/gems/fakeweb-1.2.5/test/test_utility.rb",
-     "vendor/gems/gems/json-1.1.3/CHANGES",
-     "vendor/gems/gems/json-1.1.3/GPL",
-     "vendor/gems/gems/json-1.1.3/README",
-     "vendor/gems/gems/json-1.1.3/RUBY",
-     "vendor/gems/gems/json-1.1.3/Rakefile",
-     "vendor/gems/gems/json-1.1.3/TODO",
-     "vendor/gems/gems/json-1.1.3/VERSION",
-     "vendor/gems/gems/json-1.1.3/benchmarks/benchmark.txt",
-     "vendor/gems/gems/json-1.1.3/benchmarks/benchmark_generator.rb",
-     "vendor/gems/gems/json-1.1.3/benchmarks/benchmark_parser.rb",
-     "vendor/gems/gems/json-1.1.3/benchmarks/benchmark_rails.rb",
-     "vendor/gems/gems/json-1.1.3/bin/edit_json.rb",
-     "vendor/gems/gems/json-1.1.3/bin/prettify_json.rb",
-     "vendor/gems/gems/json-1.1.3/data/example.json",
-     "vendor/gems/gems/json-1.1.3/data/index.html",
-     "vendor/gems/gems/json-1.1.3/data/prototype.js",
-     "vendor/gems/gems/json-1.1.3/ext/json/ext/generator.bundle",
-     "vendor/gems/gems/json-1.1.3/ext/json/ext/generator/Makefile",
-     "vendor/gems/gems/json-1.1.3/ext/json/ext/generator/extconf.rb",
-     "vendor/gems/gems/json-1.1.3/ext/json/ext/generator/generator.bundle",
-     "vendor/gems/gems/json-1.1.3/ext/json/ext/generator/generator.c",
-     "vendor/gems/gems/json-1.1.3/ext/json/ext/generator/generator.o",
-     "vendor/gems/gems/json-1.1.3/ext/json/ext/generator/unicode.c",
-     "vendor/gems/gems/json-1.1.3/ext/json/ext/generator/unicode.h",
-     "vendor/gems/gems/json-1.1.3/ext/json/ext/generator/unicode.o",
-     "vendor/gems/gems/json-1.1.3/ext/json/ext/parser.bundle",
-     "vendor/gems/gems/json-1.1.3/ext/json/ext/parser/Makefile",
-     "vendor/gems/gems/json-1.1.3/ext/json/ext/parser/extconf.rb",
-     "vendor/gems/gems/json-1.1.3/ext/json/ext/parser/parser.bundle",
-     "vendor/gems/gems/json-1.1.3/ext/json/ext/parser/parser.c",
-     "vendor/gems/gems/json-1.1.3/ext/json/ext/parser/parser.o",
-     "vendor/gems/gems/json-1.1.3/ext/json/ext/parser/parser.rl",
-     "vendor/gems/gems/json-1.1.3/ext/json/ext/parser/unicode.c",
-     "vendor/gems/gems/json-1.1.3/ext/json/ext/parser/unicode.h",
-     "vendor/gems/gems/json-1.1.3/ext/json/ext/parser/unicode.o",
-     "vendor/gems/gems/json-1.1.3/install.rb",
-     "vendor/gems/gems/json-1.1.3/lib/json.rb",
-     "vendor/gems/gems/json-1.1.3/lib/json/Array.xpm",
-     "vendor/gems/gems/json-1.1.3/lib/json/FalseClass.xpm",
-     "vendor/gems/gems/json-1.1.3/lib/json/Hash.xpm",
-     "vendor/gems/gems/json-1.1.3/lib/json/Key.xpm",
-     "vendor/gems/gems/json-1.1.3/lib/json/NilClass.xpm",
-     "vendor/gems/gems/json-1.1.3/lib/json/Numeric.xpm",
-     "vendor/gems/gems/json-1.1.3/lib/json/String.xpm",
-     "vendor/gems/gems/json-1.1.3/lib/json/TrueClass.xpm",
-     "vendor/gems/gems/json-1.1.3/lib/json/add/core.rb",
-     "vendor/gems/gems/json-1.1.3/lib/json/add/rails.rb",
-     "vendor/gems/gems/json-1.1.3/lib/json/common.rb",
-     "vendor/gems/gems/json-1.1.3/lib/json/editor.rb",
-     "vendor/gems/gems/json-1.1.3/lib/json/ext.rb",
-     "vendor/gems/gems/json-1.1.3/lib/json/json.xpm",
-     "vendor/gems/gems/json-1.1.3/lib/json/pure.rb",
-     "vendor/gems/gems/json-1.1.3/lib/json/pure/generator.rb",
-     "vendor/gems/gems/json-1.1.3/lib/json/pure/parser.rb",
-     "vendor/gems/gems/json-1.1.3/lib/json/version.rb",
-     "vendor/gems/gems/json-1.1.3/tests/fixtures/fail1.json",
-     "vendor/gems/gems/json-1.1.3/tests/fixtures/fail10.json",
-     "vendor/gems/gems/json-1.1.3/tests/fixtures/fail11.json",
-     "vendor/gems/gems/json-1.1.3/tests/fixtures/fail12.json",
-     "vendor/gems/gems/json-1.1.3/tests/fixtures/fail13.json",
-     "vendor/gems/gems/json-1.1.3/tests/fixtures/fail14.json",
-     "vendor/gems/gems/json-1.1.3/tests/fixtures/fail18.json",
-     "vendor/gems/gems/json-1.1.3/tests/fixtures/fail19.json",
-     "vendor/gems/gems/json-1.1.3/tests/fixtures/fail2.json",
-     "vendor/gems/gems/json-1.1.3/tests/fixtures/fail20.json",
-     "vendor/gems/gems/json-1.1.3/tests/fixtures/fail21.json",
-     "vendor/gems/gems/json-1.1.3/tests/fixtures/fail22.json",
-     "vendor/gems/gems/json-1.1.3/tests/fixtures/fail23.json",
-     "vendor/gems/gems/json-1.1.3/tests/fixtures/fail24.json",
-     "vendor/gems/gems/json-1.1.3/tests/fixtures/fail25.json",
-     "vendor/gems/gems/json-1.1.3/tests/fixtures/fail27.json",
-     "vendor/gems/gems/json-1.1.3/tests/fixtures/fail28.json",
-     "vendor/gems/gems/json-1.1.3/tests/fixtures/fail3.json",
-     "vendor/gems/gems/json-1.1.3/tests/fixtures/fail4.json",
-     "vendor/gems/gems/json-1.1.3/tests/fixtures/fail5.json",
-     "vendor/gems/gems/json-1.1.3/tests/fixtures/fail6.json",
-     "vendor/gems/gems/json-1.1.3/tests/fixtures/fail7.json",
-     "vendor/gems/gems/json-1.1.3/tests/fixtures/fail8.json",
-     "vendor/gems/gems/json-1.1.3/tests/fixtures/fail9.json",
-     "vendor/gems/gems/json-1.1.3/tests/fixtures/pass1.json",
-     "vendor/gems/gems/json-1.1.3/tests/fixtures/pass15.json",
-     "vendor/gems/gems/json-1.1.3/tests/fixtures/pass16.json",
-     "vendor/gems/gems/json-1.1.3/tests/fixtures/pass17.json",
-     "vendor/gems/gems/json-1.1.3/tests/fixtures/pass2.json",
-     "vendor/gems/gems/json-1.1.3/tests/fixtures/pass26.json",
-     "vendor/gems/gems/json-1.1.3/tests/fixtures/pass3.json",
-     "vendor/gems/gems/json-1.1.3/tests/runner.rb",
-     "vendor/gems/gems/json-1.1.3/tests/test_json.rb",
-     "vendor/gems/gems/json-1.1.3/tests/test_json_addition.rb",
-     "vendor/gems/gems/json-1.1.3/tests/test_json_fixtures.rb",
-     "vendor/gems/gems/json-1.1.3/tests/test_json_generate.rb",
-     "vendor/gems/gems/json-1.1.3/tests/test_json_rails.rb",
-     "vendor/gems/gems/json-1.1.3/tests/test_json_unicode.rb",
-     "vendor/gems/gems/json-1.1.3/tools/fuzz.rb",
-     "vendor/gems/gems/json-1.1.3/tools/server.rb",
-     "vendor/gems/gems/simple-rss-1.2/LICENSE",
-     "vendor/gems/gems/simple-rss-1.2/README",
-     "vendor/gems/gems/simple-rss-1.2/Rakefile",
-     "vendor/gems/gems/simple-rss-1.2/lib/simple-rss.rb",
-     "vendor/gems/gems/simple-rss-1.2/test/base/base_test.rb",
-     "vendor/gems/gems/simple-rss-1.2/test/data/atom.xml",
-     "vendor/gems/gems/simple-rss-1.2/test/data/not-rss.xml",
-     "vendor/gems/gems/simple-rss-1.2/test/data/rss09.rdf",
-     "vendor/gems/gems/simple-rss-1.2/test/data/rss20.xml",
-     "vendor/gems/gems/simple-rss-1.2/test/test_helper.rb",
-     "vendor/gems/gems/wycats-moneta-0.6.0/LICENSE",
-     "vendor/gems/gems/wycats-moneta-0.6.0/README",
-     "vendor/gems/gems/wycats-moneta-0.6.0/Rakefile",
-     "vendor/gems/gems/wycats-moneta-0.6.0/TODO",
-     "vendor/gems/gems/wycats-moneta-0.6.0/lib/moneta.rb",
-     "vendor/gems/gems/wycats-moneta-0.6.0/lib/moneta/datamapper.rb",
-     "vendor/gems/gems/wycats-moneta-0.6.0/lib/moneta/file.rb",
-     "vendor/gems/gems/wycats-moneta-0.6.0/lib/moneta/memcache.rb",
-     "vendor/gems/gems/wycats-moneta-0.6.0/lib/moneta/memory.rb",
-     "vendor/gems/gems/wycats-moneta-0.6.0/lib/moneta/xattr.rb",
-     "vendor/gems/specifications/adamwiggins-rest-client-1.0.3.gemspec",
-     "vendor/gems/specifications/crack-0.1.1.gemspec",
-     "vendor/gems/specifications/fakeweb-1.2.5.gemspec",
-     "vendor/gems/specifications/json-1.1.3.gemspec",
-     "vendor/gems/specifications/simple-rss-1.2.gemspec",
-     "vendor/gems/specifications/wycats-moneta-0.6.0.gemspec"
+     "spec/supports/test_source.rb"
   ]
   s.homepage = %q{http://github.com/benschwarz/smoke}
   s.rdoc_options = ["--charset=UTF-8"]
@@ -289,8 +98,26 @@ Gem::Specification.new do |s|
     s.specification_version = 3
 
     if Gem::Version.new(Gem::RubyGemsVersion) >= Gem::Version.new('1.2.0') then
+      s.add_runtime_dependency(%q<simple-rss>, ["= 1.2"])
+      s.add_runtime_dependency(%q<json>, ["= 1.1.3"])
+      s.add_runtime_dependency(%q<fakeweb>, ["= 1.2.5"])
+      s.add_runtime_dependency(%q<crack>, ["= 0.1.1"])
+      s.add_runtime_dependency(%q<moneta>, ["= 0.6.0"])
+      s.add_runtime_dependency(%q<rest-client>, ["= 1.0.3"])
     else
+      s.add_dependency(%q<simple-rss>, ["= 1.2"])
+      s.add_dependency(%q<json>, ["= 1.1.3"])
+      s.add_dependency(%q<fakeweb>, ["= 1.2.5"])
+      s.add_dependency(%q<crack>, ["= 0.1.1"])
+      s.add_dependency(%q<moneta>, ["= 0.6.0"])
+      s.add_dependency(%q<rest-client>, ["= 1.0.3"])
     end
   else
+    s.add_dependency(%q<simple-rss>, ["= 1.2"])
+    s.add_dependency(%q<json>, ["= 1.1.3"])
+    s.add_dependency(%q<fakeweb>, ["= 1.2.5"])
+    s.add_dependency(%q<crack>, ["= 0.1.1"])
+    s.add_dependency(%q<moneta>, ["= 0.6.0"])
+    s.add_dependency(%q<rest-client>, ["= 1.0.3"])
   end
 end
