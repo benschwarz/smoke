@@ -22,19 +22,19 @@ describe RestClient::Request do
 	end
 
 	it "decodes an uncompressed result body by passing it straight through" do
-		@request.decode(nil, 'xyz').should == 'xyz'
+		RestClient::Request.decode(nil, 'xyz').should == 'xyz'
 	end
 
 	it "decodes a gzip body" do
-		@request.decode('gzip', "\037\213\b\b\006'\252H\000\003t\000\313T\317UH\257\312,HM\341\002\000G\242(\r\v\000\000\000").should == "i'm gziped\n"
+		RestClient::Request.decode('gzip', "\037\213\b\b\006'\252H\000\003t\000\313T\317UH\257\312,HM\341\002\000G\242(\r\v\000\000\000").should == "i'm gziped\n"
 	end
 
 	it "ingores gzip for empty bodies" do
-		@request.decode('gzip', '').should be_empty
+		RestClient::Request.decode('gzip', '').should be_empty
 	end
 
 	it "decodes a deflated body" do
-		@request.decode('deflate', "x\234+\316\317MUHIM\313I,IMQ(I\255(\001\000A\223\006\363").should == "some deflated text"
+		RestClient::Request.decode('deflate', "x\234+\316\317MUHIM\313I,IMQ(I\255(\001\000A\223\006\363").should == "some deflated text"
 	end
 
 	it "processes a successful result" do
@@ -220,6 +220,20 @@ describe RestClient::Request do
 		@request.instance_variable_set('@url', 'http://some/place/else')
 		res = mock('response', :code => '301', :header => { 'Location' => '/index' })
 		lambda { @request.process_result(res) }.should raise_error(RestClient::Redirect) { |e| e.url.should == 'http://some/index' }
+	end
+
+	it "uses GET and clears payload when following 30x redirects" do
+		url = "http://example.com/redirected"
+
+		@request.should_receive(:execute_inner).once.ordered.and_raise(RestClient::Redirect.new(url))
+
+		@request.should_receive(:execute_inner).once.ordered do
+			@request.url.should == url
+			@request.method.should == :get
+			@request.payload.should be_nil
+		end
+
+		@request.execute
 	end
 
 	it "raises Unauthorized when the response is 401" do

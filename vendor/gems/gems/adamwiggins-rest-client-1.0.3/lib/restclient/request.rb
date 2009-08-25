@@ -39,6 +39,8 @@ module RestClient
 			execute_inner
 		rescue Redirect => e
 			@url = e.url
+			@method = :get
+			@payload = nil
 			execute
 		end
 
@@ -171,7 +173,7 @@ module RestClient
 			if res.code =~ /\A2\d{2}\z/ 
 				# We don't decode raw requests
 				unless @raw_response
-					decode res['content-encoding'], res.body if res.body
+					self.class.decode res['content-encoding'], res.body if res.body
 				end
 			elsif %w(301 302 303).include? res.code
 				url = res.header['Location']
@@ -194,7 +196,7 @@ module RestClient
 			end
 		end
 
-		def decode(content_encoding, body)
+		def self.decode(content_encoding, body)
 			if content_encoding == 'gzip' and not body.empty?
 				Zlib::GzipReader.new(StringIO.new(body)).read
 			elsif content_encoding == 'deflate'

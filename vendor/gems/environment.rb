@@ -9,14 +9,14 @@ module Bundler
 
   $LOAD_PATH.unshift File.expand_path("#{dir}/gems/simple-rss-1.2/bin")
   $LOAD_PATH.unshift File.expand_path("#{dir}/gems/simple-rss-1.2/lib")
-  $LOAD_PATH.unshift File.expand_path("#{dir}/gems/rest-client-1.0.1/bin")
-  $LOAD_PATH.unshift File.expand_path("#{dir}/gems/rest-client-1.0.1/lib")
   $LOAD_PATH.unshift File.expand_path("#{dir}/gems/fakeweb-1.2.5/bin")
   $LOAD_PATH.unshift File.expand_path("#{dir}/gems/fakeweb-1.2.5/lib")
   $LOAD_PATH.unshift File.expand_path("#{dir}/gems/crack-0.1.1/bin")
   $LOAD_PATH.unshift File.expand_path("#{dir}/gems/crack-0.1.1/lib")
   $LOAD_PATH.unshift File.expand_path("#{dir}/gems/wycats-moneta-0.6.0/bin")
   $LOAD_PATH.unshift File.expand_path("#{dir}/gems/wycats-moneta-0.6.0/lib")
+  $LOAD_PATH.unshift File.expand_path("#{dir}/gems/adamwiggins-rest-client-1.0.3/bin")
+  $LOAD_PATH.unshift File.expand_path("#{dir}/gems/adamwiggins-rest-client-1.0.3/lib")
   $LOAD_PATH.unshift File.expand_path("#{dir}/gems/json-1.1.3/bin")
   $LOAD_PATH.unshift File.expand_path("#{dir}/gems/json-1.1.3/ext/json/ext")
   $LOAD_PATH.unshift File.expand_path("#{dir}/gems/json-1.1.3/ext")
@@ -37,8 +37,8 @@ module Bundler
   @bundled_specs["simple-rss"].loaded_from = "#{dir}/specifications/simple-rss-1.2.gemspec"
   @bundled_specs["json"] = eval(File.read("#{dir}/specifications/json-1.1.3.gemspec"))
   @bundled_specs["json"].loaded_from = "#{dir}/specifications/json-1.1.3.gemspec"
-  @bundled_specs["rest-client"] = eval(File.read("#{dir}/specifications/rest-client-1.0.1.gemspec"))
-  @bundled_specs["rest-client"].loaded_from = "#{dir}/specifications/rest-client-1.0.1.gemspec"
+  @bundled_specs["adamwiggins-rest-client"] = eval(File.read("#{dir}/specifications/adamwiggins-rest-client-1.0.3.gemspec"))
+  @bundled_specs["adamwiggins-rest-client"].loaded_from = "#{dir}/specifications/adamwiggins-rest-client-1.0.3.gemspec"
 
   def self.add_specs_to_loaded_specs
     Gem.loaded_specs.merge! @bundled_specs
