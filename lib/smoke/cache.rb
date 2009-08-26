@@ -1,6 +1,3 @@
-require 'moneta'
-require 'digest/md5'
-
 module Smoke
   class Cache
     class << self
