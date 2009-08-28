@@ -15,11 +15,15 @@ module Smoke
       :accept_encoding  => "gzip"
     }
     
-    attr_reader :uri, :content_type, :body, :type
+    attr_reader :uri, :content_type, :body
        
     def initialize(uri, options = {})
       @uri, @options = uri, options
       dispatch
+    end
+    
+    def type
+      @type ||= @options[:type] || (SUPPORTED_TYPES.detect{|t| @content_type =~ /#{t}/ } || "unknown").to_sym
     end
     
     private
@@ -28,23 +32,14 @@ module Smoke
       @body = get[:body]
       @content_type = get[:content_type]
       
-      present! unless @options[:raw_response]
+      parse! unless @options[:raw_response]
       
     rescue RestClient::Exception => e
       Failure.new(@uri, e)
     end
     
-    def present!
-      set_type
-      parse!
-    end
-    
-    def set_type
-      @type =  @options[:type] || (SUPPORTED_TYPES.detect{|t| @content_type =~ /#{t}/ } || "unknown").to_sym
-    end
-    
     def parse!
-      case @type
+      case type
         when :json, :javascript
           @body = ::Crack::JSON.parse(@body).symbolize_keys!
         when :xml
