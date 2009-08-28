@@ -32,6 +32,11 @@ module Smoke
       active_sources[source]
     end
     
+    # Access registered smoke source instances
+    def method_missing(sym)
+      self[sym]
+    end
+    
     # Activates new instances of sources
     # Source instances are stored within the 
     # @@active_sources class variable for later use

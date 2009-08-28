@@ -8,7 +8,17 @@ describe Smoke do
   
   describe "active sources" do
     it "should allow access to sources via an array accessor" do
-      Smoke[:a].should be_an_instance_of(Smoke::Origin)
+      Smoke[:a].should == @source_a
+    end
+    
+    describe "accessing via method call" do
+      it "should allow access to the sources via a method call" do
+        Smoke.a.should == @source_a 
+      end
+      
+      it "should throw an argument error when missing" do
+        Smoke.b.should raise_error(NoMethodError)
+      end
     end
     
     it "should be able to be renamed" do
