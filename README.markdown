@@ -70,10 +70,6 @@ Source definition:
 Execution: 
 
     Smoke[:delicious].username("bschwarz").output
-    
-### CI
-
-Integrity [is running for smoke](http://integrity.ffolio.net/smoke)
 
 
 ### TODO (working on, just mental notes)
