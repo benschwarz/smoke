@@ -60,6 +60,22 @@ describe "Join" do
         Smoke[:should_dispatch].should_receive(:dispatch)
         Smoke.join(:a, :should_dispatch).output
       end
+      
+      it "should call prepare blocks before dispatching" do
+        Smoke.data(:prepare_dispatch) do
+          prepare do
+            url "http://photos.tld"
+          end
+          
+          path :photos, :photo
+        end
+
+        Smoke.join(:prepare_dispatch) do
+          name :always_be_prepared
+        end
+        
+        lambda { Smoke.always_be_prepared.output }.should_not raise_error(ArgumentError)
+      end
     end
   end
 end

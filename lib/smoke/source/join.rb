@@ -32,6 +32,7 @@ module Smoke
       def dispatch
         # Recall dispatch
         sources.each do |source|
+          source.last.send(:prepare!)
           source.last.send(:dispatch) if source.last.respond_to?(:dispatch)
         end
         
