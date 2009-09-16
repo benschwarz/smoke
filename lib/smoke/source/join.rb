@@ -14,6 +14,16 @@ module Smoke
         super((names << "joined").join("_").to_sym, &block)
       end
       
+      # Rename sources immediately after they've been joined together
+      # Usage:
+      #   Smoke.join(:delicious, :twitter, :flickr) do
+      #     name :web_stream
+      #   end
+      def name(rename = nil)
+        return @name if rename.nil?
+        Smoke.rename(@name => rename)
+      end
+      
       protected
       def sources
         Smoke.active_sources.find_all{|k, v| @names.include?(k) }

@@ -11,9 +11,7 @@ describe "Join" do
     before do
       @source = Smoke.join(:a, :b)
     end
-    
-    # it_should_behave_like "all sources"
-    
+        
     it "should be named in a_b_joined" do
       Smoke[:a_b_joined].should be_an_instance_of(Smoke::Source::Join)
     end
@@ -34,6 +32,20 @@ describe "Join" do
       Smoke[:a_b_joined].should respond_to(:output)
     end
     
+    describe "renaming, within a block" do
+      it "should respond to name" do
+        Smoke[:a_b_joined].should respond_to(:name)
+      end
+      
+      it "should rename the source" do      
+        Smoke.join(:b, :c) do
+          name :bee_and_cee
+        end
+        
+        Smoke[:bee_and_cee].should_not be_nil
+      end
+    end
+        
     describe "dispatching" do
       before :all do
         FakeWeb.register_uri("http://photos.tld", :response => File.join(SPEC_DIR, 'supports', 'flickr-photo.json'))
