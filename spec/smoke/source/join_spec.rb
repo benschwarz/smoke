@@ -77,5 +77,18 @@ describe "Join" do
         lambda { Smoke.always_be_prepared.output }.should_not raise_error(ArgumentError)
       end
     end
+    
+    describe "variable injection" do
+      before :all do
+        TestSource.source :variable
+        TestSource.source :injection
+        Smoke.join(:variable, :injection)
+      end
+      
+      it "should inject variables to its source items" do
+        Smoke.variable_injection_joined.some_ivar("value")
+        Smoke.variable.some_ivar.should == "value"
+      end
+    end
   end
 end

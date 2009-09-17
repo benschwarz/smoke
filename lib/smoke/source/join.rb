@@ -24,6 +24,18 @@ module Smoke
         Smoke.rename(@name => rename)
       end
       
+      def method_missing(symbol, *args, &block)
+        ivar = "@#{symbol}"
+
+        unless args.empty?
+          sources.each do |source| 
+            source.last.instance_variable_set(ivar, args.pop)
+          end
+        end
+
+        return self
+      end
+      
       protected
       def sources
         Smoke.active_sources.find_all{|k, v| @names.include?(k) }
