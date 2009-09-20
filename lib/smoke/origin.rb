@@ -28,9 +28,11 @@ module Smoke
         return ::JSON.generate(@items)
       when :yaml
         return YAML.dump(@items)
+      when :xml
+        return Smoke::Output::XML.generate(@name, @items)
       else
         return @items
-      end      
+      end
     end
     
     def items=(response) # :nodoc:

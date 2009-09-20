@@ -6,6 +6,7 @@ require 'json'
 require 'crack'
 require 'moneta'
 require 'restclient'
+require 'nokogiri'
 
 module Smoke  
   class << self
@@ -103,7 +104,7 @@ module Smoke
   end
 end
 
-%w(core_ext/hash core_ext/string smoke/cache smoke/request smoke/origin).each {|r| require File.join(File.dirname(__FILE__), r)}
+%w(core_ext/hash core_ext/string smoke/cache smoke/request smoke/origin smoke/output/xml).each {|r| require File.join(File.dirname(__FILE__), r)}
 
 class Object # :nodoc: 
   include Smoke

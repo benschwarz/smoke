@@ -17,6 +17,7 @@ begin
     gem.add_dependency("crack", "0.1.1")
     gem.add_dependency("moneta", "0.6.0")
     gem.add_dependency("rest-client", "1.0.3")
+    gem.add_dependency("nokogiri", "1.3.2")
     # gem is a Gem::Specification... see http://www.rubygems.org/read/chapter/20 for additional settings
   end
 rescue LoadError

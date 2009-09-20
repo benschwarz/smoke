@@ -4,7 +4,7 @@ smoke is a Ruby based DSL that allows you to query web services such as YQL, RSS
 
 These "services" can then be re-represented, sorted and filtered. Data can be collected from multiple sources, sorted via a common property, chopped up and refried. 
 
-Then you can output as a plain ruby object (or JSON)
+Then you can output as a plain ruby object or one of your other favourites (JSON, YAML, XML)
 
 ## Examples of use
 
