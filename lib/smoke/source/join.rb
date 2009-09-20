@@ -29,7 +29,7 @@ module Smoke
 
         unless args.empty?
           sources.each do |source| 
-            source.last.instance_variable_set(ivar, args.pop)
+            source.last.instance_variable_set(ivar, args.last)
           end
         end
 

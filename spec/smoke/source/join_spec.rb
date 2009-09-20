@@ -18,6 +18,7 @@ describe "Join" do
     
     it "should contain items from sources a and b" do
       Smoke[:a_b_joined].output.size.should == (@source_a.output.size + @source_b.output.size)
+      Smoke[:a_b_joined].output.first.should == @source_a.output.first
     end
     
     it "should accept a block" do
@@ -88,6 +89,7 @@ describe "Join" do
       it "should inject variables to its source items" do
         Smoke.variable_injection_joined.some_ivar("value")
         Smoke.variable.some_ivar.should == "value"
+        Smoke.injection.some_ivar.should == "value"
       end
     end
   end
