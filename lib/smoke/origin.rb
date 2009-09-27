@@ -6,7 +6,7 @@ module Smoke
     def initialize(name, &block)
       raise StandardError, "Sources must have a name" unless name
       @name = name
-      @items, @transformation = [], []
+      @items, @prepare, @transformation = [], [], []
 
       activate!
       instance_eval(&block) if block_given?
@@ -131,7 +131,7 @@ module Smoke
     #   Smoke[:twitter].username(:benschwarz).output
     def prepare(&block)
       raise ArgumentError, "requires a block" unless block_given?
-      @prepare = block
+      @prepare << block
     end
     
     def method_missing(symbol, *args, &block)
@@ -227,7 +227,7 @@ module Smoke
     
     private
     def prepare!
-      @prepare.call unless @prepare.nil?
+      @prepare.each{|block| block.call} unless @prepare.empty?
     end
     
     def transform!
