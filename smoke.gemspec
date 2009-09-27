@@ -5,7 +5,7 @@
 
 Gem::Specification.new do |s|
   s.name = %q{smoke}
-  s.version = "0.5.12"
+  s.version = "0.5.13"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Ben Schwarz"]
@@ -24,7 +24,6 @@ Gem::Specification.new do |s|
      "lib/core_ext/string.rb",
      "lib/smoke.rb",
      "lib/smoke/cache.rb",
-     "lib/smoke/item.rb",
      "lib/smoke/origin.rb",
      "lib/smoke/output/xml.rb",
      "lib/smoke/request.rb",
@@ -103,26 +102,26 @@ Gem::Specification.new do |s|
 
     if Gem::Version.new(Gem::RubyGemsVersion) >= Gem::Version.new('1.2.0') then
       s.add_runtime_dependency(%q<simple-rss>, ["= 1.2"])
-      s.add_runtime_dependency(%q<json>, ["= 1.1.3"])
+      s.add_runtime_dependency(%q<json>, [">= 1.1.3"])
       s.add_runtime_dependency(%q<fakeweb>, ["= 1.2.5"])
-      s.add_runtime_dependency(%q<crack>, ["= 0.1.1"])
+      s.add_runtime_dependency(%q<crack>, [">= 0.1.1"])
       s.add_runtime_dependency(%q<moneta>, ["= 0.6.0"])
       s.add_runtime_dependency(%q<rest-client>, ["= 1.0.3"])
       s.add_runtime_dependency(%q<nokogiri>, ["= 1.3.2"])
     else
       s.add_dependency(%q<simple-rss>, ["= 1.2"])
-      s.add_dependency(%q<json>, ["= 1.1.3"])
+      s.add_dependency(%q<json>, [">= 1.1.3"])
       s.add_dependency(%q<fakeweb>, ["= 1.2.5"])
-      s.add_dependency(%q<crack>, ["= 0.1.1"])
+      s.add_dependency(%q<crack>, [">= 0.1.1"])
       s.add_dependency(%q<moneta>, ["= 0.6.0"])
       s.add_dependency(%q<rest-client>, ["= 1.0.3"])
       s.add_dependency(%q<nokogiri>, ["= 1.3.2"])
     end
   else
     s.add_dependency(%q<simple-rss>, ["= 1.2"])
-    s.add_dependency(%q<json>, ["= 1.1.3"])
+    s.add_dependency(%q<json>, [">= 1.1.3"])
     s.add_dependency(%q<fakeweb>, ["= 1.2.5"])
-    s.add_dependency(%q<crack>, ["= 0.1.1"])
+    s.add_dependency(%q<crack>, [">= 0.1.1"])
     s.add_dependency(%q<moneta>, ["= 0.6.0"])
     s.add_dependency(%q<rest-client>, ["= 1.0.3"])
     s.add_dependency(%q<nokogiri>, ["= 1.3.2"])
