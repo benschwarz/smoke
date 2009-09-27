@@ -6,8 +6,12 @@ describe Smoke::Cache do
       Smoke::Cache.should respond_to(:fetch)
     end
     
-    it "should responsd to enabled?" do
+    it "should respond to enabled?" do
       Smoke::Cache.should respond_to(:enabled?)
+    end
+    
+    it "should respond to clear!" do
+      Smoke::Cache.should respond_to(:clear!)
     end
   end
   
@@ -41,7 +45,7 @@ describe Smoke::Cache do
     end
   end
   
-  describe "caching my block" do
+  describe "caching my request" do
     before :all do
       Smoke.configure do |c| 
         c[:cache][:enabled] = true
@@ -70,6 +74,11 @@ describe Smoke::Cache do
     it "should be stored in the cache" do
       Smoke::Cache.fetch @url, {}
       @store['33af9f13054e64520430f7a437cdd377'].should_not be_nil
+    end
+    
+    it "should be cleared" do
+      Smoke::Cache.clear!
+      @store['33af9f13054e64520430f7a437cdd377'].should be_nil
     end
   end
 end

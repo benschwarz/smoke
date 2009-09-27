@@ -17,6 +17,11 @@ module Smoke
       def enabled?
         Smoke.config[:cache][:enabled]
       end
+    
+      # Clear all your request caches
+      def clear!
+        cache.clear
+      end
   
       protected
       def cache
