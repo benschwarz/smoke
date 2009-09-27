@@ -5,11 +5,11 @@
 
 Gem::Specification.new do |s|
   s.name = %q{smoke}
-  s.version = "0.5.11"
+  s.version = "0.5.12"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Ben Schwarz"]
-  s.date = %q{2009-09-18}
+  s.date = %q{2009-09-27}
   s.email = %q{ben.schwarz@gmail.com}
   s.extra_rdoc_files = [
     "LICENSE",
@@ -24,7 +24,9 @@ Gem::Specification.new do |s|
      "lib/core_ext/string.rb",
      "lib/smoke.rb",
      "lib/smoke/cache.rb",
+     "lib/smoke/item.rb",
      "lib/smoke/origin.rb",
+     "lib/smoke/output/xml.rb",
      "lib/smoke/request.rb",
      "lib/smoke/source/data.rb",
      "lib/smoke/source/feed.rb",
@@ -53,6 +55,7 @@ Gem::Specification.new do |s|
      "spec/core_ext/hash_spec.rb",
      "spec/smoke/cache_spec.rb",
      "spec/smoke/origin_spec.rb",
+     "spec/smoke/output/xml_spec.rb",
      "spec/smoke/request_spec.rb",
      "spec/smoke/shared_spec.rb",
      "spec/smoke/source/data_spec.rb",
@@ -80,6 +83,7 @@ Gem::Specification.new do |s|
     "spec/core_ext/hash_spec.rb",
      "spec/smoke/cache_spec.rb",
      "spec/smoke/origin_spec.rb",
+     "spec/smoke/output/xml_spec.rb",
      "spec/smoke/request_spec.rb",
      "spec/smoke/shared_spec.rb",
      "spec/smoke/source/data_spec.rb",
@@ -104,6 +108,7 @@ Gem::Specification.new do |s|
       s.add_runtime_dependency(%q<crack>, ["= 0.1.1"])
       s.add_runtime_dependency(%q<moneta>, ["= 0.6.0"])
       s.add_runtime_dependency(%q<rest-client>, ["= 1.0.3"])
+      s.add_runtime_dependency(%q<nokogiri>, ["= 1.3.2"])
     else
       s.add_dependency(%q<simple-rss>, ["= 1.2"])
       s.add_dependency(%q<json>, ["= 1.1.3"])
@@ -111,6 +116,7 @@ Gem::Specification.new do |s|
       s.add_dependency(%q<crack>, ["= 0.1.1"])
       s.add_dependency(%q<moneta>, ["= 0.6.0"])
       s.add_dependency(%q<rest-client>, ["= 1.0.3"])
+      s.add_dependency(%q<nokogiri>, ["= 1.3.2"])
     end
   else
     s.add_dependency(%q<simple-rss>, ["= 1.2"])
@@ -119,5 +125,6 @@ Gem::Specification.new do |s|
     s.add_dependency(%q<crack>, ["= 0.1.1"])
     s.add_dependency(%q<moneta>, ["= 0.6.0"])
     s.add_dependency(%q<rest-client>, ["= 1.0.3"])
+    s.add_dependency(%q<nokogiri>, ["= 1.3.2"])
   end
 end
