@@ -2,8 +2,8 @@ require File.join(File.dirname(__FILE__), "..", "..", "spec_helper.rb")
 
 describe Smoke::Output::XML do
   before do
-    @tree = "tree"
-    @items = [{:animal => "monkey"}]
+    @tree = :tree
+    @items = [{:animal => "monkey", :mammal => true}, {:animal => "elephant"}]
     @xml = Smoke::Output::XML.generate(@tree, @items)
     @document = Nokogiri::XML(@xml)
   end

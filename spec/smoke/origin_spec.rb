@@ -18,31 +18,36 @@ describe Smoke::Origin do
     
   describe "transformations" do
     it "should have renamed properties" do
-      Smoke[:test].output.first.should have_key(:title)
+      Smoke.test.output.first.should have_key(:title)
     end
     
     it "should sort by a given property" do
-      Smoke[:test].output.first[:title].should == "Platypus"
+      Smoke.test.output.first[:title].should == "Platypus"
     end
     
     it "should reverse the results" do
-      Smoke[:test].output.should == [{:title => "Platypus", :name => "Peter"}]
+      Smoke.test.output.should == [{:title => "Platypus", :name => "Peter"}]
     end
     
     it "should truncate results given a length" do
-      Smoke[:test].output.size.should == 1
+      Smoke.test.output.size.should == 1
     end
     
     it "should output" do
-      Smoke[:test].output.should be_an_instance_of(Array)
+      Smoke.test.output.should be_an_instance_of(Array)
     end
 
     it "should output json" do
-      Smoke[:test].output(:json).should =~ /^\[\{/
+      Smoke.test.output(:json).should =~ /^\[\{/
     end
 
     it "should output yml" do
-      Smoke[:test].output(:yaml).should =~ /^--- \n- :/
+      Smoke.test.output(:yaml).should =~ /^--- \n- :/
+    end
+    
+    it "should output xml" do
+      Smoke.test.output(:xml).should include "<?xml version=\"1.0\"?>"
+      Smoke.test.output(:xml).should == "<?xml version=\"1.0\"?>\n<items>\n  <item>\n    <title>Platypus</title>\n    <name>Peter</name>\n  </item>\n</items>\n"
     end
     
     describe "filtering" do
@@ -152,25 +157,25 @@ describe Smoke::Origin do
 
   describe "transformations" do
     it "should respond to emit" do
-      Smoke[:test].should respond_to(:emit)
+      Smoke.test.should respond_to(:emit)
     end
     
     it "emit should require a block" do
-      lambda { Smoke[:test].emit }.should raise_error
-      lambda { Smoke[:test].emit {} }.should_not raise_error
+      lambda { Smoke.test.emit }.should raise_error
+      lambda { Smoke.test.emit {} }.should_not raise_error
     end
     
     it "should respond to transform" do
-      Smoke[:test].should respond_to(:transform)
+      Smoke.test.should respond_to(:transform)
     end
     
     it "tranform should require a block" do
-      lambda { Smoke[:test].transform }.should raise_error
-      lambda { Smoke[:test].transform {} }.should_not raise_error
+      lambda { Smoke.test.transform }.should raise_error
+      lambda { Smoke.test.transform {} }.should_not raise_error
     end
     
     it "should have at least one transformation" do
-      Smoke[:test].transformation.size.should_not be_nil
+      Smoke.test.transformation.size.should_not be_nil
     end
   end
   
