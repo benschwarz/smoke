@@ -1,6 +1,6 @@
 module Smoke
   class Origin
-    attr_reader :items
+    attr_reader :items, :requirements
     attr_accessor :name
     
     def initialize(name, &block)
@@ -129,7 +129,9 @@ module Smoke
     #   
     #   # End use
     #   Smoke[:twitter].username(:benschwarz).output
-    def prepare(&block)
+    def prepare(args = {}, &block)
+      @requirements = args.delete(:require) || []
+      
       raise ArgumentError, "requires a block" unless block_given?
       @prepare << block
     end

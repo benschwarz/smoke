@@ -226,4 +226,26 @@ describe Smoke::Origin do
       Smoke[:reversed].output.should == Smoke[:sorting].output.reverse
     end
   end
+  
+  describe "requirements" do
+    before :all do      
+      Smoke.data :requirements do
+        prepare :require => [:username, :feed] do 
+          url "http://domain.tld/#{feed}/#{username}/feed.json", :type => :json
+        end
+        
+        path :photos, :photo
+      end
+    end
+    
+    it "should respond to requirements" do
+      Smoke.requirements.should respond_to(:requirements)
+    end
+    
+    it "should list its requirements" do
+      Smoke.requirements.requirements.should include(:username)
+      Smoke.requirements.requirements.should include(:feed)
+      Smoke.requirements.requirements.length.should == 2
+    end
+  end
 end
