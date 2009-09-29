@@ -47,7 +47,6 @@ describe Smoke::Origin do
     
     it "should output xml" do
       Smoke.test.output(:xml).should include "<?xml version=\"1.0\"?>"
-      Smoke.test.output(:xml).should == "<?xml version=\"1.0\"?>\n<items>\n  <item>\n    <title>Platypus</title>\n    <name>Peter</name>\n  </item>\n</items>\n"
     end
     
     describe "filtering" do
