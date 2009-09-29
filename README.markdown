@@ -18,6 +18,10 @@ Then you can output as a plain ruby object or one of your other favourites (JSON
 * Early [screencast](http://vimeo.com/4272804) to get developer / peer feedback
 
 
+## Install
+
+    gem install smoke -s http://gemcutter.org
+
 ## The concept
 
 The concept comes from using [Yahoo Pipes](http://pipes.yahoo.com) to make web based mash ups: Get a list of tv shows for my torrent client, compile a recipe book or make tools to give me a list of albums that artists in my music library are about to be released.
