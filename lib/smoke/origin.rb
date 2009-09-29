@@ -134,6 +134,16 @@ module Smoke
       @prepare << block
     end
     
+    # Used to store or retreive variables that are used to query services. 
+    #
+    # Usage: 
+    #   Smoke.twitter.username("benschwarz").output
+    # 
+    # As you can see, the method is chainable, many properties can be
+    # set at once, although it may be cleaner to use the method argument method:
+    # 
+    # Demo:
+    #   Smoke.twitter(:username => "benschwarz").output
     def method_missing(symbol, *args, &block)
       ivar = "@#{symbol}"
       
