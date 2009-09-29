@@ -6,8 +6,10 @@ module Smoke
           xml.items {
             items.each do |item|
               xml.item {
-                item.each_pair do |key, value|
-                  xml.send(key, value)
+                %w(id type class).each{|m| item["#{m}_".to_sym] = item.delete(m.to_sym) }
+                
+                item.each do |k, v|
+                  xml.send(k, v)
                 end
               }
             end

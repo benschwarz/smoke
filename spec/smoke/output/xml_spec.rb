@@ -3,7 +3,10 @@ require File.join(File.dirname(__FILE__), "..", "..", "spec_helper.rb")
 describe Smoke::Output::XML do
   before do
     @tree = :tree
-    @items = [{:animal => "monkey", :mammal => true}, {:animal => "elephant"}]
+    @items = [
+      {:id => 1, :class => "first", :type => "mammal", :animal => "monkey"}, 
+      {:id => 2, :class => "second", :type => "mammal", :animal => "elephant"}
+    ]
     @xml = Smoke::Output::XML.generate(@tree, @items)
     @document = Nokogiri::XML(@xml)
   end
@@ -20,5 +23,21 @@ describe Smoke::Output::XML do
     @document.css("items").each do |item|
       item.content.should =~ /monkey/
     end
+  end
+end
+
+describe "Smoke XML output with real data" do
+  before :all do
+    @url = "http://domain.tld/feed.json"
+    FakeWeb.register_uri(@url, :response => File.join(SPEC_DIR, 'supports', 'flickr-photo.json'))
+    
+    Smoke.data :real_xml_output do
+      url "http://domain.tld/feed.json", :type => :json
+      path :photos, :photo
+    end
+  end
+  
+  it "should not error" do
+    Smoke.real_xml_output.output(:xml).should include "<?xml"
   end
 end
