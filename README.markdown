@@ -73,7 +73,7 @@ Source definition:
 
 Execution: 
 
-    Smoke[:delicious].username("bschwarz").output
+    Smoke.delicious.username("bschwarz").output
 
 
 ### TODO (working on, just mental notes)
