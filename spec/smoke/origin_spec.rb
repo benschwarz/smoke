@@ -124,32 +124,37 @@ describe Smoke::Origin do
     
     describe "before setting variables" do
       it "should fail" do
-        lambda { Smoke[:feed_preperation_call_order].output }.should raise_error(NameError)
+        lambda { Smoke.feed_preperation_call_order.output }.should raise_error(NameError)
       end
     end
     
     describe "setting abstract properties" do
       it "should not respond to a property that hasn't been set" do
-        lambda { Smoke[:feed_preperation_call_order].abstract }.should raise_error(NoMethodError)
+        lambda { Smoke.feed_preperation_call_order.abstract }.should raise_error(NoMethodError)
       end
       
       it "should allow setting a property" do
-        lambda { Smoke[:feed_preperation_call_order].abstract(:value) }.should_not raise_error(NoMethodError)
-        Smoke[:feed_preperation_call_order].abstract.should == :value
+        lambda { Smoke.feed_preperation_call_order.abstract(:value) }.should_not raise_error(NoMethodError)
+        Smoke.feed_preperation_call_order.abstract.should == :value
+      end
+      
+      it "should set properties using method arguments" do
+        lambda { Smoke.feed_preperation_call_order(:method_arg => :value) }.should_not raise_error(NoMethodError)
+        Smoke.feed_preperation_call_order.method_arg.should == :value
       end
       
       it "should chain the source when setting a property" do
-        Smoke[:feed_preperation_call_order].abstract(:value).should be_an_instance_of(Smoke::Source::Data)
+        Smoke.feed_preperation_call_order.abstract(:value).should be_an_instance_of(Smoke::Source::Data)
       end
     end
     
     describe "after setting variables" do
       it "should output successfully" do
-        lambda { Smoke[:feed_preperation_call_order].username("benschwarz").output }.should_not raise_error
+        lambda { Smoke.feed_preperation_call_order.username("benschwarz").output }.should_not raise_error
       end
       
       it "should have used the correct url" do
-        Smoke[:feed_preperation_call_order].request.uri.should == @url
+        Smoke.feed_preperation_call_order.request.uri.should == @url
       end
     end
   end
@@ -188,12 +193,12 @@ describe Smoke::Origin do
     end
     
     it "should respond to insert" do
-      Smoke[:insertion].should respond_to(:insert)
+      Smoke.insertion.should respond_to(:insert)
     end
     
     it "should insert values into each key" do
-      Smoke[:insertion].output.first.should have_key :source
-      Smoke[:insertion].output.first[:source].should == "twitter"
+      Smoke.insertion.output.first.should have_key :source
+      Smoke.insertion.output.first[:source].should == "twitter"
     end
   end
   

@@ -34,7 +34,12 @@ module Smoke
     end
     
     # Access registered smoke source instances
-    def method_missing(sym)
+    # 
+    # Arguments can be sent as key/value pairs to inject abstract properties:
+    # Usage:
+    #   Smoke.twitter(:username => "benschwarz")
+    def method_missing(sym, args = {})
+      args.each_pair {|k, v| self[sym].send(k, v) }
       self[sym]
     end
     
