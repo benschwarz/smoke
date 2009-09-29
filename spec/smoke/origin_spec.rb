@@ -233,8 +233,12 @@ describe Smoke::Origin do
         prepare :require => [:username, :feed] do 
           url "http://domain.tld/#{feed}/#{username}/feed.json", :type => :json
         end
-        
-        path :photos, :photo
+      end
+      
+      Smoke.data :single_requirement do
+        prepare :require => :username do 
+          url "http://domain.tld/#{feed}/#{username}/feed.json", :type => :json
+        end
       end
     end
     
@@ -246,6 +250,12 @@ describe Smoke::Origin do
       Smoke.requirements.requirements.should include(:username)
       Smoke.requirements.requirements.should include(:feed)
       Smoke.requirements.requirements.length.should == 2
+      Smoke.requirements.requirements.should be_an_instance_of(Array)
     end
+    
+    it "should have a single requirement, within an array" do
+      Smoke.single_requirement.requirements.should be_an_instance_of(Array)
+    end
+    
   end
 end
