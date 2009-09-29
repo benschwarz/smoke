@@ -5,7 +5,7 @@
 
 Gem::Specification.new do |s|
   s.name = %q{smoke}
-  s.version = "0.5.15"
+  s.version = "0.5.16"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Ben Schwarz"]
@@ -73,11 +73,10 @@ Gem::Specification.new do |s|
      "spec/supports/slashdot.xml",
      "spec/supports/test_source.rb"
   ]
-  s.has_rdoc = true
   s.homepage = %q{http://github.com/benschwarz/smoke}
   s.rdoc_options = ["--charset=UTF-8"]
   s.require_paths = ["lib"]
-  s.rubygems_version = %q{1.3.2}
+  s.rubygems_version = %q{1.3.5}
   s.summary = %q{smoke is a Ruby based DSL that allows you to query web services such as YQL, RSS / Atom and JSON or XML in an elegant manner.}
   s.test_files = [
     "spec/core_ext/hash_spec.rb",
