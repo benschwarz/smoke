@@ -2,7 +2,7 @@ require File.join(File.dirname(__FILE__), "..", "..", "spec_helper.rb")
 
 describe "YQL" do
   before :all do
-    FakeWeb.register_uri("http://query.yahooapis.com:80/v1/public/yql?q=SELECT%20*%20FROM%20search.web%20WHERE%20query%20=%20'ruby'&format=json", :response => File.join(SPEC_DIR, 'supports', 'search-web.json.yql'))
+    FakeWeb.register_uri(:get, "http://query.yahooapis.com:80/v1/public/yql?q=SELECT%20*%20FROM%20search.web%20WHERE%20query%20=%20'ruby'&format=json", :response => File.join(SPEC_DIR, 'supports', 'search-web.json.yql'))
     
     @source = Smoke.yql(:search) do
       select  :all
@@ -28,7 +28,7 @@ describe "YQL" do
   
   describe "select" do
     before do
-      FakeWeb.register_uri("http://query.yahooapis.com:80/v1/public/yql?q=SELECT%20url%20FROM%20search.images%20WHERE%20query%20=%20'amc%20pacer'&format=json", :response => File.join(SPEC_DIR, 'supports', 'amc_pacer.json.yql'))
+      FakeWeb.register_uri(:get, "http://query.yahooapis.com:80/v1/public/yql?q=SELECT%20url%20FROM%20search.images%20WHERE%20query%20=%20'amc%20pacer'&format=json", :response => File.join(SPEC_DIR, 'supports', 'amc_pacer.json.yql'))
       
       Smoke.yql(:pacer) do
         select :url
@@ -81,7 +81,7 @@ describe "YQL" do
   
   describe "yql definitions" do
     before do
-      FakeWeb.register_uri("http://query.yahooapis.com:80/v1/public/yql?q=SELECT%20*%20FROM%20github.repo%20WHERE%20id%20=%20'benschwarz'%20AND%20repo%20=%20'smoke'&format=json&env=http://datatables.org/alltables.env", :response => File.join(SPEC_DIR, 'supports', 'datatables.yql'))
+      FakeWeb.register_uri(:get, "http://query.yahooapis.com:80/v1/public/yql?q=SELECT%20*%20FROM%20github.repo%20WHERE%20id%20=%20'benschwarz'%20AND%20repo%20=%20'smoke'&format=json&env=http://datatables.org/alltables.env", :response => File.join(SPEC_DIR, 'supports', 'datatables.yql'))
       
       Smoke.yql(:smoke) do
         use "http://datatables.org/alltables.env"

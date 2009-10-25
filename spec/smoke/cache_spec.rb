@@ -53,7 +53,7 @@ describe Smoke::Cache do
       end
       
       @url = "http://memory.tld/store"
-      FakeWeb.register_uri(@url, :file => File.join(SPEC_DIR, 'supports', 'slashdot.xml'))
+      FakeWeb.register_uri(:get, @url, :body => File.join(SPEC_DIR, 'supports', 'slashdot.xml'))
       
       require 'moneta/memory'
       @store = Moneta::Memory.new

@@ -29,7 +29,7 @@ end
 describe "Smoke XML output with real data" do
   before :all do
     @url = "http://domain.tld/feed.json"
-    FakeWeb.register_uri(@url, :response => File.join(SPEC_DIR, 'supports', 'flickr-photo.json'))
+    FakeWeb.register_uri(:get, @url, :response => File.join(SPEC_DIR, 'supports', 'flickr-photo.json'))
     
     Smoke.data :real_xml_output do
       url "http://domain.tld/feed.json", :type => :json

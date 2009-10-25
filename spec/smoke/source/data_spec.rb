@@ -2,7 +2,7 @@ require File.join(File.dirname(__FILE__), "..", "..", "spec_helper.rb")
 
 describe "'Data' source" do
   before :all do
-    FakeWeb.register_uri("http://photos.tld/index.json", :response => File.join(SPEC_DIR, 'supports', 'flickr-photo.json'))
+    FakeWeb.register_uri(:get, "http://photos.tld/index.json", :response => File.join(SPEC_DIR, 'supports', 'flickr-photo.json'))
     
     @source = Smoke.data(:photos) do
       url "http://photos.tld/index.json", :type => :json
@@ -43,7 +43,7 @@ describe "'Data' source" do
   
   describe "making a request to a web service without a correctly set content-type in return" do
     before :each do
-      FakeWeb.register_uri("http://photos.tld/no-format", :response => File.join(SPEC_DIR, 'supports', 'flickr-photo.json'), :content_type => "text/plain")
+      FakeWeb.register_uri(:get, "http://photos.tld/no-format", :response => File.join(SPEC_DIR, 'supports', 'flickr-photo.json'), :content_type => "text/plain")
     end
     
     it "should fail" do

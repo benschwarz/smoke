@@ -4,7 +4,7 @@ describe Smoke::Request do
   before do
     @url = "http://fake.tld/canned/"
     @web_search = File.join(SPEC_DIR, 'supports', 'flickr-photo.json')
-    FakeWeb.register_uri(@url, :response => @web_search)
+    FakeWeb.register_uri(:get, @url, :response => @web_search)
     @request = Smoke::Request.new(@url)
   end
   
@@ -26,7 +26,7 @@ describe Smoke::Request do
       # Gzip response should come out exactly the same as the plain text response
       @gzip_response = File.join(SPEC_DIR, 'supports', 'gzip_response.txt')
       @url = "http://fake.tld/gzip"
-      FakeWeb.register_uri(@url, :response => @gzip_response, :content_encoding => "gzip")
+      FakeWeb.register_uri(:get, @url, :response => @gzip_response, :content_encoding => "gzip")
     end
     
     it "should transparently handle a gzipped response" do

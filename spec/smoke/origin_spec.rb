@@ -111,7 +111,7 @@ describe Smoke::Origin do
   describe "call order" do
     before :all do
       @url = "http://domain.tld/benschwarz/feed"
-      FakeWeb.register_uri(@url, :response => File.join(SPEC_DIR, 'supports', 'flickr-photo.json'))
+      FakeWeb.register_uri(:get, @url, :response => File.join(SPEC_DIR, 'supports', 'flickr-photo.json'))
       
       Smoke.data :feed_preperation_call_order do
         prepare do 

@@ -49,7 +49,7 @@ describe "Join" do
         
     describe "dispatching" do
       before :all do
-        FakeWeb.register_uri("http://photos.tld", :response => File.join(SPEC_DIR, 'supports', 'flickr-photo.json'))
+        FakeWeb.register_uri(:get, "http://photos.tld", :response => File.join(SPEC_DIR, 'supports', 'flickr-photo.json'))
 
         Smoke.data(:should_dispatch) do
           url "http://photos.tld"
