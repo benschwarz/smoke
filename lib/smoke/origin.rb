@@ -1,11 +1,12 @@
 module Smoke
   class Origin
-    attr_reader :items, :requirements
+    attr_reader :items, :requirements, :exposed
     attr_accessor :name
     
     def initialize(name, &block)
       raise StandardError, "Sources must have a name" unless name
       @name = name
+      @exposed = true
       @items, @prepare, @requirements, @transformation = [], [], [], []
 
       activate!
@@ -236,6 +237,14 @@ module Smoke
     def truncate(length)
       @items = @items[0..(length - 1)]
     end
+    
+    # Expose and conceal, this is stictly a feature of rack/smoke.
+    # concealed sources will not be "available"
+    # Simply marking off sources, more than anything else
+    def expose; @exposed = true; end
+    def conceal; @exposed = false; end
+    def exposed?; @exposed; end
+    def concealed?; !@exposed; end
     
     private
     def prepare!

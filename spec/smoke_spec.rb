@@ -11,6 +11,15 @@ describe Smoke do
       Smoke[:a].should == @source_a
     end
     
+    it "should be a hash" do
+      Smoke.active_sources.should be_an_instance_of(Hash)
+    end
+    
+    it "should have its name as the hash key" do
+      key = Smoke.active_sources.keys.first
+      Smoke.active_sources[key].name.should == key
+    end
+    
     describe "accessing via method call" do
       it "should allow access to the sources via a method call" do
         Smoke.a.should == @source_a 
@@ -55,6 +64,40 @@ describe Smoke do
         key = :user_agent
         Smoke.configure {|c| c[key] = "Smoke, dude" }
         Smoke.config[key].should == "Smoke, dude"
+      end
+    end
+  end
+  
+  describe "exposed and concealed" do
+    before :all do
+      TestSource.source :exposed_by_default
+      
+      TestSource.source :exposed do
+        expose
+      end
+      
+      TestSource.source :concealed do
+        conceal
+      end
+    end
+    
+    describe "exposed_sources" do
+      it "should be a hash" do
+        Smoke.exposed_sources.should be_an_instance_of(Hash)
+      end
+      
+      it "should be exposed sources only" do
+        Smoke.exposed_sources.values.should_not include(Smoke.concealed)
+      end
+    end
+    
+    describe "concealed_sources" do
+      it "should be a hash" do
+        Smoke.concealed_sources.should be_an_instance_of(Hash)
+      end
+      
+      it "should be concealed sources only" do
+        Smoke.concealed_sources.values.should_not include(Smoke.exposed)
       end
     end
   end

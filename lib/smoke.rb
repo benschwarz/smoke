@@ -54,8 +54,16 @@ module Smoke
     end
     
     # Returns all activated smoke sources
-    def active_sources
-      @@active_sources
+    def active_sources; @@active_sources; end
+    
+    # Returns all exposed sources
+    def exposed_sources
+      active_sources.reject{|k,v| !v.exposed? }
+    end
+
+    # Returns all concealed sources
+    def concealed_sources
+      active_sources.reject{|k,v| !v.concealed? }
     end
     
     # Rename a source 
