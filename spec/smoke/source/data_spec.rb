@@ -14,7 +14,7 @@ describe "'Data' source" do
   # it_should_behave_like "all sources"
   
   it "should have been activated" do
-    Smoke[:photos].should(be_an_instance_of(Smoke::Source::Data))
+    Smoke[:photos].should(be_an_instance_of(Smoke::Data))
   end
   
   it "should be a list of things" do

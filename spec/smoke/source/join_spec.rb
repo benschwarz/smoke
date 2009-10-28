@@ -13,7 +13,7 @@ describe "Join" do
     end
         
     it "should be named in a_b_joined" do
-      Smoke[:a_b_joined].should be_an_instance_of(Smoke::Source::Join)
+      Smoke[:a_b_joined].should be_an_instance_of(Smoke::Join)
     end
     
     it "should contain items from sources a and b" do

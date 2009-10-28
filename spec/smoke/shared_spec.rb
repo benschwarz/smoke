@@ -165,7 +165,7 @@ shared_examples_for "all sources" do
       end
       
       it "should chain the source when setting a property" do
-        @source.abstract(:value).should be_an_instance_of(Smoke::Source::Data)
+        @source.abstract(:value).should be_an_instance_of(Smoke::Data)
       end
     end
     

@@ -247,6 +247,8 @@ module Smoke
     end
     
     def symbolize_keys!
+      # If its an array, we flatten it and symbolise the keys.
+      # Otherwise, we leave it as is.
       @items = items.flatten.map{|i| i.symbolize_keys! } if items.respond_to? :flatten
     end
     
@@ -261,5 +263,3 @@ module Smoke
     end
   end
 end
-
-Dir["#{File.dirname(__FILE__)}/source/*.rb"].each &method(:require)

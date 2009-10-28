@@ -28,7 +28,7 @@ module Smoke
     #     Smoke.yql(:ruby) do ....
     # Then access it:
     #     Smoke[:ruby]
-    #     => #<Smoke::Source::YQL::0x18428d4...
+    #     => #<Smoke::YQL::0x18428d4...
     def [](source)
       active_sources[source]
     end
@@ -95,9 +95,9 @@ module Smoke
       @@config 
     end
     
-    def yql(name, &block); Smoke::Source::YQL.new(name, &block); end
-    def data(name, &block); Smoke::Source::Data.new(name, &block); end
-    def feed(name, &block); Smoke::Source::Feed.new(name, &block); end
+    def yql(name, &block);  Smoke::YQL.new(name, &block);  end
+    def data(name, &block); Smoke::Data.new(name, &block); end
+    def feed(name, &block); Smoke::Feed.new(name, &block); end
     
     # Join multiple sources together into a single feed
     # Usage:
@@ -105,11 +105,16 @@ module Smoke
     #     name :stream
     #     path :photos, :photo
     #   end
-    def join(*names, &block); Smoke::Source::Join.new(names, &block); end
+    def join(*names, &block); Smoke::Join.new(names, &block); end
   end
 end
 
 %w(core_ext/hash core_ext/string smoke/cache smoke/request smoke/origin smoke/output/xml).each {|r| require File.join(File.dirname(__FILE__), r)}
+
+# Autoload the source classes
+%w(YQL Data Feed Join).each do |r|
+  Smoke.autoload(r.to_sym, File.join(File.dirname(__FILE__), "smoke", "source", r.downcase))
+end
 
 class Object # :nodoc: 
   include Smoke
