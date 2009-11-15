@@ -14,6 +14,7 @@ Then you can output as a plain ruby object or one of your other favourites (JSON
 
 ## Media
 
+* [Presentation from Webjam11 in Perth](http://www.slideshare.net/benschwarz/how-to-reinterpret-the-web-in-180-seconds)
 * [Presentation from Melbourne #roro](http://www.slideshare.net/benschwarz/smoke-1371124)
 * Early [screencast](http://vimeo.com/4272804) to get developer / peer feedback
 
@@ -77,6 +78,12 @@ Execution:
 
 
 ### TODO (working on, just mental notes)
+* "Plugin" / "registration" architecture for input parsers
+* Output as a web feed (atom, rss)
+  * How to push through values like "author"?
+  * Passing modified time headers through to the atom formatter
+
+
 #### Later / maybe
 * YQL w/oAuth
 * YQL Subqueries?
