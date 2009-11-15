@@ -144,7 +144,7 @@ describe Smoke::Origin do
       end
       
       it "should chain the source when setting a property" do
-        Smoke.feed_preperation_call_order.abstract(:value).should be_an_instance_of(Smoke::Source::Data)
+        Smoke.feed_preperation_call_order.abstract(:value).should be_an_instance_of(Smoke::Data)
       end
     end
     

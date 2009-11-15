@@ -17,7 +17,7 @@ describe "Feed" do
   # it_should_behave_like "all sources"
   
   it "should have been activated" do
-    Smoke[:slashdot].should(be_an_instance_of(Smoke::Source::Feed))
+    Smoke[:slashdot].should(be_an_instance_of(Smoke::Feed))
   end
   
   it "should be a list of things" do

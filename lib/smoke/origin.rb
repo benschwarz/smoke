@@ -1,11 +1,12 @@
 module Smoke
   class Origin
-    attr_reader :items, :requirements
+    attr_reader :items, :requirements, :exposed
     attr_accessor :name
     
     def initialize(name, &block)
       raise StandardError, "Sources must have a name" unless name
       @name = name
+      @exposed = true
       @items, @prepare, @requirements, @transformation = [], [], [], []
 
       activate!
@@ -237,6 +238,14 @@ module Smoke
       @items = @items[0..(length - 1)]
     end
     
+    # Expose and conceal, this is stictly a feature of rack/smoke.
+    # concealed sources will not be "available"
+    # Simply marking off sources, more than anything else
+    def expose; @exposed = true; end
+    def conceal; @exposed = false; end
+    def exposed?; @exposed; end
+    def concealed?; !@exposed; end
+    
     private
     def prepare!
       @prepare.each{|block| block.call} unless @prepare.empty?
@@ -247,6 +256,8 @@ module Smoke
     end
     
     def symbolize_keys!
+      # If its an array, we flatten it and symbolise the keys.
+      # Otherwise, we leave it as is.
       @items = items.flatten.map{|i| i.symbolize_keys! } if items.respond_to? :flatten
     end
     
@@ -261,5 +272,3 @@ module Smoke
     end
   end
 end
-
-Dir["#{File.dirname(__FILE__)}/source/*.rb"].each &method(:require)
