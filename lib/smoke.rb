@@ -1,5 +1,6 @@
 require 'logger'
 require 'digest/md5'
+require 'yaml'
 
 require 'simple-rss'
 require 'json'
@@ -21,6 +22,15 @@ module Smoke
         :expiry   => 1800
       }
     }
+    
+    def root
+      File.join(File.dirname(__FILE__))
+    end
+    
+    def version
+      @@version ||= YAML::load(File.read("#{root}/../VERSION.YML"))
+      "#{@@version[:major]}.#{@@version[:minor]}.#{@@version[:patch]}"
+    end
     
     # Access registered smoke source instances
     #

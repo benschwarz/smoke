@@ -6,6 +6,16 @@ describe Smoke do
     @source_b = TestSource.source :b
   end
   
+  it "should have a root" do
+    Smoke.should respond_to(:root)
+    Smoke.root.should be_an_instance_of(String)
+  end
+  
+  it "should have a version string" do
+    Smoke.should respond_to :version
+    Smoke.version.should be_an_instance_of(String)
+  end
+  
   describe "active sources" do
     it "should allow access to sources via an array accessor" do
       Smoke[:a].should == @source_a
