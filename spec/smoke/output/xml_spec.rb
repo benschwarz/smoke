@@ -20,9 +20,7 @@ describe Smoke::Output::XML do
   end
   
   it "should contain items" do
-    @document.css("items").each do |item|
-      item.content.should =~ /monkey/
-    end
+    @document.css("item").size.should == 2
   end
 end
 
