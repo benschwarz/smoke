@@ -117,7 +117,8 @@ module Smoke
   end
 end
 
-%w(core_ext/hash core_ext/string smoke/cache smoke/request smoke/origin smoke/output/xml).each {|r| require File.join(File.dirname(__FILE__), r)}
+# Selectively load everything
+Dir["#{File.dirname(__FILE__)}/{core_ext,smoke,smoke/{input,output}}/*.rb"].each {|r| require r}
 
 # Autoload the source classes
 %w(YQL Data Feed Join).each do |r|
