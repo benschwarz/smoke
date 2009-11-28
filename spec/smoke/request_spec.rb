@@ -35,6 +35,13 @@ describe Smoke::Request do
     end
   end
   
+  it "should handle direct array responses" do
+    url = "http://fake.tld/canned/twitter.json"
+    FakeWeb.register_uri(:get, url, :response => File.join(SPEC_DIR, 'supports', 'twitter_timeline.json'))
+    
+    lambda { Smoke::Request.new(url) }.should_not raise_error(NoMethodError)
+  end
+  
   describe "format returns" do
     it "should have a content type of :manual" do
       request = Smoke::Request.new(@url, :type => :manual)
