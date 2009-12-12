@@ -8,6 +8,7 @@ require 'crack'
 require 'moneta'
 require 'restclient'
 require 'nokogiri'
+require 'registry'
 
 module Smoke  
   class << self
@@ -128,7 +129,7 @@ module Smoke
 end
 
 # Selectively load everything
-Dir["#{File.dirname(__FILE__)}/{core_ext,smoke,smoke/{input,output}}/*.rb"].each {|r| require r}
+Dir["#{File.dirname(__FILE__)}/{core_ext,smoke,smoke/output,smoke/output/generators}/*.rb"].each {|r| require r}
 
 # Autoload the source classes
 %w(YQL Data Feed Join).each do |r|

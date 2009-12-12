@@ -1,6 +1,8 @@
 module Smoke
   module Output
-    class XML
+    class XML < Generator
+      identifier :xml
+      
       def self.generate(tree_name, items)
         builder = Nokogiri::XML::Builder.new do |xml|
           xml.items {

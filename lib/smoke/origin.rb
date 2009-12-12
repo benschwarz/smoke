@@ -13,7 +13,7 @@ module Smoke
       instance_eval(&block) if block_given?
     end
     
-    # Output your items in a range of formats (:ruby, :json and :yaml currently)
+    # Output your items in a range of formats (:ruby, :json, :xml and :yaml currently)
     # Ruby is the default format and will automagically yielded from your source
     #
     # Usage
@@ -24,16 +24,7 @@ module Smoke
       prepare!
       dispatch if respond_to? :dispatch
       
-      case type
-      when :json
-        return ::JSON.generate(@items)
-      when :yaml
-        return YAML.dump(@items)
-      when :xml
-        return Smoke::Output::XML.generate(@name, @items)
-      else
-        return @items
-      end
+      Output::Generator.for(type).generate(name, items)
     end
     
     def items=(response) # :nodoc:
