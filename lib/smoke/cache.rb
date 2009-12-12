@@ -39,8 +39,8 @@ module Smoke
       
       def query(uri, options)
         request = RestClient.get(uri, options)
-        write(uri, request, request.headers[:content_type]) if enabled?
-        {:body => request, :content_type => request.headers[:content_type]}
+        write(uri, request, request.headers) if enabled?
+        {:body => request, :headers => request.headers}
       end
       
       def read(uri)
@@ -48,8 +48,8 @@ module Smoke
         return cache[key]
       end
       
-      def write(uri, body, content_type)
-        store = {:body => body, :content_type => content_type}
+      def write(uri, body, headers)
+        store = {:body => body, :headers => headers}
         self.cache.store(generate_key(uri), store, :expire_in => Smoke.config[:cache][:expiry])
       end
   

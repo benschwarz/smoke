@@ -30,7 +30,7 @@ module Smoke
     def dispatch
       get = Smoke::Cache.fetch @uri, @@request_options
       @body = get[:body]
-      @content_type = get[:content_type]
+      @content_type = get[:headers][:content_type]
       
       parse! unless @options[:raw_response]
       
