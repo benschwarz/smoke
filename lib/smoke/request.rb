@@ -39,14 +39,9 @@ module Smoke
     end
     
     def parse!
-      case type
-        when :json, :javascript
-          @body = ::Crack::JSON.parse(@body).symbolize_keys!
-        when :xml
-          @body = ::Crack::XML.parse(@body).symbolize_keys!
-        when :unknown
-          Smoke.log.warn "Smoke Request: Format unknown for #{@uri} (#{@content_type})"
-      end      
+      @body = Transformer.for(type).parse(@body).symbolize_keys!
+    rescue Registry::NotRegistered
+      Smoke.log.warn "Smoke Request: Format unknown for #{@uri} (#{@content_type})"
     end
   end
 end

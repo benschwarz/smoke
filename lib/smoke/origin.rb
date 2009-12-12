@@ -24,7 +24,7 @@ module Smoke
       prepare!
       dispatch if respond_to? :dispatch
       
-      Output::Generator.for(type).generate(name, items)
+      Transformer.for(type).generate(name, items)
     end
     
     def items=(response) # :nodoc:

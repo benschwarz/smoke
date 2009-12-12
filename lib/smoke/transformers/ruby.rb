@@ -1,8 +1,8 @@
 module Smoke
-  module Output
-    class Ruby < Generator
+  module Transformers
+    class Ruby < Transformer
       identifier :ruby
-      
+    
       def self.generate(tree_name, objects)
         objects
       end

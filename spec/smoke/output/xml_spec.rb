@@ -1,18 +1,18 @@
 require File.join(File.dirname(__FILE__), "..", "..", "spec_helper.rb")
 
-describe Smoke::Output::XML do
+describe Smoke::Transformers::XML do
   before do
     @tree = :tree
     @items = [
       {:id => 1, :class => "first", :type => "mammal", :animal => "monkey"}, 
       {:id => 2, :class => "second", :type => "mammal", :animal => "elephant"}
     ]
-    @xml = Smoke::Output::XML.generate(@tree, @items)
+    @xml = Smoke::Transformers::XML.generate(@tree, @items)
     @document = Nokogiri::XML(@xml)
   end
   
   it "should respond to generate" do
-    Smoke::Output::XML.should respond_to(:generate)
+    Smoke::Transformers::XML.should respond_to(:generate)
   end
   
   it "should start the tree off with a named key" do

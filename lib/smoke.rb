@@ -128,7 +128,7 @@ module Smoke
   end
 end
 
-Dir["#{File.dirname(__FILE__)}/{core_ext,smoke,smoke/output,smoke/output/generators}/*.rb"].each {|r| require r}
+Dir["#{File.dirname(__FILE__)}/{core_ext,smoke,smoke/transformers}/*.rb"].each {|r| require r}
 
 # Autoload the source classes
 %w(YQL Data Feed Join).each do |r|
