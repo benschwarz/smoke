@@ -20,10 +20,10 @@ module Smoke
       
         builder.to_xml
       end
-    end
-    
-    def self.parse(string)
-      ::Crack::XML.parse(string)
+      
+      def self.parse(string)
+        ::Crack::XML.parse(string)
+      end
     end
   end
 end
