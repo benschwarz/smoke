@@ -39,7 +39,7 @@ module Smoke
     end
     
     def parse!
-      @body = Transformer.for(type).parse(@body).symbolize_keys!
+      @body = Transformer.for(type).parse(body).symbolize_keys!
     rescue Registry::NotRegistered
       Smoke.log.warn "Smoke Request: Format unknown for #{@uri} (#{@content_type})"
     end
