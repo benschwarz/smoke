@@ -78,17 +78,10 @@ Execution:
 
 
 ### TODO (working on, just mental notes)
-* "Plugin" / "registration" architecture for input parsers
+* Items returned from smoke to be Hashie "rich" objects
 * Output as a web feed (atom, rss)
   * How to push through values like "author"?
   * Passing modified time headers through to the atom formatter
-
-
-#### Later / maybe
-* YQL w/oAuth
-* YQL Subqueries?
-* Implement basic auth for sources
-
 
 #### For wiki pages (docs, later)
 * Document all sources with their irrespective differential methods
