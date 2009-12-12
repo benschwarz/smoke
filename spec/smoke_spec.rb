@@ -27,7 +27,7 @@ describe Smoke do
     
     it "should have its name as the hash key" do
       key = Smoke.active_sources.keys.first
-      Smoke.active_sources[key].name.should == key
+      Smoke.active_sources[key].name.to_s.should == key.to_s
     end
     
     describe "accessing via method call" do

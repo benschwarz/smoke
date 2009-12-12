@@ -128,7 +128,6 @@ module Smoke
   end
 end
 
-# Selectively load everything
 Dir["#{File.dirname(__FILE__)}/{core_ext,smoke,smoke/output,smoke/output/generators}/*.rb"].each {|r| require r}
 
 # Autoload the source classes
