@@ -49,6 +49,10 @@ describe Smoke::Origin do
       Smoke.test.output(:xml).should include "<?xml version=\"1.0\"?>"
     end
     
+    it "should raise a UnavailableFormat error" do
+      lambda { Smoke.test.output(:xyz) }.should raise_error(Smoke::Origin::UnavailableFormat)
+    end
+    
     describe "filtering" do
       before :all do
         TestSource.source(:keep) do

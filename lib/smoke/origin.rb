@@ -1,5 +1,7 @@
 module Smoke
   class Origin
+    class UnavailableFormat < StandardError; end
+    
     attr_reader :items, :requirements, :exposed
     attr_accessor :name
     
@@ -25,6 +27,8 @@ module Smoke
       dispatch if respond_to? :dispatch
       
       Transformer.for(type).generate(name, items)
+    rescue Registry::NotRegistered => e
+      raise UnavailableFormat, e.message
     end
     
     def items=(response) # :nodoc:
