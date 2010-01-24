@@ -126,15 +126,11 @@ module Smoke
     #   end
     def join(*names, &block); Smoke::Join.new(names, &block); end
   end
+  
+  autoload :YQL, "smoke/source/yql"
+  autoload :Data, "smoke/source/data"
+  autoload :Feed, "smoke/source/feed"
+  autoload :Join, "smoke/source/join"
 end
 
 Dir["#{File.dirname(__FILE__)}/{core_ext,smoke,smoke/transformers}/*.rb"].each {|r| require r}
-
-# Autoload the source classes
-%w(YQL Data Feed Join).each do |r|
-  Smoke.autoload(r.to_sym, File.join(File.dirname(__FILE__), "smoke", "source", r.downcase))
-end
-
-class Object # :nodoc: 
-  include Smoke
-end
