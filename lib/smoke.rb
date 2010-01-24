@@ -10,7 +10,9 @@ require 'restclient'
 require 'nokogiri'
 require 'registry'
 
-module Smoke  
+module Smoke
+  class NotRegistered < StandardError; end
+   
   class << self
     @@active_sources = {}
     @@config = {
@@ -50,6 +52,8 @@ module Smoke
     # Usage:
     #   Smoke.twitter(:username => "benschwarz")
     def method_missing(sym, args = {})
+      raise NotRegistered, "Smoke source not registered" if self[sym].nil?
+      
       args.each_pair {|k, v| self[sym].send(k, v) }
       self[sym]
     end
