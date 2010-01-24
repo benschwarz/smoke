@@ -58,8 +58,8 @@ module Smoke
     # Source instances are stored within the 
     # @@active_sources class variable for later use
     def activate(name, source)
-      if active_sources.has_key?(name)
-        Smoke.log.warn "Smoke source activation: Source with idential name already initialized" 
+      if active_sources.key?(name)
+        Smoke.log.warn "Smoke source activation: Source with identical name already initialized" 
       end
       active_sources.update({ name => source })
     end
