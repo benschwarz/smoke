@@ -8,10 +8,10 @@ module Smoke
           xml.items {
             items.each do |item|
               xml.item {
-                %w(id type class).each{|m| item["#{m}_".to_sym] = item.delete(m.to_sym) }
+                %w(id type class fork).each{|m| item["#{m}_".to_sym] = item.delete(m.to_sym) }
               
                 item.each do |k, v|
-                  xml.send(k, v)
+                  xml.__send__(k, v)
                 end
               }
             end
