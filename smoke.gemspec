@@ -5,11 +5,11 @@
 
 Gem::Specification.new do |s|
   s.name = %q{smoke}
-  s.version = "0.5.17"
+  s.version = "0.5.19"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Ben Schwarz"]
-  s.date = %q{2009-10-29}
+  s.date = %q{2010-01-24}
   s.email = %q{ben.schwarz@gmail.com}
   s.extra_rdoc_files = [
     "LICENSE",
@@ -20,47 +20,32 @@ Gem::Specification.new do |s|
      "README.markdown",
      "Rakefile",
      "VERSION.yml",
+     "lib/core_ext/array.rb",
      "lib/core_ext/hash.rb",
      "lib/core_ext/string.rb",
      "lib/smoke.rb",
      "lib/smoke/cache.rb",
      "lib/smoke/origin.rb",
-     "lib/smoke/output/xml.rb",
      "lib/smoke/request.rb",
      "lib/smoke/source/data.rb",
      "lib/smoke/source/feed.rb",
      "lib/smoke/source/join.rb",
      "lib/smoke/source/yql.rb",
-     "rdoc/classes/Smoke.html",
-     "rdoc/classes/Smoke/Origin.html",
-     "rdoc/classes/Smoke/Source/Data.html",
-     "rdoc/classes/Smoke/Source/Feed.html",
-     "rdoc/classes/Smoke/Source/YQL.html",
-     "rdoc/created.rid",
-     "rdoc/files/README_markdown.html",
-     "rdoc/files/lib/core_ext/hash_rb.html",
-     "rdoc/files/lib/smoke/origin_rb.html",
-     "rdoc/files/lib/smoke/request_rb.html",
-     "rdoc/files/lib/smoke/source/data_rb.html",
-     "rdoc/files/lib/smoke/source/feed_rb.html",
-     "rdoc/files/lib/smoke/source/join_rb.html",
-     "rdoc/files/lib/smoke/source/yql_rb.html",
-     "rdoc/files/lib/smoke_rb.html",
-     "rdoc/fr_class_index.html",
-     "rdoc/fr_file_index.html",
-     "rdoc/fr_method_index.html",
-     "rdoc/index.html",
-     "rdoc/rdoc-style.css",
+     "lib/smoke/transformer.rb",
+     "lib/smoke/transformers/json.rb",
+     "lib/smoke/transformers/ruby.rb",
+     "lib/smoke/transformers/xml.rb",
+     "lib/smoke/transformers/yaml.rb",
      "spec/core_ext/hash_spec.rb",
      "spec/smoke/cache_spec.rb",
      "spec/smoke/origin_spec.rb",
-     "spec/smoke/output/xml_spec.rb",
      "spec/smoke/request_spec.rb",
-     "spec/smoke/shared_spec.rb",
      "spec/smoke/source/data_spec.rb",
      "spec/smoke/source/feed_spec.rb",
      "spec/smoke/source/join_spec.rb",
      "spec/smoke/source/yql_spec.rb",
+     "spec/smoke/transformers/xml_spec.rb",
+     "spec/smoke/transformers_spec.rb",
      "spec/smoke_spec.rb",
      "spec/spec.opts",
      "spec/spec_helper.rb",
@@ -71,7 +56,8 @@ Gem::Specification.new do |s|
      "spec/supports/search-web.json.yql",
      "spec/supports/search-web.xml.yql",
      "spec/supports/slashdot.xml",
-     "spec/supports/test_source.rb"
+     "spec/supports/test_source.rb",
+     "spec/supports/twitter_timeline.json"
   ]
   s.homepage = %q{http://github.com/benschwarz/smoke}
   s.rdoc_options = ["--charset=UTF-8"]
@@ -82,13 +68,13 @@ Gem::Specification.new do |s|
     "spec/core_ext/hash_spec.rb",
      "spec/smoke/cache_spec.rb",
      "spec/smoke/origin_spec.rb",
-     "spec/smoke/output/xml_spec.rb",
      "spec/smoke/request_spec.rb",
-     "spec/smoke/shared_spec.rb",
      "spec/smoke/source/data_spec.rb",
      "spec/smoke/source/feed_spec.rb",
      "spec/smoke/source/join_spec.rb",
      "spec/smoke/source/yql_spec.rb",
+     "spec/smoke/transformers/xml_spec.rb",
+     "spec/smoke/transformers_spec.rb",
      "spec/smoke_spec.rb",
      "spec/spec_helper.rb",
      "spec/supports/test_source.rb",
@@ -108,6 +94,7 @@ Gem::Specification.new do |s|
       s.add_runtime_dependency(%q<moneta>, ["= 0.6.0"])
       s.add_runtime_dependency(%q<rest-client>, ["= 1.0.3"])
       s.add_runtime_dependency(%q<nokogiri>, ["= 1.3.2"])
+      s.add_runtime_dependency(%q<registry>, [">= 0.1.2"])
     else
       s.add_dependency(%q<fakeweb>, [">= 1.2.5"])
       s.add_dependency(%q<simple-rss>, ["= 1.2"])
@@ -116,6 +103,7 @@ Gem::Specification.new do |s|
       s.add_dependency(%q<moneta>, ["= 0.6.0"])
       s.add_dependency(%q<rest-client>, ["= 1.0.3"])
       s.add_dependency(%q<nokogiri>, ["= 1.3.2"])
+      s.add_dependency(%q<registry>, [">= 0.1.2"])
     end
   else
     s.add_dependency(%q<fakeweb>, [">= 1.2.5"])
@@ -125,6 +113,7 @@ Gem::Specification.new do |s|
     s.add_dependency(%q<moneta>, ["= 0.6.0"])
     s.add_dependency(%q<rest-client>, ["= 1.0.3"])
     s.add_dependency(%q<nokogiri>, ["= 1.3.2"])
+    s.add_dependency(%q<registry>, [">= 0.1.2"])
   end
 end
 

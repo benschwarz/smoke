@@ -21,11 +21,15 @@ Then you can output as a plain ruby object or one of your other favourites (JSON
 
 ## Install
 
-    gem install smoke -s http://gemcutter.org
+    gem install smoke
 
 ## The concept
 
 The concept comes from using [Yahoo Pipes](http://pipes.yahoo.com) to make web based mash ups: Get a list of tv shows for my torrent client, compile a recipe book or make tools to give me a list of albums that artists in my music library are about to be released.
+
+## Using with web services
+
+Smoke has its own special rack based library to expose your sources web services. Checkout [rack-smoke](http://github.com/benschwarz/rack-smoke) for more details
 
 ## How or what to contribute
 
