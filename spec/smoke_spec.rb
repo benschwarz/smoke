@@ -30,14 +30,12 @@ describe Smoke do
       Smoke.active_sources[key].name.to_s.should == key.to_s
     end
     
-    describe "accessing via method call" do
-      it "should allow access to the sources via a method call" do
-        Smoke.a.should == @source_a 
-      end
-      
-      it "should throw an argument error when missing" do
-        Smoke.b.should raise_error(NoMethodError)
-      end
+    it "should allow access to the sources via a method call" do
+      Smoke.a.should == @source_a 
+    end
+    
+    it "should throw an error when missing" do
+      lambda { Smoke.frank }.should raise_error(Smoke::NotRegistered)
     end
     
     it "should be able to be renamed" do
@@ -50,7 +48,7 @@ describe Smoke do
       Smoke[:b].name.should == "b"
     end
   end
-  
+
   describe "configuration" do
     it "should be configurable" do
       Smoke.should respond_to(:configure)
