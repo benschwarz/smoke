@@ -165,7 +165,7 @@ module Smoke
     # Reverse the order of the items
     # 
     # Usage
-    #   Smoke[:ruby].output
+    #   Smoke.ruby.output
     # Returns [{:header => "Platypus"}, {:header => "Kangaroo"}]
     #   Smoke.yql(:ruby) do
     #     ... Define your source
@@ -222,11 +222,11 @@ module Smoke
     # Truncate your result set to this many objects
     #
     # Usage
-    #   Smoke.yql(:ruby) do
+    #   Smoke.yql(:cameras) do
     #     ...
     #     truncate(3)
     #   end
-    #   Smoke[:ruby].output
+    #   Smoke.cameras.output
     #   => [{title => "Canon"}, {:title => "Nikon"}, {:title => "Pentax"}]
     # Truncate must be used inside an `emit` block.
     def truncate(length)
