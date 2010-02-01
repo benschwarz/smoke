@@ -42,8 +42,7 @@ module Smoke
     # or
     #   where :query, "python"
     def where(column, value)
-      @where = @where || []
-      @where << "#{column.to_s} = '#{value}'"
+      (@where||=[]) << "#{column.to_s} = '#{value}'"
     end
     
     # `use` can be used to set the url location of the data-table
