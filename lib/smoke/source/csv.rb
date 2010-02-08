@@ -3,7 +3,7 @@ module Smoke
   #   Smoke.csv(:asx_listed_companies) do
   #     url "http://www.asx.com.au/asx/research/ASXListedCompanies.csv", :header_row => 3
   #   end
-  class Csv < Origin
+  class CSV < Origin
     attr_reader :request
     
     # The URL that you'd like smoke to source its data from
@@ -29,7 +29,7 @@ module Smoke
     def parse_csv
       parsed_csv = FasterCSV.parse(@request.body)
       items = []
-      header = parsed_csv.slice!(0,(@options[:header_row] || 1)).last
+      header = parsed_csv.slice!(0, (@options[:header_row] || 1)).last
       parsed_csv.each do |row|
         obj = {}
         header.each_with_index do |col, header_index|

@@ -1,6 +1,6 @@
 require File.join(File.dirname(__FILE__), "..", "..", "spec_helper.rb")
 
-describe "Csv" do
+describe "CSV" do
   before :all do
     FakeWeb.register_uri(:get, "http://www.asx.com.au/asx/research/ASXListedCompanies.csv", :body => File.join(SPEC_DIR, 'supports', 'ASXListedCompanies.csv'))
     
@@ -12,7 +12,7 @@ describe "Csv" do
   # it_should_behave_like "all sources"
   
   it "should have been activated" do
-    Smoke[:asx_companies].should(be_an_instance_of(Smoke::Csv))
+    Smoke[:asx_companies].should(be_an_instance_of(Smoke::CSV))
   end
   
   it "should be a list of things" do
