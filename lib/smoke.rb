@@ -9,6 +9,8 @@ require 'moneta'
 require 'restclient'
 require 'nokogiri'
 require 'registry'
+require 'fastercsv'
+
 
 module Smoke
   class NotRegistered < StandardError; end
@@ -121,6 +123,7 @@ module Smoke
     def yql(name, &block);  Smoke::YQL.new(name, &block);  end
     def data(name, &block); Smoke::Data.new(name, &block); end
     def feed(name, &block); Smoke::Feed.new(name, &block); end
+    def csv(name, &block); Smoke::Csv.new(name, &block); end
     
     # Join multiple sources together into a single feed
     # Usage:
@@ -134,6 +137,7 @@ module Smoke
   autoload :YQL, "smoke/source/yql"
   autoload :Data, "smoke/source/data"
   autoload :Feed, "smoke/source/feed"
+  autoload :Csv, "smoke/source/csv"
   autoload :Join, "smoke/source/join"
 end
 
