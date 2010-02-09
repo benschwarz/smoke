@@ -42,7 +42,9 @@ describe "YQL" do
     end
     
     it "should query correctly" do
-      Smoke[:pacer].request.uri.should == "http://query.yahooapis.com/v1/public/yql?q=SELECT%20url%20FROM%20search.images%20WHERE%20query%20=%20'amc%20pacer'&format=json"
+      Smoke[:pacer].request.uri.should include("http://query.yahooapis.com/v1/public/yql?")
+      Smoke[:pacer].request.uri.should include("q=SELECT%20url%20FROM%20search.images%20WHERE%20query%20=%20'amc%20pacer'")
+      Smoke[:pacer].request.uri.should include("format=json")
     end
     
     it "should have urls" do
