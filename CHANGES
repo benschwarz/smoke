@@ -1,0 +1,4 @@
+= 0.5.20 (10/02/2010)
+
+* Added support for handling CSV sources
+  - Thanks Luke Cunningham

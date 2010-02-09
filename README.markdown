@@ -102,4 +102,4 @@ Execution:
 
 ### Copyright
 
-Copyright (c) 2009 Ben Schwarz. See LICENSE for details.
+Copyright (c) 2010 Ben Schwarz. See LICENSE for details.
