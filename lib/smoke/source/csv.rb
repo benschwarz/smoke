@@ -1,3 +1,5 @@
+require 'fastercsv'
+
 module Smoke
   # Usage:
   #   Smoke.csv(:asx_listed_companies) do

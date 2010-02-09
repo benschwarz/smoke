@@ -9,7 +9,6 @@ require 'moneta'
 require 'restclient'
 require 'nokogiri'
 require 'registry'
-require 'fastercsv'
 
 
 module Smoke
