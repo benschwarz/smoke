@@ -9,7 +9,7 @@ Gem::Specification.new do |s|
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Ben Schwarz"]
-  s.date = %q{2010-01-24}
+  s.date = %q{2010-02-08}
   s.email = %q{ben.schwarz@gmail.com}
   s.extra_rdoc_files = [
     "LICENSE",
@@ -27,6 +27,7 @@ Gem::Specification.new do |s|
      "lib/smoke/cache.rb",
      "lib/smoke/origin.rb",
      "lib/smoke/request.rb",
+     "lib/smoke/source/csv.rb",
      "lib/smoke/source/data.rb",
      "lib/smoke/source/feed.rb",
      "lib/smoke/source/join.rb",
@@ -40,6 +41,7 @@ Gem::Specification.new do |s|
      "spec/smoke/cache_spec.rb",
      "spec/smoke/origin_spec.rb",
      "spec/smoke/request_spec.rb",
+     "spec/smoke/source/csv_spec.rb",
      "spec/smoke/source/data_spec.rb",
      "spec/smoke/source/feed_spec.rb",
      "spec/smoke/source/join_spec.rb",
@@ -49,6 +51,7 @@ Gem::Specification.new do |s|
      "spec/smoke_spec.rb",
      "spec/spec.opts",
      "spec/spec_helper.rb",
+     "spec/supports/ASXListedCompanies.csv",
      "spec/supports/amc_pacer.json.yql",
      "spec/supports/datatables.yql",
      "spec/supports/flickr-photo.json",
@@ -69,6 +72,7 @@ Gem::Specification.new do |s|
      "spec/smoke/cache_spec.rb",
      "spec/smoke/origin_spec.rb",
      "spec/smoke/request_spec.rb",
+     "spec/smoke/source/csv_spec.rb",
      "spec/smoke/source/data_spec.rb",
      "spec/smoke/source/feed_spec.rb",
      "spec/smoke/source/join_spec.rb",
@@ -95,6 +99,7 @@ Gem::Specification.new do |s|
       s.add_runtime_dependency(%q<rest-client>, ["= 1.0.3"])
       s.add_runtime_dependency(%q<nokogiri>, ["= 1.3.2"])
       s.add_runtime_dependency(%q<registry>, [">= 0.1.2"])
+      s.add_runtime_dependency(%q<fastercsv>, [">= 1.5.1"])
     else
       s.add_dependency(%q<fakeweb>, [">= 1.2.5"])
       s.add_dependency(%q<simple-rss>, ["= 1.2"])
@@ -104,6 +109,7 @@ Gem::Specification.new do |s|
       s.add_dependency(%q<rest-client>, ["= 1.0.3"])
       s.add_dependency(%q<nokogiri>, ["= 1.3.2"])
       s.add_dependency(%q<registry>, [">= 0.1.2"])
+      s.add_dependency(%q<fastercsv>, [">= 1.5.1"])
     end
   else
     s.add_dependency(%q<fakeweb>, [">= 1.2.5"])
@@ -114,6 +120,7 @@ Gem::Specification.new do |s|
     s.add_dependency(%q<rest-client>, ["= 1.0.3"])
     s.add_dependency(%q<nokogiri>, ["= 1.3.2"])
     s.add_dependency(%q<registry>, [">= 0.1.2"])
+    s.add_dependency(%q<fastercsv>, [">= 1.5.1"])
   end
 end
 

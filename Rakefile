@@ -19,6 +19,7 @@ begin
     gem.add_dependency("rest-client", "1.0.3")
     gem.add_dependency("nokogiri", "1.3.2")
     gem.add_dependency("registry", ">=0.1.2")
+    gem.add_dependency("fastercsv", ">=1.5.1")
     # gem is a Gem::Specification... see http://www.rubygems.org/read/chapter/20 for additional settings
   end
 rescue LoadError
