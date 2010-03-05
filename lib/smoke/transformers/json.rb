@@ -8,7 +8,7 @@ module Smoke
       end
       
       def self.parse(string)
-        ::Crack::JSON.parse(string)
+        ::JSON.parse(string)
       end
     end
   end
